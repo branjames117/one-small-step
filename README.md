@@ -44,7 +44,7 @@ SpaceX has a free API that offers data about their launches.
 
 ## Project Steps
 
-1. Create HTML skeleton.
+1. Create the HTML skeleton.
 2. Successfully connect to API endpoints.
 3. Use data from API calls to render DOM.
 4. Store data in localStorage for persistence.
