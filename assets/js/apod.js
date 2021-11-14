@@ -9,7 +9,14 @@
   fetch(API_URL + API_KEY).then((res) => {
     if (res.ok) {
       res.json().then((data) => {
-        // data object contains the following properties: copyright, data, explanation, hdurl, media_type, service_version, title, url
+        // data object contains the following properties: copyright, date, explanation, hdurl, media_type, service_version, title, url
+        const url = data.url;
+        const hdUrl = data.hdurl;
+        const copyright = data.copyright;
+        const desc = data.explanation;
+        const date = data.date;
+
+        // render the image on the page
         apodEl.src = data.url;
       });
     } else {
