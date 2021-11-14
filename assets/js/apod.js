@@ -1,6 +1,6 @@
 // Function to render to the DOM NASA's Astronomy Picture of the Day
 
-(function getAPOD() {
+(function () {
   const API_URL = 'https://api.nasa.gov/planetary/apod?api_key=';
   const API_KEY = 'lEF3XW7bbe3BIaacs2lmw47iySF6eR72wP6T1sin';
 
