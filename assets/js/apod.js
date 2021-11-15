@@ -3,19 +3,19 @@
 (function () {
   const url = 'https://api.nasa.gov/planetary/apod';
   const api_key = 'lEF3XW7bbe3BIaacs2lmw47iySF6eR72wP6T1sin';
+  const params = { params: { api_key } };
 
   const apodEl = document.querySelector('.recent-card1 img');
 
   axios
-    .get(url, {
-      params: {
-        api_key,
-      },
-    })
+    .get(url, params)
     .then((res) => {
+      console.log('obj returned from getAPOD function: ', res.data);
       apodEl.src = res.data.url;
-    });
+    })
+    .catch((err) => console.log(err));
 
+  // old API request with Fetch
   // fetch(API_URL + API_KEY).then((res) => {
   //   if (res.ok) {
   //     res.json().then((data) => {
