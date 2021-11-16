@@ -8,20 +8,44 @@
   axios
     .get(url, params)
     .then((res) => {
-      // data object contains an object called collection, which contains a property called items, which is an array of 100 items. Each of these items points to a manifest, which must be called in a separate API request, using its nasa_id (as accessed below). The manifest is a JSON file with references to each version of the image.
-      console.log(
-        'first item in obj returned from gallery based on query: ',
-        res.data.collection.items[0].data[0]
-      );
+      // empty array where search results will be stored
+      const searchResults = [];
+
+      // API call returns an array of 100 items
+      // convert their array into an array of objects with only the data we want
+      res.data.collection.items.forEach((item) => {
+        const image = {
+          description: item.data[0].description,
+          keywords: item.data[0].keywords,
+          nasa_id: item.data[0].nasa_id,
+          title: item.data[0].title,
+        };
+        searchResults.push(image);
+      });
+
+      // TO DO - when a successful search is performed, store the query terms and data about the first image returned in localStorage for retrieval in the "Recent Searches" section
+
+      // TO DO - render the first 10 results at first, render the next 10 if user clicks "Load more...", then the next 10, and so on... Each "render" requires a separate API request per result since the URL to the image must first be pulled from the JSON manifest provided in the initial search
+
+      // TO DO - add event listener to each image which sends the nasa_id of it to the openImage() function below, to then render the HD version of the image to our page (in a large closable modal)
+
       const NASA_ID = res.data.collection.items[0].data[0].nasa_id;
       openImage(NASA_ID);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.error(err));
 
   function openImage(NASA_ID) {
     const url = 'https://images-api.nasa.gov/asset/';
-    axios.get(url + NASA_ID).then((res) => {
-      console.log('obj returned by /asset/NASA_ID: ', res);
-    });
+
+    axios
+      .get(url + NASA_ID)
+      .then((res) => {
+        // link to thumbnail-sized image to be displayed in the gallery
+        const thumbnailURL = res.data.collection.items[4].href;
+
+        // link to medium-sized image to be displayed in our large modal after thumbnail is clicked
+        const mediumURL = res.data.collection.items[2].href;
+      })
+      .catch((err) => console.error(err));
   }
 })();
