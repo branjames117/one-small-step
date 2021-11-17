@@ -41,12 +41,6 @@ function getGallery(queryStr) {
       localStorageObj.recent.push(recentSearchObj);
       localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
 
-      // check that we got the data we want
-      console.log(
-        'example obj stored in searchResults arr from gallery API: ',
-        searchResults[0]
-      );
-
       // TO DO - render the first 10 results at first, render the next 10 if user clicks "Load more..." or scrolls down, then the next 10, and so on... so that the browser isn't inundated with 100 image loads all at once (test this)
 
       // TO DO - add a click listener to the thumbnail image so that when the user clicks it the larger version of the image opens in a modal, complete with description, title, etc.
