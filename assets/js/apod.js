@@ -5,6 +5,7 @@
   const api_key = 'lEF3XW7bbe3BIaacs2lmw47iySF6eR72wP6T1sin';
   const params = { params: { api_key } };
 
+  // TO DO - render the APOD and pertinent info in the #apod-section container
   const apodEl = document.querySelector('.recent-card1 img');
 
   axios
@@ -13,24 +14,6 @@
       console.log('obj returned from getAPOD function: ', res.data);
       apodEl.src = res.data.url;
     })
-    .catch((err) => console.log(err));
-
-  // old API request with Fetch
-  // fetch(API_URL + API_KEY).then((res) => {
-  //   if (res.ok) {
-  //     res.json().then((data) => {
-  //       // data object contains the following properties: copyright, date, explanation, hdurl, media_type, service_version, title, url
-  //       const url = data.url;
-  //       const hdUrl = data.hdurl;
-  //       const copyright = data.copyright;
-  //       const desc = data.explanation;
-  //       const date = data.date;
-
-  //       // render the image on the page
-  //       apodEl.src = data.url;
-  //     });
-  //   } else {
-  //     console.log('Error receiving data from API.');
-  //   }
-  // });
+    // TO DO - enhance user feedback for API error with a modal
+    .catch((err) => console.error(err));
 })();
