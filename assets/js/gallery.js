@@ -1,12 +1,11 @@
 // Function to render to the DOM the results of an image query from the images.nasa.gov API
 
-function getGallery(query) {
-  console.log(query);
+function getGallery(queryStr) {
   const url = 'https://images-api.nasa.gov/search?media_type=image&q=';
 
   // if query submitted, use it, else just look for black holes
-  const demoQuery = query || 'black hole';
-  const params = { params: { q: demoQuery, media_type: 'image' } };
+  const query = queryStr || 'black hole';
+  const params = { params: { q: query, media_type: 'image' } };
 
   axios
     .get(url, params)
@@ -29,13 +28,24 @@ function getGallery(query) {
         searchResults.push(image);
       });
 
+      // add search overview (query used + first image returned) for display in the recents section
+      const recentSearchObj = {
+        thumbnail: searchResults[0].thumbnail,
+        query,
+      };
+
+      // get copy of current localStorage object
+      const localStorageObj = JSON.parse(localStorage.userInfo);
+
+      // push latest search overview to array then save updated localStorage object
+      localStorageObj.recent.push(recentSearchObj);
+      localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
+
       // check that we got the data we want
       console.log(
         'example obj stored in searchResults arr from gallery API: ',
         searchResults[0]
       );
-
-      // TO DO - when a successful search is performed, store the query terms and data about the first image thumbnail returned in localStorage for retrieval in the "Recent Searches" section
 
       // TO DO - render the first 10 results at first, render the next 10 if user clicks "Load more..." or scrolls down, then the next 10, and so on... so that the browser isn't inundated with 100 image loads all at once (test this)
 
