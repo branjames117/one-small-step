@@ -5,7 +5,7 @@ function getApod() {
   const api_key = 'lEF3XW7bbe3BIaacs2lmw47iySF6eR72wP6T1sin';
   const params = { params: { api_key } };
 
-  // TO DO - render the APOD and pertinent info in the #apod-section container
+  // create elements for displaying APOD
   const titleEl = document.createElement('h3');
   const linkEl = document.createElement('a');
   const apodEl = document.createElement('img');
@@ -16,8 +16,6 @@ function getApod() {
   axios
     .get(url, params)
     .then((res) => {
-      console.log('obj returned from getAPOD function: ', res.data);
-
       // set the title for the APOD
       titleEl.textContent = `${res.data.title} (© ${res.data.copyright})`;
 

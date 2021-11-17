@@ -1,8 +1,11 @@
 // Function to render to the DOM the results of an image query from the images.nasa.gov API
 
-(function () {
+function getGallery(query) {
+  console.log(query);
   const url = 'https://images-api.nasa.gov/search?media_type=image&q=';
-  const demoQuery = 'black hole';
+
+  // if query submitted, use it, else just look for black holes
+  const demoQuery = query || 'black hole';
   const params = { params: { q: demoQuery, media_type: 'image' } };
 
   axios
@@ -39,4 +42,6 @@
       // TO DO - add a click listener to the thumbnail image so that when the user clicks it the larger version of the image opens in a modal, complete with description, title, etc.
     })
     .catch((err) => console.error(err));
-})();
+}
+
+getGallery();
