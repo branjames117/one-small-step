@@ -1,3 +1,5 @@
+
+
 /* front page */
 
     /* recent searches */
@@ -18,8 +20,8 @@
 
     .apod-img {
         border-style: double;
-        height: 30px;
-        width: 30px;
+        height: 100px;
+        width: 100px;
     }
 
     /* news */
