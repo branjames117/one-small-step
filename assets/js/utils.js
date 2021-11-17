@@ -14,3 +14,21 @@ function clearSection(section) {
     }
   }
 }
+
+function updateLocalStorage(updateObj) {}
+
+function initializeLocalStorage() {
+  const localStorageObj = {
+    preferences: {
+      apodMinimized: false,
+      recentsMinimized: false,
+      newsfeedMinimized: false,
+      darkMode: false,
+    },
+    favorites: [],
+    recent: [],
+  };
+  localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
+}
+
+initializeLocalStorage();
