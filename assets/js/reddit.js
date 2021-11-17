@@ -13,5 +13,8 @@
 
   axios
     .get(`${url}/${subReddit}/${listing}.json`, params)
-    .then((res) => console.log('returned from reddit json: ', res.data.data));
+    .then((res) => console.log('returned from reddit json: ', res.data.data))
+    .catch((err) => {
+      console.error(err);
+    });
 })();
