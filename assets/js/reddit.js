@@ -14,7 +14,25 @@
   axios
     .get(`${url}/${subReddit}/${listing}.json`, params)
     .then((res) => {
-      console.log('returned from reddit json: ', res.data.data);
+      // empty array to store our posts to render
+      const posts = [];
+
+      // get the pertinent data from each post and store in our own posts array
+      res.data.data.children.forEach((post) => {
+        const postObj = {
+          author: post.data.author,
+          created: post.data.created,
+          numberOfComments: post.data.num_comments,
+          permalink: 'https://www.reddit.com/' + post.data.permalink,
+          score: post.data.score,
+          text: post.data.selftext,
+          title: post.data.title,
+          url: post.data.url,
+        };
+        posts.push(postObj);
+      });
+
+      // TO DO - render each post in the news-section
     })
     .catch((err) => {
       console.error(err);
