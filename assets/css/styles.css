@@ -1,0 +1,40 @@
+/* front page */
+
+    /* recent searches */
+
+    #recent-searches-section {
+        border-style: dotted;
+    }
+
+    .recent-card {
+        border-style:double;
+    }
+
+    /* apod */
+
+    #apod-section {
+        border-style: dotted;
+    }
+
+    .apod-img {
+        border-style: double;
+        height: 30px;
+        width: 30px;
+    }
+
+    /* news */
+
+    #news-section {
+        border-style: dotted;
+    }
+
+    .news-card {
+        border-style: double;
+    }
+
+
+
+/* search results/gallery page */
+
+
+
