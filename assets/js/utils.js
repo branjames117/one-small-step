@@ -26,6 +26,7 @@ function clearSectionById(sectionId) {
         recentsMinimized: false,
         newsfeedMinimized: false,
         darkMode: false,
+        mostRecentSubreddit: 'astronomy',
       },
       favorites: [],
       recent: [],
