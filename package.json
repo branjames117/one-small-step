@@ -1,0 +1,20 @@
+{
+  "name": "one-small-step",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/branjames117/one-small-step.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/branjames117/one-small-step/issues"
+  },
+  "homepage": "https://github.com/branjames117/one-small-step#readme"
+}
