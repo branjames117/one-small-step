@@ -15,8 +15,21 @@ function clearSectionById(sectionId) {
   }
 }
 
+// function to handle adding favorites to localstorage
+function handleAddFavorites(e) {
+  const imageObj = e.target.imageObj;
+
+  // get copy of current localStorage object
+  const localStorageObj = JSON.parse(localStorage.userInfo);
+
+  // push image obj to favorites array then save updated object
+  localStorageObj.favorites.push(imageObj);
+  localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
+}
+
 // function to initialize localStorage object to default values if user has not visited page yet
 // is an IIFE so that it executes immediately on page load
+
 (function initializeLocalStorage() {
   // if user has already visited this website, do not reinitialize the localStorage object
   if (!localStorage.userInfo) {

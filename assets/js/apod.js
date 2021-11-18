@@ -11,6 +11,7 @@ function getApod() {
   const apodEl = document.createElement('img');
   const avodEl = document.createElement('video');
   const explanationEl = document.createElement('p');
+  const favoriteBtnEl = document.createElement('button');
   const divEl = document.querySelector('.recent-card1');
 
   axios
@@ -25,6 +26,9 @@ function getApod() {
       explanationEl.style.fontSize = '1.2rem';
       explanationEl.style.lineHeight = '1.3';
 
+      // add a Favorite button, only for images
+      favoriteBtnEl.textContent = 'Add to Favorites';
+
       // check if APOD is an image or a video and append appropriate element to render it
       if (res.data.media_type === 'image') {
         // enclose img el in a link to HD url
@@ -33,8 +37,16 @@ function getApod() {
         apodEl.src = res.data.url;
         apodEl.title = `Click for HD version of ${res.data.title}.`;
 
+        // add event listener to Favorite button
+        favoriteBtnEl.imageObj = {
+          title: res.data.title,
+          thumbnail: res.data.url,
+          hdUrl: res.data.hdurl,
+        };
+        favoriteBtnEl.addEventListener('click', handleAddFavorites);
+
         // render everything to DOM
-        divEl.append(titleEl, linkEl, explanationEl);
+        divEl.append(titleEl, linkEl, explanationEl, favoriteBtnEl);
       } else if (res.data.media_type === 'video') {
         // if video, append a video el instead of an img el
         avodEl.src = res.data.url;
