@@ -1,10 +1,10 @@
 // function to clear a specified section of the DOM (delete all child elements to make way for a rerender) - must accept a CSS ID selector as argument, like '#news-section'
 
-function clearSection(section) {
+function clearSectionById(sectionId) {
   // validate that argument is formatted like an ID selector
-  if (section[0] == '#') {
+  if (sectionId[0] == '#') {
     // grab the element to be cleared
-    const parentEl = document.getElementById(section);
+    const parentEl = document.getElementById(sectionId);
     // if element is successfully located...
     if (parentEl) {
       // ... start removing the last child until there are no more children
