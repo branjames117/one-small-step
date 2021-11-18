@@ -10,9 +10,11 @@
 
   <body>
 
-    <header class="bg-gradient-to-r from-purple-900 to-blue-400">
-      <h1 class="text-white text-center">One Small Step</h1>
-    </header>
+    <div class="grid justify-items-center">
+      <header class="bg-gradient-to-r from-purple-900 to-blue-400 fixed w-4/5 p-2 rounded-lg shadow-lg">
+        <h1 class="text-white text-center">One Small Step</h1>
+      </header>
+    </div>
 
     <!-- FRONT PAGE -->
 
@@ -20,82 +22,82 @@
 
       <!-- SEARCH -->
 
-      <div class="search">
+      <div id="search-container" class="text-center justify-items-center pt-14">
         <form action="/action_page.php">
-          <input type="text" id="fname" name="fname" value="Search NASA images">
-          <input type="submit" value="Submit">
+          <input type="text" id="fname" name="fname" value="Search NASA images" class="shadow-lg rounded-lg text-center p-2">
+          <input type="submit" value="Submit" class="shadow-lg rounded-lg p-2">
         </form> 
       </div>
 
       <!-- RECENTS -->
 
-      <section id="recent-searches-section">
+      <section id="recent-searches-section" class="grid justify-items-center">
         <h2>Recents</h2>
 
-        <div class="inline-flex space-x-4 ...">
+        <div class="inline-flex space-x-4 text-center">
           <div class="inline-block ...">
             <h3>recent search 1</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%">
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
           </div>
           
           <div class="inline-block ...">
             <h3>recent search 2</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%">
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
           </div>
 
           <div class="inline-block ...">
             <h3>recent search 3</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%">
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
           </div>
 
           <div class="inline-block ...">
             <h3>recent search 4</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%">
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
           </div>
         </div>
       </section>
 
       <!-- APOD -->
 
-      <section id="apod-section">
+      <section id="apod-section" class="text-center space-y-4">
         <h2>Image of the Day</h2>
-        <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="50%" height="50%">
+        <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="50%" height="50%" class="rounded-lg">
         <h3>(image name)</h3>
         <p>(image description) Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ipsa, sit blanditiis ducimus neque recusandae voluptates adipisci nihil eveniet magni deleniti et assumenda suscipit. Molestiae quaerat repellat accusamus nulla dignissimos.</p>
       </section>
 
       <!-- NEWS -->
 
-      <section id="news-section">
-        <h2>News</h2>
+      <section id="news-section" class="space-y-4">
+        <h2 class="text-center">News</h2>
         <div class="news-card">
-          <img>
-          <p></p>
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. At aliquam vel, excepturi quas illo consequuntur tempore labore eos laudantium totam accusamus cumque! Enim, recusandae dicta minus hic totam omnis laudantium!</p>
         </div>
           
         <div class="news-card">
-          <img>
-          <p></p>
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut voluptatum, aperiam unde quod ipsam, repellendus earum nihil, dolore sapiente nobis aliquam consequatur quisquam. A unde amet totam expedita laudantium quibusdam.</p>
         </div>
 
         <div class="news-card">
-          <img>
-          <p></p>
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quia omnis minus aliquam obcaecati rem ea voluptates officiis quas vitae sint dolorem, dicta blanditiis, quisquam delectus natus repellendus. Facere, itaque!</p>
         </div>
 
         <div class="news-card">
-          <img>
-          <p></p>
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia delectus illum beatae sed vitae sit molestias tenetur error nam? Illo cupiditate ipsam doloribus quisquam odit autem ratione distinctio minima?</p>
         </div>
 
         <div class="news-card">
-          <img>
-          <p></p>
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, perspiciatis architecto, molestiae quisquam suscipit, eos amet a corporis est neque rem ipsum in enim dignissimos eius eveniet maiores illum voluptatum!</p>
         </div>
         
         <div class="news-card">
-          <img>
-          <p></p>
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, mollitia! Debitis quas sunt officiis earum ipsum nihil quo, ipsam similique, cumque quisquam distinctio labore molestiae perferendis voluptate vel quae dolorum.</p>
         </div>
       </section>
 
