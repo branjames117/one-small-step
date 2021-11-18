@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ISS h3 styling starts here */
+
+div .results-card4 {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: linear-gradian(to right, #022669);
+    font-family: monospace;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: 30px;
+    font-size: 3rem;
+    color: #fff;
+}
+#map-div {
+    width: 800px;
+    height: 350px;
+    box-shadow: 7px -2px 8px -1px rgba(0,0,0,0.7);
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
