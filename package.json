@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/branjames117/one-small-step/issues"
   },
-  "homepage": "https://github.com/branjames117/one-small-step#readme"
+  "homepage": "https://github.com/branjames117/one-small-step#readme",
+  "dependencies": {
+    "tailwindcss": "^2.2.19"
+  }
 }
