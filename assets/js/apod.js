@@ -43,7 +43,7 @@ function getApod() {
           thumbnail: res.data.url,
           hdUrl: res.data.hdurl,
         };
-        favoriteBtnEl.addEventListener('click', handleAddFavorites);
+        favoriteBtnEl.addEventListener('click', handleAddFavorite);
 
         // render everything to DOM
         divEl.append(titleEl, linkEl, explanationEl, favoriteBtnEl);
