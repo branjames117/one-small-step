@@ -17,10 +17,13 @@ function getApod() {
     .get(url, params)
     .then((res) => {
       // set the title for the APOD
-      titleEl.textContent = `${res.data.title} (© ${res.data.copyright})`;
+      titleEl.textContent = `${res.data.title}`;
+      titleEl.style.fontSize = '2rem';
 
       // set the explanation
       explanationEl.textContent = res.data.explanation;
+      explanationEl.style.fontSize = '1.2rem';
+      explanationEl.style.lineHeight = '1.3';
 
       // check if APOD is an image or a video and append appropriate element to render it
       if (res.data.media_type === 'image') {
