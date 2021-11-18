@@ -32,3 +32,28 @@ h3 #ISS {
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
 }
+/* #details */
+#details {
+    background-color: #2B32B2;
+    padding: 10px;
+    color: #fff;
+    display: flex;
+    width: 800px;
+    max-width: 800px;
+    box-shadow: 7px -2px 8px -1px rgba(0,0,0,0.7);
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+  
+  /* all div inside #details */
+  #details div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  /* all span */
+  span {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
