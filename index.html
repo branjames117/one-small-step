@@ -9,7 +9,10 @@
       rel="stylesheet"
       href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css"
     />
-    <link rel="stylesheet" href="./public/styles.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+    <link rel="stylesheet" href="./assets/css/iss-styles.css">
   </head>
 
   <body>
@@ -171,6 +174,55 @@
         </p>
       </section>
 
+      <!-- ISS Section -->
+
+      <section>
+      <div class="results-card4"></div>
+      <div id="ISS">International Space Station Tracker</div>
+      <!----------our Map goes here------------->
+      <div id="map"></div>
+
+      <div id="map-div">
+
+      </div>
+      <!----------details about ISS------------->
+      <div id="details">
+        <!-------------Time----------------->
+        <div>
+          Time:
+          <span class="time"></span>
+        </div>
+        <!---------------Latitude------------->
+        <div>
+          Latitude:
+          <span class="latitude"></span>
+        </div>
+
+        <!---------------Longitude------------>
+        <div>
+          Longitude:
+          <span class="longitude"></span>
+        </div>
+        <!-- Speed -->
+        <div>
+          Speed:
+          <span class="speed"></span>
+        </div>
+        <!-----------------Altitude-------------->
+        <div>
+          Altitude:
+          <span class="altitude"></span>
+        </div>
+        <!----------------Visibility------------->
+        <div>
+          Visibility:
+          <span class="visibility"></span>
+        </div>
+      </div>
+      </div>
+
+    </section>
+
       <!-- NEWS -->
 
       <section
@@ -280,10 +332,16 @@
       <p>copyright info</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./assets/js/utils.js"></script>
-    <script src="./assets/js/apod.js"></script>
-    <script src="./assets/js/gallery.js"></script>
-    <script src="./assets/js/reddit.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/apod.js"></script>
+  <script src="./assets/js/gallery.js"></script>
+  <script src="./assets/js/reddit.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="./assets/js/iss.js" type="text/javascript"></script>
   </body>
 </html>
