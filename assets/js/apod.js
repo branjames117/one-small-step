@@ -1,6 +1,6 @@
 // Function to render to the DOM NASA's Astronomy Picture of the Day
 
-function getApod() {
+(function getApod() {
   const url = 'https://api.nasa.gov/planetary/apod';
   const api_key = 'lEF3XW7bbe3BIaacs2lmw47iySF6eR72wP6T1sin';
   const params = { params: { api_key } };
@@ -74,6 +74,4 @@ function getApod() {
     })
     // TO DO - enhance user feedback for API error with a modal
     .catch((err) => console.error(err));
-}
-
-getApod();
+})();

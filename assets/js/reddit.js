@@ -44,7 +44,6 @@
         divEl.classList.add('flex');
         divEl.href = post.permalink;
 
-        console.log(post.thumbnail);
         // create thumbnail
         const imageEl = document.createElement('img');
         imageEl.src =
@@ -60,7 +59,6 @@
         titleEl.textContent = post.title;
         const textEl = document.createElement('p');
         textEl.textContent = post.text;
-        console.log(post.text);
         newsItemEl.append(titleEl, textEl);
 
         // combine everything

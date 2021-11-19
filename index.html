@@ -40,8 +40,8 @@
         <form id="search-form">
           <input
             type="text"
-            id="fname"
-            name="fname"
+            id="query-input"
+            name="query-input"
             placeholder="Search NASA images"
             class="shadow-lg rounded-lg text-center p-2"
           />
@@ -61,7 +61,10 @@
       >
         <h2>Recents</h2>
 
-        <div class="inline-flex space-x-4 text-center pt-3 w-4/5">
+        <div
+          class="inline-flex space-x-4 text-center pt-3 w-4/5"
+          id="recents-container"
+        >
           <div
             class="
               grid
@@ -282,6 +285,5 @@
     <script src="./assets/js/apod.js"></script>
     <script src="./assets/js/gallery.js"></script>
     <script src="./assets/js/reddit.js"></script>
-    <script src="./assets/js/isslocator.js"></script>
   </body>
 </html>
