@@ -11,6 +11,11 @@
     },
   };
 
+  clearSectionById('#news-section');
+  const newsSectionEl = document.getElementById('news-section');
+  const newsSectionTitle = (document.createElement('h2').textContent = 'News');
+  newsSectionEl.append(newsSectionTitle);
+
   axios
     .get(`${url}/${subReddit}/${listing}.json`, params)
     .then((res) => {
@@ -25,14 +30,41 @@
           numberOfComments: post.data.num_comments,
           permalink: 'https://www.reddit.com/' + post.data.permalink,
           score: post.data.score,
-          text: post.data.selftext,
+          text: post.data.selftext.substr(0, 300) + '...',
+          thumbnail: post.data.thumbnail,
           title: post.data.title,
           url: post.data.url,
         };
         posts.push(postObj);
       });
 
-      // TO DO - render each post in the news-section
+      // render each post in DOM
+      posts.forEach((post) => {
+        const divEl = document.createElement('a');
+        divEl.classList.add('flex');
+        divEl.href = post.permalink;
+
+        // create thumbnail
+        const imageEl = document.createElement('img');
+        imageEl.src =
+          post.thumbnail === 'default' || post.thumbnail === 'self'
+            ? './assets/images/image-placeholder-500x500.jpg'
+            : post.thumbnail;
+        imageEl.alt = posts.title;
+        imageEl.classList = 'inline rounded-lg';
+
+        // create text
+        const newsItemEl = document.createElement('div');
+        const titleEl = document.createElement('h3');
+        titleEl.textContent = post.title;
+        const textEl = document.createElement('p');
+        textEl.textContent = post.text;
+        newsItemEl.append(titleEl, textEl);
+
+        // combine everything
+        divEl.append(imageEl, newsItemEl);
+        newsSectionEl.append(divEl);
+      });
     })
     .catch((err) => {
       console.error(err);

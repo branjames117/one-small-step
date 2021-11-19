@@ -4,7 +4,7 @@ function clearSectionById(sectionId) {
   // validate that argument is formatted like an ID selector
   if (sectionId[0] == '#') {
     // grab the element to be cleared
-    const parentEl = document.getElementById(sectionId);
+    const parentEl = document.getElementById(sectionId.replace('#', ''));
     // if element is successfully located...
     if (parentEl) {
       // ... start removing the last child until there are no more children
