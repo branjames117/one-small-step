@@ -7,10 +7,11 @@ let speedText = document.querySelector('.speed');
 let altitudeText = document.querySelector('.altitude');
 let visibilityText = document.querySelector('.visibility');
 
+
 /* default latitude and longitude. Here lat and long is for "Nashville" */
 let lat = 36.174465;
 let long = -86.767960;
-let zoomLevel = 8;
+let zoomLevel = 4;
 
 // set iss.png image as Marker
 const icon = L.icon({
@@ -38,12 +39,13 @@ const marker = L.marker([lat, long], { icon: icon }).addTo(map);
 
 // findISS() function definition
 function findISS() {
-    fetch("https://api.wheretheiss.at/v1/satellites/25544")
+    fetch("https://api.wheretheiss.at/v1/satellites/25544/")
         .then(response => response.json())
         .then(data => {
             lat = data.latitude.toFixed(2);
             long = data.longitude.toFixed(2);
-            // convert seconds to milliseconds, then to UTC format
+
+            // convert seconds to milliseconds, then format Date
             const timestamp = new Date(data.timestamp * 1000).toUTCString();
             const speed = data.velocity.toFixed(2);
             const altitude = data.altitude.toFixed(2);
@@ -57,15 +59,13 @@ function findISS() {
 
 // updateISS() function definition
 function updateISS(lat, long, timestamp, speed, altitude, visibility) {
-    // updates Marker's lat and long on map
     marker.setLatLng([lat, long]);
-    // updates map view according to Marker's new position
     map.setView([lat, long]);
     // updates other element's value
     latitudeText.innerText = lat;
     longitudeText.innerText = long;
     timeText.innerText = timestamp;
-    speedText.innerText = `${speed} km/hr`;
+    speedText.innerText = `${speed} km/h`;
     altitudeText.innerText = `${altitude} km`;
     visibilityText.innerText = visibility;
 }
