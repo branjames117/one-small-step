@@ -1,147 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Small Step</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css">
+    <link rel="stylesheet" href="./public/styles.css">
   </head>
+
   <body>
-    <header>
-      <h1>One Small Step</h1>
-    </header>
+
+    <div class="grid justify-items-center">
+      <header class="bg-gradient-to-r from-purple-900 to-blue-400 fixed top-4 w-4/5 p-2 rounded-lg shadow-lg">
+        <h1 class="text-white text-center">One Small Step</h1>
+      </header>
+    </div>
 
     <!-- FRONT PAGE -->
 
-    <main id="front-page-container">
+    <section id="front-page-container">
+
       <!-- SEARCH -->
 
-      <div class="search">
-        <form></form>
-
-        <button></button>
+      <div id="search-container" class="text-center justify-items-center pt-20">
+        <form action="/action_page.php">
+          <input type="text" id="fname" name="fname" placeholder="Search NASA images" class="shadow-lg rounded-lg text-center p-2">
+          <input type="submit" value="Submit" class="shadow-lg rounded-lg p-2">
+        </form> 
       </div>
 
       <!-- RECENTS -->
 
-      <div class="recents">
+      <section id="recent-searches-section" class="grid justify-items-center pt-5">
         <h2>Recents</h2>
 
-        <div class="recent-card-container">
-          <div class="recent-card1">
-            <h3></h3>
-            <img />
+        <div class="inline-flex space-x-4 text-center pt-3 w-4/5">
+          <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
+            <h3>search 1</h3>
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
+          </div>
+          
+          <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
+            <h3>search 2</h3>
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
           </div>
 
-          <div class="recent-card2">
-            <h3></h3>
-            <img />
+          <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
+            <h3>search 3</h3>
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
           </div>
 
-          <div class="recent-card3">
-            <h3></h3>
-            <img />
-          </div>
-
-          <div class="recent-card4">
-            <h3></h3>
-            <img />
+          <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
+            <h3>search 4</h3>
+            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%" class="rounded-lg">
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- AROUND THE WEB -->
+      <!-- APOD -->
 
-      <div class="around-the-web-container">
-        <div class="atw-card1">
-          <img />
-          <p></p>
+      <section id="apod-section" class="grid justify-items-center text-center space-y-4 pt-4 ml-0 mr-0">
+        <h2>Image of the Day</h2>
+        <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="90%" height="50%" class="rounded-lg">
+        <h3>(image name)</h3>
+        <p class="w-4/5">(image description) Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ipsa, sit blanditiis ducimus neque recusandae voluptates adipisci nihil eveniet magni deleniti et assumenda suscipit. Molestiae quaerat repellat accusamus nulla dignissimos.</p>
+      </section>
+
+      <!-- NEWS -->
+
+      <section id="news-section" class="grid justify-items-center space-y-4 p-10">
+        <h2 class="text-center">News</h2>
+        <div class="flex">
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="inline rounded-lg">
+          <p class="pl-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At aliquam vel, excepturi quas illo consequuntur tempore labore eos laudantium totam accusamus cumque! Enim, recusandae dicta minus hic totam omnis laudantium!</p>
+        </div>
+          
+        <div class="flex">
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p class="pl-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut voluptatum, aperiam unde quod ipsam, repellendus earum nihil, dolore sapiente nobis aliquam consequatur quisquam. A unde amet totam expedita laudantium quibusdam.</p>
         </div>
 
-        <div class="atw-card2">
-          <img />
-          <p></p>
+        <div class="flex">
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p class="pl-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quia omnis minus aliquam obcaecati rem ea voluptates officiis quas vitae sint dolorem, dicta blanditiis, quisquam delectus natus repellendus. Facere, itaque!</p>
         </div>
 
-        <div class="atw-card3">
-          <img />
-          <p></p>
+        <div class="flex">
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p class="pl-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia delectus illum beatae sed vitae sit molestias tenetur error nam? Illo cupiditate ipsam doloribus quisquam odit autem ratione distinctio minima?</p>
         </div>
 
-        <div class="atw-card4">
-          <img />
-          <p></p>
+        <div class="flex">
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p class="pl-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, perspiciatis architecto, molestiae quisquam suscipit, eos amet a corporis est neque rem ipsum in enim dignissimos eius eveniet maiores illum voluptatum!</p>
         </div>
+        
+        <div class="flex">
+          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%" class="rounded-lg">
+          <p class="pl-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, mollitia! Debitis quas sunt officiis earum ipsum nihil quo, ipsam similique, cumque quisquam distinctio labore molestiae perferendis voluptate vel quae dolorum.</p>
+        </div>
+      </section>
 
-        <div class="atw-card5">
-          <img />
-          <p></p>
-        </div>
-
-        <div class="atw-card6">
-          <img />
-          <p></p>
-        </div>
-      </div>
-    </main>
+    </section>
 
     <!-- POST SEARCH -->
 
-    <main id="post-search-container">
+    <section id="post-search-container">
+
       <h1>Results for:<span></span></h1>
 
-      <!-- SEARCH RESULTS-->
+      <!-- GALLERY -->
 
-      <div class="search-results-container">
+      <section id="gallery-section">
         <div class="results-card1">
           <h3></h3>
-          <img />
+          <img>
           <a></a>
           <p></p>
         </div>
 
         <div class="results-card2">
           <h3></h3>
-          <img />
+          <img>
           <a></a>
           <p></p>
         </div>
 
         <div class="results-card3">
           <h3></h3>
-          <img />
+          <img>
           <a></a>
           <p></p>
         </div>
 
         <div class="results-card4">
           <h3></h3>
-          <img />
+          <img>
           <a></a>
           <p></p>
         </div>
 
         <div class="results-card5">
           <h3></h3>
-          <img />
+          <img>
           <a></a>
           <p></p>
         </div>
 
         <div class="results-card6">
           <h3></h3>
-          <img />
+          <img>
           <a></a>
           <p></p>
         </div>
-      </div>
-    </main>
+      </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./assets/js/utils.js"></script>
-    <script src="./assets/js/apod.js"></script>
-    <script src="./assets/js/gallery.js"></script>
-    <script src="./assets/js/reddit.js"></script>
-    <script src="./assets/js/isslocator.js"></script>
+    </section>
+
+    <footer>
+      <p>copyright info</p>
+    </footer>
+
+
   </body>
 </html>
