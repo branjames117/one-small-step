@@ -24,6 +24,7 @@ div .results-card4 {
 
 #ISS {
     text-align: center;
+    padding-top: 20px;
     margin-bottom: 30px;
     font-size: 2rem;
     color: rgb(12, 0, 0);
@@ -34,7 +35,7 @@ div .results-card4 {
 #map-div {
     width: 800px;
     height: 350px;
-    margin-left: 20px;
+    margin-left: 250px;
     box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
@@ -44,7 +45,7 @@ div .results-card4 {
 
 #details {
     background-color: #2B32B2;
-    margin-left: 20px;
+    margin-left: 250px;
     margin-top: 5px;
     margin-bottom: 10px;
     padding: 2px;
