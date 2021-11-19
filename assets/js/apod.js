@@ -6,13 +6,21 @@ function getApod() {
   const params = { params: { api_key } };
 
   // create elements for displaying APOD
+  const sectionTitleEl = (document.createElement('h2').textContent =
+    'Image of the Day');
   const titleEl = document.createElement('h3');
   const linkEl = document.createElement('a');
   const apodEl = document.createElement('img');
   const avodEl = document.createElement('video');
   const explanationEl = document.createElement('p');
   const favoriteBtnEl = document.createElement('button');
-  const divEl = document.querySelector('.recent-card1');
+
+  // clear placeholder
+  clearSectionById('#apod-section');
+
+  // get section to display API data
+  const apodSectionEl = document.getElementById('apod-section');
+  apodSectionEl.style.position = 'relative';
 
   axios
     .get(url, params)
@@ -23,11 +31,16 @@ function getApod() {
 
       // set the explanation
       explanationEl.textContent = res.data.explanation;
-      explanationEl.style.fontSize = '1.2rem';
-      explanationEl.style.lineHeight = '1.3';
+      explanationEl.classList = 'w-4/5 text-left';
 
       // add a Favorite button, only for images
-      favoriteBtnEl.textContent = 'Add to Favorites';
+      favoriteBtnEl.textContent = '☆';
+      favoriteBtnEl.style.position = 'absolute';
+      favoriteBtnEl.style.backgroundColor = 'black';
+      favoriteBtnEl.style.color = 'white';
+      favoriteBtnEl.style.top = '30px';
+      favoriteBtnEl.style.right = '150px';
+      favoriteBtnEl.style.borderRadius = '50%';
 
       // check if APOD is an image or a video and append appropriate element to render it
       if (res.data.media_type === 'image') {
@@ -46,11 +59,17 @@ function getApod() {
         favoriteBtnEl.addEventListener('click', handleAddFavorite);
 
         // render everything to DOM
-        divEl.append(titleEl, linkEl, explanationEl, favoriteBtnEl);
+        apodSectionEl.append(
+          sectionTitleEl,
+          linkEl,
+          titleEl,
+          explanationEl,
+          favoriteBtnEl
+        );
       } else if (res.data.media_type === 'video') {
         // if video, append a video el instead of an img el
         avodEl.src = res.data.url;
-        divEl.append(titleEl, avodEl, explanationEl);
+        apodSectionEl.append(titleEl, avodEl, explanationEl);
       }
     })
     // TO DO - enhance user feedback for API error with a modal
