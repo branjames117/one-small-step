@@ -1,19 +1,60 @@
 // Function to render to the DOM NASA's Astronomy Picture of the Day
 
-(function () {
+function getApod() {
   const url = 'https://api.nasa.gov/planetary/apod';
   const api_key = 'lEF3XW7bbe3BIaacs2lmw47iySF6eR72wP6T1sin';
   const params = { params: { api_key } };
 
-  // TO DO - render the APOD and pertinent info in the #apod-section container
-  const apodEl = document.querySelector('.recent-card1 img');
+  // create elements for displaying APOD
+  const titleEl = document.createElement('h3');
+  const linkEl = document.createElement('a');
+  const apodEl = document.createElement('img');
+  const avodEl = document.createElement('video');
+  const explanationEl = document.createElement('p');
+  const favoriteBtnEl = document.createElement('button');
+  const divEl = document.querySelector('.recent-card1');
 
   axios
     .get(url, params)
     .then((res) => {
-      console.log('obj returned from getAPOD function: ', res.data);
-      apodEl.src = res.data.url;
+      // set the title for the APOD
+      titleEl.textContent = `${res.data.title}`;
+      titleEl.style.fontSize = '2rem';
+
+      // set the explanation
+      explanationEl.textContent = res.data.explanation;
+      explanationEl.style.fontSize = '1.2rem';
+      explanationEl.style.lineHeight = '1.3';
+
+      // add a Favorite button, only for images
+      favoriteBtnEl.textContent = 'Add to Favorites';
+
+      // check if APOD is an image or a video and append appropriate element to render it
+      if (res.data.media_type === 'image') {
+        // enclose img el in a link to HD url
+        linkEl.href = res.data.hdurl;
+        linkEl.appendChild(apodEl);
+        apodEl.src = res.data.url;
+        apodEl.title = `Click for HD version of ${res.data.title}.`;
+
+        // add event listener to Favorite button
+        favoriteBtnEl.imageObj = {
+          title: res.data.title,
+          thumbnail: res.data.url,
+          hdUrl: res.data.hdurl,
+        };
+        favoriteBtnEl.addEventListener('click', handleAddFavorite);
+
+        // render everything to DOM
+        divEl.append(titleEl, linkEl, explanationEl, favoriteBtnEl);
+      } else if (res.data.media_type === 'video') {
+        // if video, append a video el instead of an img el
+        avodEl.src = res.data.url;
+        divEl.append(titleEl, avodEl, explanationEl);
+      }
     })
     // TO DO - enhance user feedback for API error with a modal
     .catch((err) => console.error(err));
-})();
+}
+
+getApod();
