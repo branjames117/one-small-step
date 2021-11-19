@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+
+
+/* * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} */
+
+/* ISS h3 styling starts here */
+
+div .results-card4 {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: linear-gradian(to right, #022669);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+#ISS {
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: rgb(12, 0, 0);
+    font-family: 'Poppins', sans-serif;
+
+}
+
+#map-div {
+    width: 800px;
+    height: 350px;
+    margin-left: 250px;
+    box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+/* #details */
+
+#details {
+    background-color: #2B32B2;
+    margin-left: 250px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 2px;
+    color: #fff;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 5px;
+    width: 800px;
+    max-width: 800px;
+    box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+/* all div inside #details */
+
+#details div {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* all span */
+
+span {
+    font-size: 1rem;
+    margin-top: 10px;
+}
