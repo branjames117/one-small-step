@@ -39,6 +39,7 @@ function getGallery(queryStr) {
       // add search overview (query used + first image returned) for display in the recents section
       const recentSearchObj = {
         thumbnail: searchResults[0].thumbnail,
+        largeImage: searchResults[0].largeImage,
         query,
       };
 
@@ -56,7 +57,12 @@ function getGallery(queryStr) {
       if (!alreadyRecented) {
         // push latest search overview to array then save updated localStorage object
         localStorageObj.recent.push(recentSearchObj);
+        // prevent array from exceeding 4 items
+        if (localStorageObj.recent.length > 4) {
+          localStorageObj.recent.shift();
+        }
         localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
+        // repopulate recent section
         populateRecents();
       }
 
@@ -71,26 +77,38 @@ function populateRecents() {
   // get copy of current localStorage object
   const localStorageObj = JSON.parse(localStorage.userInfo);
 
-  clearSectionById('#recents-container');
+  // go through array backwards and populate placeholder containers in index.html
+  localStorageObj.recent
+    .slice()
+    .reverse()
+    .forEach((search, idx) => {
+      // title first
+      document.querySelector(
+        `#recent-search-container-${idx + 1} h3 a`
+      ).textContent = '"' + search.query + '"';
+      document
+        .querySelector(`#recent-search-container-${idx + 1} h3 a`)
+        .addEventListener('click', () => {
+          getGallery(search.query);
+        });
+      document.querySelector(
+        `#recent-search-container-${idx + 1} h3 a`
+      ).style.cursor = 'pointer';
 
-  // get recent section element
-  const recentSectionEl = document.getElementById('recents-container');
+      // image
+      document.querySelector(`#recent-search-container-${idx + 1} a img`).src =
+        search.thumbnail;
+      document.querySelector(`#recent-search-container-${idx + 1} a img`).alt =
+        search.query;
+      document.querySelector(
+        `#recent-search-container-${idx + 1} a img`
+      ).title = search.query;
 
-  localStorageObj.recent.forEach((search) => {
-    const divEl = document.createElement('div');
-    divEl.classList =
-      'grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2';
-    const h3El = document.createElement('h3');
-    h3El.textContent = '"' + search.query + '"';
-    const imgEl = document.createElement('img');
-    imgEl.src = search.thumbnail;
-    imgEl.alt = search.query;
-    imgEl.classList.add('rounded-lg');
-
-    divEl.append(h3El, imgEl);
-    recentSectionEl.append(divEl);
-  });
+      // link to hd image
+      document.querySelector(`#recent-search-container-${idx + 1} > a`).href =
+        search.largeImage;
+    });
 }
 
-getGallery();
+// on page load, populate recent section
 populateRecents();
