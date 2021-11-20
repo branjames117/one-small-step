@@ -36,7 +36,8 @@
           .querySelector('#apod-section > button')
           .addEventListener('click', handleAddFavorite);
       } else if (res.data.media_type === 'video') {
-        // if video, append a video el instead of an img el
+        // if video
+        document.querySelector('#apod-section > video').style.display = 'block';
         document.querySelector('#apod-section > video').src = res.data.url;
       }
     })
