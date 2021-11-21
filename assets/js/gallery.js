@@ -76,7 +76,7 @@ function getGallery(queryStr) {
 
         // TO DO - render the first 10 results at first, render the next 10 if user clicks "Load more..." or scrolls down, then the next 10, and so on... so that the browser isn't inundated with 100 image loads all at once (test this)
 
-        // change the h2 to include search terms
+        // change the h2 to include search term
         document.querySelector(
           '#gallery-results-section > h2'
         ).textContent = `Search Results for: "${queryStr}"`;
@@ -84,18 +84,47 @@ function getGallery(queryStr) {
         // render only the first 8 results to the temporary holding containers
         searchResults.forEach((image, idx) => {
           if (idx < 8) {
+            // check if image exists in favorites
+            let favorited = false;
+            localStorageObj.favorites.forEach((favorite) => {
+              if (favorite.title === image.title) {
+                console.log('Favorited');
+                favorited = true;
+              }
+            });
+
+            // if image is in favorites, fill out the star, otherwise, make it hollow
             document.querySelector(
-              `#search-result-${idx + 1} > h3`
+              `#search-result-${idx + 1} > h3 > button`
+            ).textContent = favorited ? '★' : '☆';
+
+            // add event listener to Favorite button
+            document.querySelector(
+              `#search-result-${idx + 1} > h3 > button`
+            ).imageObj = {
+              title: image.title,
+              thumbnail: image.url,
+              hdUrl: image.hdurl,
+            };
+            document
+              .querySelector(`#search-result-${idx + 1} > h3 > button`)
+              .addEventListener('click', toggleFavorite);
+
+            // set the title of each grid item
+            document.querySelector(
+              `#search-result-${idx + 1} > h3 > span`
             ).textContent = image.title;
+            // set the URL link
             document.querySelector(`#search-result-${idx + 1} > a`).href =
               image.largeImage;
+            // set the image as thumbnail
             document.querySelector(`#search-result-${idx + 1} > a > img`).src =
               image.thumbnail;
             // if keywords list is only one item as some results return, break it apart
             if (image.keywords.length === 1) {
               image.keywords = image.keywords[0].split('; ');
             }
-            // clear out old keywords
+            // clear out old keywords from container
             document.querySelector(`#search-result-${idx + 1} > ul`).innerHTML =
               '';
             // populate keywords list

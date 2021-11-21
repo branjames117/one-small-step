@@ -19,6 +19,7 @@ function clearSectionById(sectionId) {
 function toggleFavorite(e) {
   // get data for image off of button element
   const imageObj = e.target.imageObj;
+  console.log(imageObj);
 
   // toggle star icon (empty for not favorited, solid for favorited)
   e.target.textContent = e.target.textContent == '★' ? '☆' : '★';
