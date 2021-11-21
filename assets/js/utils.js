@@ -16,8 +16,12 @@ function clearSectionById(sectionId) {
 }
 
 // function to handle adding favorite to localstorage
-function handleAddFavorite(e) {
+function toggleFavorite(e) {
+  // get data for image off of button element
   const imageObj = e.target.imageObj;
+
+  // toggle star icon (empty for not favorited, solid for favorited)
+  e.target.textContent = e.target.textContent == '★' ? '☆' : '★';
 
   // get copy of current localStorage object
   const localStorageObj = JSON.parse(localStorage.userInfo);
@@ -29,34 +33,28 @@ function handleAddFavorite(e) {
     return;
   }
 
-  // if obj already exists in array, don't add it again
-  for (let i = 0; i < localStorageObj.favorites.length; i++) {
-    if (localStorageObj.favorites[i].title == imageObj.title) {
-      return;
+  // if obj already exists in Favorites array, flag it for removal
+  let exists = false;
+  localStorageObj.favorites.forEach((favorite) => {
+    if (favorite.title == imageObj.title) {
+      exists = true;
     }
+  });
+
+  // remove flagged obj from array then update localstorage
+  if (exists) {
+    const newFavoritesArr = localStorageObj.favorites.filter(
+      (obj) => obj.title !== imageObj.title
+    );
+    localStorageObj.favorites = newFavoritesArr;
+    localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
+    // or add obj to array and update local storage
+  } else {
+    console.log('Does not exist.');
+    // if obj does not exist in array, add it
+    localStorageObj.favorites.push(imageObj);
+    localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
   }
-
-  // if obj does not exist in array, push it to array
-  localStorageObj.favorites.push(imageObj);
-  localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
-  return;
-}
-
-// function to handle removing favorite from localstorage
-function handleRemoveFavorite(e) {
-  const deleteByTitle = e.target.imageObj.title;
-
-  // get copy of current localStorage object
-  const localStorageObj = JSON.parse(localStorage.userInfo);
-
-  // use filter to create a version of array without obj to be deleted
-  const newFavoritesArr = localStorageObj.favorites.filter(
-    (obj) => obj.title !== deleteByTitle
-  );
-
-  // update localstorage with new arr
-  localStorageObj.favorites = newFavoritesArr;
-  localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
 }
 
 // function to initialize localStorage object to default values if user has not visited page yet
