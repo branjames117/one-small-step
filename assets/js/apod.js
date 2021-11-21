@@ -10,8 +10,30 @@
     .then((res) => {
       // set the title for the APOD
       document.querySelector(
-        '#apod-section > h3'
+        '#apod-section > h3 > span'
       ).textContent = `${res.data.title}`;
+
+      // get localstorage object so we can check if image is already in favorites
+      const localStorageObj = JSON.parse(localStorage.userInfo);
+      let favorited = false;
+      localStorageObj.favorites.forEach((favorite) => {
+        if (favorite.title === res.data.title) {
+          favorited = true;
+        }
+      });
+
+      document.querySelector('#apod-section > h3 > button').textContent =
+        favorited ? '★' : '☆';
+
+      // add event listener to Favorite button
+      document.querySelector('#apod-section > h3 > button').imageObj = {
+        title: res.data.title,
+        thumbnail: res.data.url,
+        hdUrl: res.data.hdurl,
+      };
+      document
+        .querySelector('#apod-section > h3 > button')
+        .addEventListener('click', toggleFavorite);
 
       // set the explanation
       document.querySelector('#apod-section > p').textContent =
@@ -25,16 +47,6 @@
         document.querySelector(
           '#apod-section img'
         ).title = `Click for HD version of ${res.data.title}.`;
-
-        // add event listener to Favorite button
-        document.querySelector('#apod-section > button').imageObj = {
-          title: res.data.title,
-          thumbnail: res.data.url,
-          hdUrl: res.data.hdurl,
-        };
-        document
-          .querySelector('#apod-section > button')
-          .addEventListener('click', handleAddFavorite);
       } else if (res.data.media_type === 'video') {
         // if video
         document.querySelector('#apod-section > video').style.display = 'block';
