@@ -16,6 +16,9 @@
   </head>
 
   <body>
+
+    <!-- Header -->
+
     <div class="grid justify-items-center">
       <header
         class="
@@ -30,16 +33,17 @@
           shadow-lg
         "
       >
-        <h1 class="text-white text-center">One Small Step</h1>
+        <h1 class="text-white text-center">One Small Step (1SS)</h1>
       </header>
     </div>
 
-    <!-- FRONT PAGE -->
+    <!-- Main content -->
 
-    <section id="front-page-container">
-      <!-- SEARCH -->
+    <main id="front-page-container">
 
-      <div id="search-container" class="text-center justify-items-center pt-20">
+      <!-- SEARCH BAR -->
+
+      <section id="search-container" class="text-center justify-items-center pt-20">
         <form id="search-form">
           <input
             type="text"
@@ -54,277 +58,234 @@
             class="shadow-lg rounded-lg p-2"
           />
         </form>
-      </div>
+      </section>
 
-      <!-- RECENTS -->
+      <!-- RECENT SEARCH RESULTS -->
 
       <section
         id="recent-searches-section"
         class="grid justify-items-center pt-5"
       >
-        <h2>Recents</h2>
+        <h2>Recent Searches</h2>
 
         <div
           class="inline-flex space-x-4 text-center pt-3 w-4/5"
           id="recents-container"
         >
           <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-          >
-            <h3>search 1</h3>
-            <img
-              src="./assets/images/image-placeholder-500x500.jpg"
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-1">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a class='grid justify-items-center'><img
               alt="placeholder"
               width="60%"
               height="60%"
               class="rounded-lg"
-            />
+            /></a>
           </div>
 
           <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-          >
-            <h3>search 2</h3>
-            <img
-              src="./assets/images/image-placeholder-500x500.jpg"
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-2">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a  class='grid justify-items-center'><img
               alt="placeholder"
               width="60%"
               height="60%"
               class="rounded-lg"
-            />
+            /></a>
           </div>
 
           <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-          >
-            <h3>search 3</h3>
-            <img
-              src="./assets/images/image-placeholder-500x500.jpg"
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-3">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a class='grid justify-items-center'><img
               alt="placeholder"
               width="60%"
               height="60%"
               class="rounded-lg"
-            />
+            /></a>
           </div>
 
           <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-          >
-            <h3>search 4</h3>
-            <img
-              src="./assets/images/image-placeholder-500x500.jpg"
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-4">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a class='grid justify-items-center'><img
               alt="placeholder"
               width="60%"
               height="60%"
               class="rounded-lg"
-            />
+            /></a>
           </div>
         </div>
       </section>
 
-      <!-- APOD -->
+      <!-- Astronomy Picture of the Day -->
 
       <section
         id="apod-section"
         class="grid justify-items-center text-center space-y-4 pt-4 ml-0 mr-0"
       >
-        <h2>Image of the Day</h2>
-        <img
-          src="./assets/images/image-placeholder-500x500.jpg"
+        <h2>Astronomy Picture of the Day</h2>
+        <a target='_new' class='grid justify-items-center'><img
           alt="placeholder"
           width="90%"
           height="50%"
           class="rounded-lg"
-        />
-        <h3>(image name)</h3>
+        /></a>
+        <!-- Video element placeholder in case APOD is a video -->
+        <video style='display: none;'></video>
+        <h3><!-- Image Title Here --></h3>
+        <button>☆</button>
         <p class="text-left w-4/5">
-          (image description) Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Repellat ipsa, sit blanditiis ducimus neque
-          recusandae voluptates adipisci nihil eveniet magni deleniti et
-          assumenda suscipit. Molestiae quaerat repellat accusamus nulla
-          dignissimos.
+          <!-- Image Description Here -->
         </p>
       </section>
 
       <!-- ISS Section -->
 
-      <section>
-      <div class="results-card4"></div>
-      <div id="ISS">International Space Station Tracker</div>
-      <!----------our Map goes here------------->
-      <div id="map"></div>
+      <section id="iss-tracker-section" class="grid justify-items-cecnter text-center space-y-4 pt-4 ml-0 mr-0">
+        <h2>International Space Station Tracker</h2>
+        <!----------our Map goes here------------->
+        <div id="map"></div>
+        <div id="map-div"></div>
 
-      <div id="map-div">
+        <!----------details about ISS------------->
+        <div id="details">
+          <!-------------Time----------------->
+          <div>
+            Time:
+            <span class="time"></span>
+          </div>
+          <!---------------Latitude------------->
+          <div>
+            Latitude:
+            <span class="latitude"></span>
+          </div>
+          <!---------------Longitude------------>
+          <div>
+            Longitude:
+            <span class="longitude"></span>
+          </div>
+          <!-- Speed -->
+          <div>
+            Speed:
+            <span class="speed"></span>
+          </div>
+          <!-----------------Altitude-------------->
+          <div>
+            Altitude:
+            <span class="altitude"></span>
+          </div>
+          <!----------------Visibility------------->
+          <div>
+            Visibility:
+            <span class="visibility"></span>
+          </div>
+        </div>
+      </section>
 
-      </div>
-      <!----------details about ISS------------->
-      <div id="details">
-        <!-------------Time----------------->
-        <div>
-          Time:
-          <span class="time"></span>
-        </div>
-        <!---------------Latitude------------->
-        <div>
-          Latitude:
-          <span class="latitude"></span>
-        </div>
-
-        <!---------------Longitude------------>
-        <div>
-          Longitude:
-          <span class="longitude"></span>
-        </div>
-        <!-- Speed -->
-        <div>
-          Speed:
-          <span class="speed"></span>
-        </div>
-        <!-----------------Altitude-------------->
-        <div>
-          Altitude:
-          <span class="altitude"></span>
-        </div>
-        <!----------------Visibility------------->
-        <div>
-          Visibility:
-          <span class="visibility"></span>
-        </div>
-      </div>
-      </div>
-
-    </section>
-
-      <!-- NEWS -->
+      <!-- News feed section -->
 
       <section
         id="news-section"
         class="grid justify-items-center space-y-4 p-10"
       >
-        <h2 class="text-center">News</h2>
-        <div class="flex">
+        <h2 class="text-center">News Feed</h2>
+        <!-- TO DO: FILTER OPTIONS HERE -->
+
+        <!-- Placeholder containers for news feed -->
+        <a id="news-feed-1" class="flex" target="_new">
           <img
-            src="./assets/images/image-placeholder-500x500.jpg"
+            src=""
             alt="placeholder"
             width="15%"
             height="15%"
             class="inline rounded-lg"
           />
-          <p class="pl-4">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. At aliquam
-            vel, excepturi quas illo consequuntur tempore labore eos laudantium
-            totam accusamus cumque! Enim, recusandae dicta minus hic totam omnis
-            laudantium!
-          </p>
-        </div>
-
-        <div class="flex">
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
+        
+        <a id="news-feed-2" class="flex" target="_new">
           <img
-            src="./assets/images/image-placeholder-500x500.jpg"
+            src=""
             alt="placeholder"
             width="15%"
             height="15%"
-            class="rounded-lg"
+            class="inline rounded-lg"
           />
-          <p class="pl-4">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut
-            voluptatum, aperiam unde quod ipsam, repellendus earum nihil, dolore
-            sapiente nobis aliquam consequatur quisquam. A unde amet totam
-            expedita laudantium quibusdam.
-          </p>
-        </div>
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <div class="flex">
+        <a id="news-feed-3" class="flex" target="_new">
           <img
-            src="./assets/images/image-placeholder-500x500.jpg"
+            src=""
             alt="placeholder"
             width="15%"
             height="15%"
-            class="rounded-lg"
+            class="inline rounded-lg"
           />
-          <p class="pl-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quia
-            omnis minus aliquam obcaecati rem ea voluptates officiis quas vitae
-            sint dolorem, dicta blanditiis, quisquam delectus natus repellendus.
-            Facere, itaque!
-          </p>
-        </div>
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <div class="flex">
+        <a id="news-feed-4" class="flex" target="_new">
           <img
-            src="./assets/images/image-placeholder-500x500.jpg"
+            src=""
             alt="placeholder"
             width="15%"
             height="15%"
-            class="rounded-lg"
+            class="inline rounded-lg"
           />
-          <p class="pl-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-            mollitia delectus illum beatae sed vitae sit molestias tenetur error
-            nam? Illo cupiditate ipsam doloribus quisquam odit autem ratione
-            distinctio minima?
-          </p>
-        </div>
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <div class="flex">
+        <a id="news-feed-5" class="flex" target="_new">
           <img
-            src="./assets/images/image-placeholder-500x500.jpg"
+            src=""
             alt="placeholder"
             width="15%"
             height="15%"
-            class="rounded-lg"
+            class="inline rounded-lg"
           />
-          <p class="pl-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-            perspiciatis architecto, molestiae quisquam suscipit, eos amet a
-            corporis est neque rem ipsum in enim dignissimos eius eveniet
-            maiores illum voluptatum!
-          </p>
-        </div>
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <div class="flex">
+        <a id="news-feed-6" class="flex" target="_new">
           <img
-            src="./assets/images/image-placeholder-500x500.jpg"
+            src=""
             alt="placeholder"
             width="15%"
             height="15%"
-            class="rounded-lg"
+            class="inline rounded-lg"
           />
-          <p class="pl-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati,
-            mollitia! Debitis quas sunt officiis earum ipsum nihil quo, ipsam
-            similique, cumque quisquam distinctio labore molestiae perferendis
-            voluptate vel quae dolorum.
-          </p>
-        </div>
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
       </section>
     </section>
 
