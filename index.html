@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
       crossorigin="" />
-    <link rel="stylesheet" href="./assets/css/iss-styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
   </head>
 
   <body>
@@ -261,7 +261,7 @@
 
       <!-- ISS Section -->
 
-      <section id="iss-tracker-section" class="grid justify-items-cecnter text-center space-y-4 pt-4 ml-0 mr-0">
+      <section id="iss-tracker-section" class="grid justify-items-center text-center space-y-4 pt-4 mx-0">
         <h2>International Space Station Tracker</h2>
         <!----------our Map goes here------------->
         <div id="map"></div>
@@ -309,7 +309,42 @@
         class="grid justify-items-center space-y-4 p-10"
       >
         <h2 class="text-center">News Feed</h2>
-        <!-- TO DO: FILTER OPTIONS HERE -->
+        
+        <form id="news-feed-filter-form">
+          <div id="news-feed-filter-subreddit">
+            <label for="subreddit">Subreddit: </label>
+            <select name="subreddit" id="subreddit">
+              <option value="astronomy">/r/Astronomy</option>
+              <option value="astrophysics">/r/Astrophysics</option>
+              <option value="iss">/r/ISS</option>
+              <option value="nasa">/r/NASA</option>
+              <option value="space">/r/Space</option>
+              <option value="spaceporn">/r/SpacePorn (SFW)</option>
+            </select>
+          </div>
+          <div id="news-feed-filter-listing">
+            <label for="listing">Listing: </label>
+            <select name="listing" id="listing">
+              <option value="top">Top</option>
+              <option value="hot">Hot</option>
+              <option value="new">New</option>
+              <option value="rising">Rising</option>
+              <option value="best">Best</option>
+              <option value="controversial">Controversial</option>
+            </select>
+          </div>
+          <div id="news-feed-filter-timeframe">
+            <label for="timeframe">Timeframe: </label>
+            <select name="timeframe" id="timeframe">
+              <option value="hour">Hour</option>
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+        </form>
 
         <!-- Placeholder containers for news feed -->
         <a id="news-feed-1" class="flex" target="_new">
