@@ -2,8 +2,6 @@
 function toggleFavorite(e) {
   // get data for image off of button element
   const imageObj = e.target.imageObj;
-  console.log(imageObj);
-  console.log('clicked');
 
   // toggle star icon (empty for not favorited, solid for favorited)
   e.target.textContent = e.target.textContent == '★' ? '☆' : '★';
@@ -15,6 +13,7 @@ function toggleFavorite(e) {
   if (localStorageObj.favorites.length === 0) {
     localStorageObj.favorites.push(imageObj);
     localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
+    populateFavorites();
     return;
   }
 
@@ -48,7 +47,6 @@ function toggleFavorite(e) {
 
 function populateFavorites() {
   const localStorageObj = grabLocalStorage();
-  console.log(localStorageObj.favorites);
 
   localStorageObj.favorites
     .slice()

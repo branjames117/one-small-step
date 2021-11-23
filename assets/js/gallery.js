@@ -11,9 +11,15 @@ searchFormEl.addEventListener('submit', function (e) {
 function getGallery(queryStr) {
   const url = 'https://images-api.nasa.gov/search?media_type=image&q=';
 
-  // if query submitted, use it, else just look for black holes
-  const query = queryStr || 'black holes';
+  // trim extra spaces from query
+  const query = queryStr.trim();
   const params = { params: { q: query, media_type: 'image' } };
+
+  // if query is blank, empty the search bar and abort search
+  if (query.length === 0) {
+    document.getElementById('query-input').value = '';
+    return;
+  }
 
   // clear out search input field
   document.getElementById('query-input').value = '';
@@ -23,8 +29,6 @@ function getGallery(queryStr) {
     .then((res) => {
       // empty array where search results will be stored
       const searchResults = [];
-
-      console.log(res);
 
       // make visible the results section
       document
@@ -94,8 +98,6 @@ function getGallery(queryStr) {
               }
             });
 
-            console.log(image);
-
             // if image is in favorites, fill out the star, otherwise, make it hollow
             document.querySelector(
               `#search-result-${idx + 1} > h3 > button`
@@ -113,10 +115,13 @@ function getGallery(queryStr) {
               .querySelector(`#search-result-${idx + 1} > h3 > button`)
               .addEventListener('click', toggleFavorite);
 
-            // set the title of each grid item
+            // set the title of each grid item, cutting it off if title extends beyond 75 chars
             document.querySelector(
               `#search-result-${idx + 1} > h3 > span`
-            ).textContent = image.title;
+            ).textContent =
+              image.title.length > 75
+                ? image.title.substr(0, 75) + '...'
+                : image.title;
             // set the URL link
             document.querySelector(`#search-result-${idx + 1} > a`).href =
               image.largeImage;
@@ -124,24 +129,26 @@ function getGallery(queryStr) {
             document.querySelector(`#search-result-${idx + 1} > a > img`).src =
               image.thumbnail;
             // if keywords list is only one item as some results return, break it apart
-            if (image.keywords.length === 1) {
+            if (image.keywords && image.keywords.length === 1) {
               image.keywords = image.keywords[0].split('; ');
             }
             // clear out old keywords from container
             document.querySelector(`#search-result-${idx + 1} > ul`).innerHTML =
               '';
-            // populate keywords list
-            image.keywords.forEach((keyword) => {
-              const keywordEl = document.createElement('li');
-              keywordEl.textContent = keyword;
-              keywordEl.style.cursor = 'pointer';
-              keywordEl.addEventListener('click', (e) => {
-                getGallery(e.target.textContent);
+            // populate keywords list if keywords exist
+            if (image.keywords) {
+              image.keywords.forEach((keyword) => {
+                const keywordEl = document.createElement('li');
+                keywordEl.textContent = keyword;
+                keywordEl.style.cursor = 'pointer';
+                keywordEl.addEventListener('click', (e) => {
+                  getGallery(e.target.textContent);
+                });
+                document
+                  .querySelector(`#search-result-${idx + 1} > ul`)
+                  .append(keywordEl);
               });
-              document
-                .querySelector(`#search-result-${idx + 1} > ul`)
-                .append(keywordEl);
-            });
+            }
           }
         });
 
@@ -162,7 +169,12 @@ function getGallery(queryStr) {
             .classList.add('hidden');
         });
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      document.querySelector(
+        '#gallery-results-section > h2'
+      ).textContent = `Search Results for: "${queryStr}." ERROR: ${err}.`;
+      console.error(err);
+    });
 }
 
 function populateRecents() {
