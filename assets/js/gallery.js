@@ -24,6 +24,8 @@ function getGallery(queryStr) {
       // empty array where search results will be stored
       const searchResults = [];
 
+      console.log(res);
+
       // make visible the results section
       document
         .querySelector('#gallery-results-section')
@@ -39,7 +41,7 @@ function getGallery(queryStr) {
             keywords: item.data[0].keywords,
             title: item.data[0].title,
             thumbnail: item.links[0].href,
-            largeImage: item.links[0].href.replace('thumb', 'orig'),
+            largeImage: item.links[0].href.replace('thumb', 'large'),
           };
           searchResults.push(image);
         });
@@ -52,7 +54,7 @@ function getGallery(queryStr) {
         };
 
         // get copy of current localStorage object
-        const localStorageObj = JSON.parse(localStorage.userInfo);
+        const localStorageObj = grabLocalStorage();
 
         let alreadyRecented = false;
         for (let i = 0; i < localStorageObj.recent.length; i++) {
@@ -88,10 +90,11 @@ function getGallery(queryStr) {
             let favorited = false;
             localStorageObj.favorites.forEach((favorite) => {
               if (favorite.title === image.title) {
-                console.log('Favorited');
                 favorited = true;
               }
             });
+
+            console.log(image);
 
             // if image is in favorites, fill out the star, otherwise, make it hollow
             document.querySelector(
@@ -103,8 +106,8 @@ function getGallery(queryStr) {
               `#search-result-${idx + 1} > h3 > button`
             ).imageObj = {
               title: image.title,
-              thumbnail: image.url,
-              hdUrl: image.hdurl,
+              thumbnail: image.thumbnail,
+              hdUrl: image.largeImage,
             };
             document
               .querySelector(`#search-result-${idx + 1} > h3 > button`)
@@ -164,7 +167,7 @@ function getGallery(queryStr) {
 
 function populateRecents() {
   // get copy of current localStorage object
-  const localStorageObj = JSON.parse(localStorage.userInfo);
+  const localStorageObj = grabLocalStorage();
 
   // go through array backwards and populate placeholder containers in index.html
   localStorageObj.recent

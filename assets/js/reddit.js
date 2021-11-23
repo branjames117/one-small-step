@@ -44,7 +44,7 @@ function getRedditPosts(filterOptions) {
           const imageEl = document.createElement('img');
           document.querySelector(`#news-feed-${idx + 1} > img`).src =
             post.thumbnail === 'default' || post.thumbnail === 'self'
-              ? './assets/img/iss.png'
+              ? './assets/img/reddit.png'
               : post.thumbnail;
           document.querySelector(`#news-feed-${idx + 1} > img`).alt =
             posts.title;
@@ -74,7 +74,7 @@ function getRedditPosts(filterOptions) {
 }
 
 // get copy of current localStorage object
-const localStorageObj = JSON.parse(localStorage.userInfo);
+const localStorageObj = grabLocalStorage();
 
 // Set default news filter options
 let filterOptions = {

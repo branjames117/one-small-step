@@ -15,47 +15,9 @@ function clearSectionById(sectionId) {
   }
 }
 
-// function to handle adding favorite to localstorage
-function toggleFavorite(e) {
-  // get data for image off of button element
-  const imageObj = e.target.imageObj;
-  console.log(imageObj);
-
-  // toggle star icon (empty for not favorited, solid for favorited)
-  e.target.textContent = e.target.textContent == '★' ? '☆' : '★';
-
-  // get copy of current localStorage object
-  const localStorageObj = JSON.parse(localStorage.userInfo);
-
-  // if favorites arr is empty, add imageObj to it
-  if (localStorageObj.favorites.length === 0) {
-    localStorageObj.favorites.push(imageObj);
-    localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
-    return;
-  }
-
-  // if obj already exists in Favorites array, flag it for removal
-  let exists = false;
-  localStorageObj.favorites.forEach((favorite) => {
-    if (favorite.title == imageObj.title) {
-      exists = true;
-    }
-  });
-
-  // remove flagged obj from array then update localstorage
-  if (exists) {
-    const newFavoritesArr = localStorageObj.favorites.filter(
-      (obj) => obj.title !== imageObj.title
-    );
-    localStorageObj.favorites = newFavoritesArr;
-    localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
-    // or add obj to array and update local storage
-  } else {
-    console.log('Does not exist.');
-    // if obj does not exist in array, add it
-    localStorageObj.favorites.push(imageObj);
-    localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
-  }
+// function to grab the local storage object
+function grabLocalStorage() {
+  return JSON.parse(localStorage.userInfo);
 }
 
 // function to initialize localStorage object to default values if user has not visited page yet

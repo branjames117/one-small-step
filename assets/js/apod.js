@@ -8,13 +8,14 @@
   axios
     .get(url, params)
     .then((res) => {
+      console.log(res);
       // set the title for the APOD
       document.querySelector(
         '#apod-section > h3 > span'
       ).textContent = `${res.data.title}`;
 
       // get localstorage object so we can check if image is already in favorites
-      const localStorageObj = JSON.parse(localStorage.userInfo);
+      const localStorageObj = grabLocalStorage();
       let favorited = false;
       localStorageObj.favorites.forEach((favorite) => {
         if (favorite.title === res.data.title) {
