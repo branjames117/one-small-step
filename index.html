@@ -1,157 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>One Small Step</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin="" />
+    <link rel="stylesheet" href="./assets/css/styles.css">
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>One Small Step</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin="" />
-  <link rel="stylesheet" href="./assets/css/iss-styles.css" type="text/css" />
-  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css">
-  <link rel="stylesheet" href="./public/styles.css">
-</head>
+  <body>
 
-<body>
+    <!-- Header -->
 
-  <div class="grid justify-items-center">
-    <header class="bg-gradient-to-r from-purple-900 to-blue-400 fixed top-4 w-4/5 p-2 rounded-lg shadow-lg">
-      <h1 class="text-white text-center">One Small Step</h1>
-    </header>
-  </div>
-
-  <!-- FRONT PAGE -->
-
-  <section id="front-page-container">
-
-    <!-- SEARCH -->
-
-    <div id="search-container" class="text-center justify-items-center pt-20">
-      <form action="/action_page.php">
-        <input type="text" id="fname" name="fname" placeholder="Search NASA images"
-          class="shadow-lg rounded-lg text-center p-2">
-        <input type="submit" value="Submit" class="shadow-lg rounded-lg p-2">
-      </form>
+    <div class="grid justify-items-center">
+      <header
+        class="
+          bg-gradient-to-r
+          from-purple-900
+          to-blue-400
+          fixed
+          top-4
+          w-4/5
+          p-2
+          rounded-lg
+          shadow-lg
+        "
+      >
+        <h1 class="text-white text-center">One Small Step (1SS)</h1>
+      </header>
     </div>
 
-    <section id="recent-searches-section" class="grid justify-items-center pt-5">
-      <h2>Recents</h2>
+    <!-- Main content -->
 
-      <div class="inline-flex space-x-4 text-center pt-3 w-4/5">
-        <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
-          <h3>search 1</h3>
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-            class="rounded-lg">
-        </div>
+    <main id="front-page-container">
 
-        <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
-          <h3>search 2</h3>
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-            class="rounded-lg">
-        </div>
+      <!-- SEARCH BAR -->
 
-        <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
-          <h3>search 3</h3>
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-            class="rounded-lg">
-        </div>
+      <section id="search-container" class="text-center pt-20">
+        <form id="search-form">
+          <input
+            type="text"
+            id="query-input"
+            name="query-input"
+            placeholder="Search NASA images"
+            class="shadow-lg rounded-lg text-center p-2"
+          />
+          <input
+            type="submit"
+            value="Submit"
+            class="shadow-lg rounded-lg p-2"
+          />
+        </form>
+      </section>
 
-        <div class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2">
-          <h3>search 4</h3>
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-            class="rounded-lg">
-        </div>
-      </div>
+      <!-- RECENT SEARCH RESULTS -->
 
-      <!-- RECENTS -->
+      <section
+        id="recent-searches-section"
+        class="grid justify-items-center pt-5"
+      >
+        <h2>Recent Searches</h2>
 
-      <section id="recent-searches-section" class="grid justify-items-center pt-5">
-        <h2>Recents</h2>
-
-        <div class="inline-flex space-x-4 text-center pt-3 w-4/5" id="recents-container">
-          <div class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            ">
-            <h3>search 1</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-              class="rounded-lg" />
+        <div
+          class="flex justify-center space-x-4 text-center pt-3 w-4/5"
+          id="recents-container"
+        >
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-1">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
           </div>
 
-          <div class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            ">
-            <h3>search 2</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-              class="rounded-lg" />
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-2">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a  class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
           </div>
 
-          <div class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            ">
-            <h3>search 3</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-              class="rounded-lg" />
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-3">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
           </div>
 
-          <div class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            ">
-            <h3>search 4</h3>
-            <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="60%" height="60%"
-              class="rounded-lg" />
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="recent-search-container-4">
+            <h3><a><!-- Query String Here --></a></h3>
+            <a class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
           </div>
         </div>
       </section>
 
-      <!-- APOD -->
+      <!-- Temporary container for displaying search results, to be moved into modal -->
 
-      <section id="apod-section" class="grid justify-items-center text-center space-y-4 pt-4 ml-0 mr-0">
-        <h2>Image of the Day</h2>
-        <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="90%" height="50%"
-          class="rounded-lg" />
-        <h3>(image name)</h3>
+      <section id="gallery-results-section" class="grid justify-items-center pt-5 hidden">
+        <h2>Search Results</h2>
+        <h3>Click to Close</h3>
+        <div class="inline-flex space-x-4 text-center pt-3 w-4/5" id="gallery-container-row-1">
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-1">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-2">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-3">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-4">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>                    
+        </div>
+        <div class="inline-flex space-x-4 text-center pt-3 w-4/5" id="gallery-container-row-2">
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-5">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-6">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-7">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="search-result-8">
+            <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+            <a class='grid justify-items-center'><img
+              alt="placeholder"
+              width="100%"
+              height="100%"
+              class="rounded-lg"
+              target="_blank"
+            /></a>
+            <ul><!-- key words --></ul>
+          </div>                    
+        </div>
+      </section>
+
+      <!-- Astronomy Picture of the Day -->
+
+      <section
+        id="apod-section"
+        class="grid justify-items-center text-center space-y-4 pt-4 ml-0 mr-0"
+      >
+        <h2>Astronomy Picture of the Day</h2>
+        <a target='_new' class='grid justify-items-center'><img
+          alt="placeholder"
+          width="90%"
+          height="50%"
+          class="rounded-lg"
+        /></a>
+        <!-- Video element placeholder in case APOD is a video -->
+        <video style='display: none;'></video>
+        <h3><button>☆</button> <span><!-- Image Title Here --></span></h3>
+        
         <p class="text-left w-4/5">
-          (image description) Lorem, ipsum dolor sit amet consectetur
-          adipisicing elit. Repellat ipsa, sit blanditiis ducimus neque
-          recusandae voluptates adipisci nihil eveniet magni deleniti et
-          assumenda suscipit. Molestiae quaerat repellat accusamus nulla
-          dignissimos.
+          <!-- Image Description Here -->
         </p>
       </section>
 
       <!-- ISS Section -->
 
-      <section>
-        <div class="results-card4"></div>
-        <div id="ISS">International Space Station Tracker</div>
+      <section id="iss-tracker-section" class="grid justify-items-center text-center space-y-4 pt-4 mx-0">
+        <h2>International Space Station Tracker</h2>
         <!----------our Map goes here------------->
         <div id="map"></div>
+        <div id="map-div"></div>
 
-        <div id="map-div">
-
-        </div>
         <!----------details about ISS------------->
         <div id="details">
           <!-------------Time----------------->
@@ -164,7 +283,6 @@
             Latitude:
             <span class="latitude"></span>
           </div>
-
           <!---------------Longitude------------>
           <div>
             Longitude:
@@ -186,116 +304,208 @@
             <span class="visibility"></span>
           </div>
         </div>
-        </div>
-
       </section>
 
-      <!-- NEWS -->
+      <!-- FAVORITES -->
 
-      <section id="news-section" class="grid justify-items-center space-y-4 p-10">
-        <h2 class="text-center">News</h2>
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="inline rounded-lg">
-          <p class="pl-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At aliquam vel, excepturi quas illo
-            consequuntur tempore labore eos laudantium totam accusamus cumque! Enim, recusandae dicta minus hic totam
-            omnis laudantium!</p>
-        </div>
+      <section
+        id="favorites-section"
+        class="grid justify-items-center pt-5"
+      >
+        <h2>Favorited Images</h2>
 
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="rounded-lg">
-          <p class="pl-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut voluptatum, aperiam unde quod
-            ipsam, repellendus earum nihil, dolore sapiente nobis aliquam consequatur quisquam. A unde amet totam
-            expedita
-            laudantium quibusdam.</p>
-        </div>
+        <div
+          class="flex justify-center space-x-4 text-center pt-3 w-4/5"
+          id="favorites-container"
+        >
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="favorite-container-1">
+            <h3><button>★</button> <a></a></h3>
+            <a class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
+          </div>
 
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="rounded-lg">
-          <p class="pl-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quia omnis minus aliquam
-            obcaecati
-            rem ea voluptates officiis quas vitae sint dolorem, dicta blanditiis, quisquam delectus natus repellendus.
-            Facere, itaque!</p>
-        </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="favorite-container-2">
+            <h3><button>★</button> <a></a></h3>
+            <a  class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
+          </div>
 
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="rounded-lg">
-          <p class="pl-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem mollitia delectus illum
-            beatae sed vitae sit molestias tenetur error nam? Illo cupiditate ipsam doloribus quisquam odit autem
-            ratione
-            distinctio minima?</p>
-        </div>
-        </div>
-        </div>
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="favorite-container-3">
+            <h3><button>★</button> <a></a></h3>
+            <a class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
+          </div>
 
+          <div
+            class="grid justify-items-center inline-block bg-center bg-indigo-100 rounded-lg p-2"
+            id="favorite-container-4">
+            <h3><button>★</button> <a></a></h3>
+            <a class='grid justify-items-center'><img
+              src="./assets/img/iss.png"
+              alt="placeholder"
+              width="60%"
+              height="60%"
+              class="rounded-lg"
+            /></a>
+          </div>
+        </div>
       </section>
 
-      <!-- NEWS -->
+      <!-- News feed section -->
 
-      <section id="news-section" class="grid justify-items-center space-y-4 p-10">
-        <h2 class="text-center">News</h2>
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="inline rounded-lg" />
-          <p class="pl-4">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. At aliquam
-            vel, excepturi quas illo consequuntur tempore labore eos laudantium
-            totam accusamus cumque! Enim, recusandae dicta minus hic totam omnis
-            laudantium!
-          </p>
-        </div>
+      <section
+        id="news-section"
+        class="grid justify-items-center space-y-4 p-10"
+      >
+        <h2 class="text-center">News Feed</h2>
+        
+        <form id="news-feed-filter-form">
+          <div id="news-feed-filter-subreddit">
+            <label for="subreddit">Subreddit: </label>
+            <select name="subreddit" id="subreddit">
+              <option value="astronomy">/r/Astronomy</option>
+              <option value="astrophysics">/r/Astrophysics</option>
+              <option value="iss">/r/ISS</option>
+              <option value="nasa">/r/NASA</option>
+              <option value="space">/r/Space</option>
+              <option value="spaceporn">/r/SpacePorn (SFW)</option>
+            </select>
+          </div>
+          <div id="news-feed-filter-listing">
+            <label for="listing">Listing: </label>
+            <select name="listing" id="listing">
+              <option value="top">Top</option>
+              <option value="hot">Hot</option>
+              <option value="new">New</option>
+              <option value="rising">Rising</option>
+              <option value="best">Best</option>
+              <option value="controversial">Controversial</option>
+            </select>
+          </div>
+          <div id="news-feed-filter-timeframe">
+            <label for="timeframe">Timeframe: </label>
+            <select name="timeframe" id="timeframe">
+              <option value="hour">Hour</option>
+              <option value="day">Day</option>
+              <option value="week">Week</option>
+              <option value="month">Month</option>
+              <option value="year">Year</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+        </form>
 
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="rounded-lg" />
-          <p class="pl-4">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut
-            voluptatum, aperiam unde quod ipsam, repellendus earum nihil, dolore
-            sapiente nobis aliquam consequatur quisquam. A unde amet totam
-            expedita laudantium quibusdam.
-          </p>
-        </div>
+        <!-- Placeholder containers for news feed -->
+        <a id="news-feed-1" class="flex" target="_new">
+          <img
+            src=""
+            alt="placeholder"
+            width="15%"
+            height="15%"
+            class="inline rounded-lg"
+          />
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
+        
+        <a id="news-feed-2" class="flex" target="_new">
+          <img
+            src=""
+            alt="placeholder"
+            width="15%"
+            height="15%"
+            class="inline rounded-lg"
+          />
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="rounded-lg" />
-          <p class="pl-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, quia
-            omnis minus aliquam obcaecati rem ea voluptates officiis quas vitae
-            sint dolorem, dicta blanditiis, quisquam delectus natus repellendus.
-            Facere, itaque!
-          </p>
-        </div>
+        <a id="news-feed-3" class="flex" target="_new">
+          <img
+            src=""
+            alt="placeholder"
+            width="15%"
+            height="15%"
+            class="inline rounded-lg"
+          />
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <img>
-        <a></a>
-        <p></p>
-        </div>
+        <a id="news-feed-4" class="flex" target="_new">
+          <img
+            src=""
+            alt="placeholder"
+            width="15%"
+            height="15%"
+            class="inline rounded-lg"
+          />
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="rounded-lg" />
-          <p class="pl-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-            perspiciatis architecto, molestiae quisquam suscipit, eos amet a
-            corporis est neque rem ipsum in enim dignissimos eius eveniet
-            maiores illum voluptatum!
-          </p>
-        </div>
+        <a id="news-feed-5" class="flex" target="_new">
+          <img
+            src=""
+            alt="placeholder"
+            width="15%"
+            height="15%"
+            class="inline rounded-lg"
+          />
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
 
-        <div class="flex">
-          <img src="./assets/images/image-placeholder-500x500.jpg" alt="placeholder" width="15%" height="15%"
-            class="rounded-lg" />
-          <p class="pl-4">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati,
-            mollitia! Debitis quas sunt officiis earum ipsum nihil quo, ipsam
-            similique, cumque quisquam distinctio labore molestiae perferendis
-            voluptate vel quae dolorum.
-          </p>
-        </div>
+        <a id="news-feed-6" class="flex" target="_new">
+          <img
+            src=""
+            alt="placeholder"
+            width="15%"
+            height="15%"
+            class="inline rounded-lg"
+          />
+          <div>
+            <h3><!-- Post title here --></h3>
+            <h4><!-- Additional post info here --></h4>
+            <p class="pl-4"><!-- Post text if available --></p>
+          </div>
+        </a>
       </section>
     </section>
 
@@ -303,19 +513,17 @@
       <p>copyright info</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./assets/js/utils.js"></script>
-    <script src="./assets/js/apod.js"></script>
-    <script src="./assets/js/gallery.js"></script>
-    <script src="./assets/js/reddit.js"></script>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="./assets/js/iss.js" type="text/javascript"></script>      
-    <script src="assets/js/AnISS.js" type="text/javascript"></script>
-
-</body>
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/apod.js"></script>
+  <script src="./assets/js/gallery.js"></script>
+  <script src="./assets/js/reddit.js"></script>
+  <script src="./assets/js/favorites.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="./assets/js/iss.js" type="text/javascript"></script>
+  </body>
 </html>
