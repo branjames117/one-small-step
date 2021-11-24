@@ -54,7 +54,7 @@ function findISS() {
             // call updateISS() function to update things
             updateISS(lat, long, timestamp, speed, altitude, visibility);
         })
-        .catch(e => console.log(e));
+        .catch(error => console.log(error));
 }
 
 // updateISS() function definition
