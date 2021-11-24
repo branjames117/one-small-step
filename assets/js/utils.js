@@ -4,8 +4,6 @@ function renderSection(sectionId) {
   // grab all sections and convert nodelist to array
   const sections = Array.from(document.querySelectorAll('section'));
 
-  console.log(sections);
-
   sections.forEach((section) => {
     if (section.id === sectionId) {
       section.classList.remove('hidden');

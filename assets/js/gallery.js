@@ -31,9 +31,7 @@ function getGallery(queryStr) {
       const searchResults = [];
 
       // make visible the results section
-      document
-        .querySelector('#gallery-results-section')
-        .classList.remove('hidden');
+      renderSection('gallery-results-section');
 
       // attempt to render results only if results are returned
       if (res.data.collection.items.length > 0) {
@@ -170,9 +168,7 @@ function getGallery(queryStr) {
       document
         .querySelector('#gallery-results-section > h3')
         .addEventListener('click', () => {
-          document
-            .querySelector('#gallery-results-section')
-            .classList.add('hidden');
+          renderSection('iss-tracker-section');
         });
     })
     .catch((err) => {
