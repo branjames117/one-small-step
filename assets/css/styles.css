@@ -15,6 +15,12 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+header h1,
+#navbar-links li,
+#search-form input:not(:first-child) {
+  cursor: pointer;
+}
+
 /* ISS styling starts here */
 
 #map-div {

@@ -47,9 +47,9 @@ function getRedditPosts(filterOptions) {
               ? './assets/img/reddit.png'
               : post.thumbnail;
           document.querySelector(`#news-feed-${idx + 1} > img`).alt =
-            posts.title;
+            post.title;
           document.querySelector(`#news-feed-${idx + 1} > img`).title =
-            posts.title;
+            post.title;
 
           // create text
           document.querySelector(
