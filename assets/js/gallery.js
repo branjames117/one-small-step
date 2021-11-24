@@ -45,7 +45,7 @@ function getGallery(queryStr) {
             keywords: item.data[0].keywords,
             title: item.data[0].title,
             thumbnail: item.links[0].href,
-            largeImage: item.links[0].href.replace('thumb', 'large'),
+            manifest: item.href,
           };
           searchResults.push(image);
         });
@@ -53,7 +53,6 @@ function getGallery(queryStr) {
         // add search overview (query used + first image returned) for display in the recents section
         const recentSearchObj = {
           thumbnail: searchResults[0].thumbnail,
-          largeImage: searchResults[0].largeImage,
           query,
         };
 
@@ -79,8 +78,6 @@ function getGallery(queryStr) {
           // repopulate recent section
           populateRecents();
         }
-
-        // TO DO - render the first 10 results at first, render the next 10 if user clicks "Load more..." or scrolls down, then the next 10, and so on... so that the browser isn't inundated with 100 image loads all at once (test this)
 
         // change the h2 to include search term
         document.querySelector(
@@ -108,8 +105,9 @@ function getGallery(queryStr) {
               `#search-result-${idx + 1} > h3 > button`
             ).imageObj = {
               title: image.title,
+              description: image.description,
               thumbnail: image.thumbnail,
-              hdUrl: image.largeImage,
+              manifest: image.manifest,
             };
             document
               .querySelector(`#search-result-${idx + 1} > h3 > button`)
@@ -123,8 +121,11 @@ function getGallery(queryStr) {
                 ? image.title.substr(0, 75) + '...'
                 : image.title;
             // set the URL link
-            document.querySelector(`#search-result-${idx + 1} > a`).href =
-              image.largeImage;
+            document
+              .querySelector(`#search-result-${idx + 1} > a`)
+              .addEventListener('click', () => {
+                console.log('clicked');
+              });
             // set the image as thumbnail
             document.querySelector(`#search-result-${idx + 1} > a > img`).src =
               image.thumbnail;
@@ -208,9 +209,12 @@ function populateRecents() {
         `#recent-search-container-${idx + 1} a img`
       ).title = search.query;
 
-      // link to hd image
-      document.querySelector(`#recent-search-container-${idx + 1} > a`).href =
-        search.largeImage;
+      // link to trigger search again
+      document
+        .querySelector(`#recent-search-container-${idx + 1} > a`)
+        .addEventListener('click', () => {
+          getGallery(search.query);
+        });
     });
 }
 
