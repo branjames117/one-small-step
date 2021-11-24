@@ -68,7 +68,8 @@ function populateFavorites() {
       ).imageObj = {
         title: favorite.title,
         thumbnail: favorite.thumbnail,
-        hdUrl: favorite.hdUrl,
+        url: favorite.url,
+        description: favorite.description,
       };
 
       document
@@ -84,8 +85,15 @@ function populateFavorites() {
         favorite.title;
 
       // link to hd image
-      document.querySelector(`#favorite-container-${idx + 1} > a`).href =
-        favorite.hdUrl;
+      document
+        .querySelector(`#favorite-container-${idx + 1} > a`)
+        .addEventListener('click', () => {
+          if (favorite.url) {
+            getImageFromURL(favorite);
+          } else if (favorite.manifest) {
+            getImageFromManifest(favorite);
+          }
+        });
     });
 }
 

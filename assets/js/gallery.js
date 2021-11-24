@@ -53,6 +53,9 @@ function getGallery(queryStr) {
         // add search overview (query used + first image returned) for display in the recents section
         const recentSearchObj = {
           thumbnail: searchResults[0].thumbnail,
+          manifest: searchResults[0].manifest,
+          description: searchResults[0].description,
+          title: searchResults[0].title,
           query,
         };
 
@@ -124,7 +127,7 @@ function getGallery(queryStr) {
             document
               .querySelector(`#search-result-${idx + 1} > a`)
               .addEventListener('click', () => {
-                console.log('clicked');
+                getImageFromManifest(image);
               });
             // set the image as thumbnail
             document.querySelector(`#search-result-${idx + 1} > a > img`).src =
@@ -209,11 +212,11 @@ function populateRecents() {
         `#recent-search-container-${idx + 1} a img`
       ).title = search.query;
 
-      // link to trigger search again
+      // link to open full screen version
       document
         .querySelector(`#recent-search-container-${idx + 1} > a`)
         .addEventListener('click', () => {
-          getGallery(search.query);
+          getImageFromManifest(search);
         });
     });
 }

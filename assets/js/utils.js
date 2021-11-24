@@ -15,6 +15,33 @@ function clearSectionById(sectionId) {
   }
 }
 
+// Function to grab the first item (usually the original, highest-def image) from the collection.json manifest that each image in the NASA gallery has, to display a full-screen version of the image when the user clicks the thumbnail
+
+async function getImageFromManifest(imageObj) {
+  // To do: open the URL from res.data[0] in the modal
+  const title = imageObj.title;
+  const description = imageObj.description;
+
+  // Axios trick to store the data returned from the get request in url variable
+  const promise = axios.get(imageObj.manifest);
+  const url = await promise.then((res) => res.data[0]);
+  console.log(title);
+  console.log(description);
+  console.log(url);
+}
+
+// Function to grab the url from the Astronomy Picture of the Day
+function getImageFromURL(imageObj) {
+  // To do: open the URL in the modal
+  const title = imageObj.title;
+  const description = imageObj.description || imageObj.explanation;
+  const url = imageObj.url;
+
+  console.log(title);
+  console.log(description);
+  console.log(url);
+}
+
 // function to grab the local storage object
 function grabLocalStorage() {
   return JSON.parse(localStorage.userInfo);
