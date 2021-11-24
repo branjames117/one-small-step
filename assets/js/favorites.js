@@ -20,7 +20,7 @@ function toggleFavorite(e) {
   // if obj already exists in Favorites array, flag it for removal
   let exists = false;
   localStorageObj.favorites.forEach((favorite) => {
-    if (favorite.title == imageObj.title) {
+    if (favorite.nasa_id == imageObj.nasa_id) {
       exists = true;
     }
   });

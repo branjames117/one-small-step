@@ -44,6 +44,7 @@ function getGallery(queryStr) {
             description: item.data[0].description,
             keywords: item.data[0].keywords,
             title: item.data[0].title,
+            nasa_id: item.data[0].nasa_id,
             thumbnail: item.links[0].href,
             manifest: item.href,
           };
@@ -93,7 +94,7 @@ function getGallery(queryStr) {
             // check if image exists in favorites
             let favorited = false;
             localStorageObj.favorites.forEach((favorite) => {
-              if (favorite.title === image.title) {
+              if (favorite.nasa_id === image.nasa_id) {
                 favorited = true;
               }
             });
@@ -111,6 +112,7 @@ function getGallery(queryStr) {
               description: image.description,
               thumbnail: image.thumbnail,
               manifest: image.manifest,
+              nasa_id: image.nasa_id,
             };
             document
               .querySelector(`#search-result-${idx + 1} > h3 > button`)
@@ -141,7 +143,7 @@ function getGallery(queryStr) {
               '';
             // populate keywords list if keywords exist
             if (image.keywords) {
-              image.keywords.forEach((keyword) => {
+              image.keywords.slice(0, 3).forEach((keyword) => {
                 const keywordEl = document.createElement('li');
                 keywordEl.textContent = keyword;
                 keywordEl.style.cursor = 'pointer';

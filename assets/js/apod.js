@@ -17,7 +17,7 @@
       const localStorageObj = grabLocalStorage();
       let favorited = false;
       localStorageObj.favorites.forEach((favorite) => {
-        if (favorite.title === res.data.title) {
+        if (favorite.nasa_id === res.data.title) {
           favorited = true;
         }
       });
@@ -31,14 +31,14 @@
         thumbnail: res.data.url,
         url: res.data.hdurl,
         description: res.data.explanation,
+        nasa_id: res.data.title,
       };
       document
         .querySelector('#apod-section > h3 > button')
         .addEventListener('click', toggleFavorite);
 
       // set the explanation
-      document.querySelector('#apod-section > p').textContent =
-        res.data.explanation;
+      document.querySelector('#apod-desc').textContent = res.data.explanation;
 
       // check if APOD is an image or a video and append appropriate element to render it
       if (res.data.media_type === 'image') {
