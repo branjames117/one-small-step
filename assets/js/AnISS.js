@@ -1,15 +1,4 @@
-// # People in Space
-var nl = getNewLine()
+// let astronames = document.querySelector('name')
+// const astroInIss = objectFromApi.people.filter(person =>{ person.craft==='ISS'})
 
-function getNewLine() {
-	var agent = navigator.userAgent
 
-	if (agent.indexOf("Win") >= 0)
-		return "\r\n"
-	else
-		if (agent.indexOf("Mac") >= 0)
-			return "\r"
-
- 	return "\r"
-
-}

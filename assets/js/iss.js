@@ -54,17 +54,10 @@ function findISS() {
       const altitude = data.altitude.toFixed(2);
       const visibility = data.visibility;
 
-<<<<<<< HEAD
-            // call updateISS() function to update things
-            updateISS(lat, long, timestamp, speed, altitude, visibility);
-        })
-        .catch(error => console.log(error));
-=======
       // call updateISS() function to update things
       updateISS(lat, long, timestamp, speed, altitude, visibility);
     })
     .catch((e) => console.error(e));
->>>>>>> 1ddcc57f082ad2fca50d77fc02a6dad9add13ba7
 }
 
 // updateISS() function definition
