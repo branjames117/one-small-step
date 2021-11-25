@@ -27,8 +27,14 @@ function getGallery(queryStr) {
   axios
     .get(url, params)
     .then((res) => {
+      // scroll to top
+      scrollToTop();
+
       // empty array where search results will be stored
       const searchResults = [];
+
+      // clear out previous results
+      clearSection('#gallery-container');
 
       // make visible the results section
       renderSection('gallery-results-section');
@@ -86,89 +92,103 @@ function getGallery(queryStr) {
           '#gallery-results-section > h2'
         ).textContent = `Search Results for: "${queryStr}"`;
 
+        // grab the gallery container
+        const galleryContainer = document.querySelector('#gallery-container');
+
         // render only the first 8 results to the temporary holding containers
-        searchResults.forEach((image, idx) => {
-          if (idx < 8) {
-            // check if image exists in favorites
-            let favorited = false;
-            localStorageObj.favorites.forEach((favorite) => {
-              if (favorite.nasa_id === image.nasa_id) {
-                favorited = true;
-              }
-            });
-
-            // if image is in favorites, fill out the star, otherwise, make it hollow
-            document.querySelector(
-              `#search-result-${idx + 1} > h3 > button`
-            ).textContent = favorited ? '★' : '☆';
-
-            // add event listener to Favorite button
-            document.querySelector(
-              `#search-result-${idx + 1} > h3 > button`
-            ).imageObj = {
-              title: image.title,
-              description: image.description,
-              thumbnail: image.thumbnail,
-              manifest: image.manifest,
-              nasa_id: image.nasa_id,
-            };
-            document
-              .querySelector(`#search-result-${idx + 1} > h3 > button`)
-              .addEventListener('click', toggleFavorite);
-
-            // set the title of each grid item, cutting it off if title extends beyond 75 chars
-            document.querySelector(
-              `#search-result-${idx + 1} > h3 > span`
-            ).textContent =
-              image.title.length > 75
-                ? image.title.substr(0, 75) + '...'
-                : image.title;
-            // set the URL link
-            document
-              .querySelector(`#search-result-${idx + 1} > a`)
-              .addEventListener('click', () => {
-                getImageFromManifest(image);
-              });
-            // set the image as thumbnail
-            document.querySelector(`#search-result-${idx + 1} > a > img`).src =
-              image.thumbnail;
-            // if keywords list is only one item as some results return, break it apart
-            if (image.keywords && image.keywords.length === 1) {
-              image.keywords = image.keywords[0].split('; ');
+        searchResults.forEach((image) => {
+          // check if image exists in favorites
+          let favorited = false;
+          localStorageObj.favorites.forEach((favorite) => {
+            if (favorite.nasa_id === image.nasa_id) {
+              favorited = true;
             }
-            // clear out old keywords from container
-            document.querySelector(`#search-result-${idx + 1} > ul`).innerHTML =
-              '';
-            // populate keywords list if keywords exist
-            if (image.keywords) {
-              image.keywords.slice(0, 3).forEach((keyword) => {
-                const keywordEl = document.createElement('li');
-                keywordEl.textContent = keyword;
-                keywordEl.style.cursor = 'pointer';
-                keywordEl.addEventListener('click', (e) => {
-                  getGallery(e.target.textContent);
-                });
-                document
-                  .querySelector(`#search-result-${idx + 1} > ul`)
-                  .append(keywordEl);
-              });
-            }
+          });
+
+          // create the elements
+          const divEl = document.createElement('div');
+          divEl.classList = 'grid gap-y-4 inline-block rounded-lg p-2';
+
+          const h3El = document.createElement('h3');
+          const buttonEl = document.createElement('button');
+          // if image is in favorites, fill out the star, otherwise, make it hollow
+          buttonEl.textContent = favorited ? '★' : '☆';
+          buttonEl.classList = 'pr-2';
+
+          // add event listener to Favorite button
+          buttonEl.imageObj = {
+            title: image.title,
+            description: image.description,
+            thumbnail: image.thumbnail,
+            manifest: image.manifest,
+            nasa_id: image.nasa_id,
+          };
+          buttonEl.addEventListener('click', toggleFavorite);
+
+          // set the title of each grid item, cutting it off if title extends beyond 75 chars
+          const spanEl = document.createElement('span');
+          spanEl.textContent =
+            image.title.length > 75
+              ? image.title.substr(0, 75) + '...'
+              : image.title;
+          spanEl.textContent.replace('_', ' ');
+
+          h3El.append(buttonEl, spanEl);
+
+          const aEl = document.createElement('a');
+          aEl.classList = 'grid justify-items-center align-top';
+          // set the URL link
+          aEl.addEventListener('click', () => {
+            getImageFromManifest(image);
+          });
+          // set the image as thumbnail
+          const imgEl = document.createElement('img');
+          imgEl.src = image.thumbnail;
+          imgEl.setAttribute('width', '95%');
+
+          aEl.append(imgEl);
+
+          // if keywords list is only one item as some results return, break it apart
+          if (image.keywords && image.keywords.length === 1) {
+            image.keywords = image.keywords[0].split('; ');
           }
-        });
 
-        // TO DO - add a click listener to the thumbnail image so that when the user clicks it the larger version of the image opens in a modal, complete with description, title, etc.
+          // populate keywords list if keywords exist
+          const ulEl = document.createElement('ul');
+          if (image.keywords && image.keywords.length === 1) {
+            image.keywords = image.keywords[0].split(', ');
+          }
+          if (image.keywords) {
+            image.keywords.slice(0, 5).forEach((keyword) => {
+              const keywordEl = document.createElement('li');
+              keywordEl.textContent = keyword;
+              keywordEl.style.cursor = 'pointer';
+              keywordEl.addEventListener('click', (e) => {
+                getGallery(e.target.textContent);
+              });
+              ulEl.append(keywordEl);
+            });
+          }
+
+          // put it all together
+          divEl.append(h3El, aEl, ulEl);
+          galleryContainer.append(divEl);
+        });
       } else {
         // change the h2 to report no results
-        document.querySelector(
-          '#gallery-results-section > h2'
-        ).textContent = `Search Results for: "${queryStr}." NO IMAGES FOUND.`;
+        const noResultsEl = document.createElement('h3');
+        noResultsEl.classList = 'text-l mx-auto absolute pr-12';
+        noResultsEl.textContent =
+          'No results found. Please try another search term.';
+        galleryContainer.append(noResultsEl);
       }
     })
     .catch((err) => {
-      document.querySelector(
-        '#gallery-results-section > h2'
-      ).textContent = `Search Results for: "${queryStr}." ERROR: ${err}.`;
-      console.error(err);
+      const errorEl = document.createElement('h3');
+      errorEl.classList = 'text-l mx-auto absolute pr-12';
+      errorEl.textContent =
+        'There was an issue with the API. Please contact the administrator or try again later.';
+      galleryContainer.append(errorEl);
     });
 }
 

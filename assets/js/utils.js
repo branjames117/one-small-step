@@ -14,6 +14,11 @@ function clearSection(section) {
   }
 }
 
+// Scroll to top on page load
+document.addEventListener('DOMContentLoaded', () => {
+  scrollToTop();
+});
+
 // function to render specific section based on which nav bar link is clicked
 
 function renderSection(sectionId) {
@@ -26,10 +31,10 @@ function renderSection(sectionId) {
       section.classList.add('hidden');
     }
   });
+  scrollToTop();
 }
 
 // Immediately render ISS tracker section on page load
-
 renderSection('iss-tracker-section');
 
 // Add event listeners to nav bar links
@@ -40,6 +45,11 @@ navbarLinks.forEach((link) => {
     renderSection(e.target.id.replace('link', 'section'))
   );
 });
+
+// Function to scroll to top of app
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
 
 // Function to grab the first item (usually the original, highest-def image) from the collection.json manifest that each image in the NASA gallery has, to display a full-screen version of the image when the user clicks the thumbnail
 
