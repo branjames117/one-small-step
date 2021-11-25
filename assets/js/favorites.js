@@ -61,7 +61,6 @@ function populateFavorites() {
       document.querySelector(
         `#favorite-container-${idx + 1} h3 a`
       ).style.cursor = 'pointer';
-      console.log(favorite);
 
       // remove from favorites button
       document.querySelector(
