@@ -1,6 +1,5 @@
 // function to render specific section based on which nav bar link is clicked
 
-console.log('Running utils');
 function renderSection(sectionId) {
   // grab all sections and convert nodelist to array
   const sections = Array.from(document.querySelectorAll('section'));
@@ -31,7 +30,6 @@ navbarLinks.forEach((link) => {
 async function getImageFromManifest(imageObj) {
   // To do: open the URL from res.data[0] in the modal
   const title = imageObj.title;
-  console.log(imageObj);
   const description = imageObj.description;
 
   // Axios trick to store the data returned from the get request in url variable
@@ -82,11 +80,37 @@ function getImageFromURL(imageObj) {
   const title = imageObj.title;
   const description = imageObj.description || imageObj.explanation;
   const url = imageObj.url;
+  console.log(imageObj);
 
-  renderSection('hd-section');
   document.querySelector('#hd-title span').textContent = title;
   document.querySelector('#hd-desc').textContent = description;
   document.querySelector('#hd-img').src = url;
+
+  // get localstorage object so we can check if image is already in favorites
+  const localStorageObj = grabLocalStorage();
+  let favorited = false;
+  localStorageObj.favorites.forEach((favorite) => {
+    if (favorite.nasa_id === imageObj.title) {
+      favorited = true;
+    }
+  });
+
+  document.querySelector('#hd-title > button').textContent = favorited
+    ? '★'
+    : '☆';
+
+  // add event listener to Favorite button
+  document.querySelector('#hd-title > button').imageObj = {
+    title: imageObj.title,
+    nasa_id: imageObj.title,
+    thumbnail: imageObj.url,
+    url: imageObj.hdurl,
+    description: imageObj.explanation,
+  };
+  document
+    .querySelector('#hd-title > button')
+    .addEventListener('click', toggleFavorite);
+  renderSection('hd-section');
 }
 
 // Variables and functions related to the modal
@@ -111,7 +135,6 @@ document.onkeydown = function (event) {
 };
 
 function toggleModal() {
-  console.log('modal toggled');
   const body = document.querySelector('body');
   const modal = document.querySelector('#modal');
   modal.classList.toggle('opacity-0');
