@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+
+/* * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} */
+
+
+body {
+  background-image: url('../img/pexels-miriam-espacio-110854.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ISS styling starts here */
+
+.astro{
+  background-color: #2b32b2;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+  color: #fff;
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+}
+
+
+#map-div {
+  width: 800px;
+  height: 350px;
+  box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+/* #details */
+
+#details {
+  background-color: #2b32b2;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 2px;
+  color: #fff;
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+  width: 800px;
+  max-width: 800px;
+  box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+/* all div inside #details */
+
+#details div {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* all span */
+
+#details div span {
+  font-size: 1rem;
+  margin-top: 10px;
+}
+@media screen {
+  
+}
