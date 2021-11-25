@@ -92,6 +92,7 @@ async function getImageFromManifest(imageObj) {
     url: imageObj.url,
     description: imageObj.description,
     nasa_id: imageObj.nasa_id,
+    manifest: imageObj.manifest,
   };
   document
     .querySelector('#hd-title > button')
