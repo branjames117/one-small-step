@@ -122,6 +122,7 @@ function getGallery(queryStr) {
             description: image.description,
             thumbnail: image.thumbnail,
             manifest: image.manifest,
+            nasa_id: image.nasa_id,
           };
           buttonEl.addEventListener('click', toggleFavorite);
 
