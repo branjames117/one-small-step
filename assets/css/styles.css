@@ -21,6 +21,16 @@ header h1,
   cursor: pointer;
 }
 
+/* Modal styling */
+
+.modal {
+  transition: opacity 0.25s ease;
+}
+body.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
 /* ISS styling starts here */
 
 #map-div {
