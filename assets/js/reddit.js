@@ -14,6 +14,9 @@ function getRedditPosts(filterOptions) {
       // empty array to store our posts to render
       const posts = [];
 
+      // clear out the previous news container
+      clearSection('#news-container');
+
       // get the pertinent data from each post and store in our own posts array
       res.data.data.children.forEach((post) => {
         const postObj = {
@@ -34,38 +37,42 @@ function getRedditPosts(filterOptions) {
         posts.push(postObj);
       });
 
-      // render each post in DOM
-      posts.forEach((post, idx) => {
-        // only render 6 elements, one for each placeholder row currently in index.html
-        if (idx < 6) {
-          document.querySelector(`#news-feed-${idx + 1}`).href = post.permalink;
+      const newsContainer = document.querySelector('#news-container');
 
-          // create thumbnail
-          const imageEl = document.createElement('img');
-          document.querySelector(`#news-feed-${idx + 1} > img`).src =
-            post.thumbnail === 'default' || post.thumbnail === 'self'
-              ? './assets/img/reddit.png'
-              : post.thumbnail;
-          document.querySelector(`#news-feed-${idx + 1} > img`).alt =
-            post.title;
-          document.querySelector(`#news-feed-${idx + 1} > img`).title =
-            post.title;
+      // create elements for each post and append to newsContainer
+      posts.forEach((post) => {
+        const aEl = document.createElement('a');
+        aEl.classList = 'grid grid-cols-3';
+        aEl.target = '_new';
+        aEl.href = post.permalink;
 
-          // create text
-          document.querySelector(
-            `#news-feed-${idx + 1} > div > h3`
-          ).textContent = post.title;
-          document.querySelector(
-            `#news-feed-${idx + 1} > div > h4`
-          ).textContent = `Posted by ${post.author} on ${new Date(
-            post.created * 1000
-          )
-            .toString()
-            .slice(0, 16)}`;
-          document.querySelector(
-            `#news-feed-${idx + 1} > div > p`
-          ).textContent = post.text;
-        }
+        const imgEl = document.createElement('img');
+        imgEl.classList = 'inline rounded-lg';
+        imgEl.src =
+          post.thumbnail === 'default' || post.thumbnail === 'self'
+            ? './assets/img/reddit.png'
+            : post.thumbnail;
+        imgEl.title = post.title;
+        imgEl.alt = post.title;
+
+        const divEl = document.createElement('div');
+        divEl.classList = 'col-span-2 pl-5 text-left';
+
+        const h3El = document.createElement('h3');
+        h3El.textContent = post.title;
+        const h4El = document.createElement('h4');
+        h4El.textContent = `Posted by ${post.author} on ${new Date(
+          post.created * 1000
+        )
+          .toString()
+          .slice(0, 16)}`;
+        const pEl = document.createElement('p');
+        pEl.classList = 'pl-10 text-sm';
+        pEl.textContent = post.text;
+
+        divEl.append(h3El, h4El, pEl);
+        aEl.append(imgEl, divEl);
+        newsContainer.append(aEl);
       });
     })
     .catch((err) => {

@@ -109,7 +109,9 @@
               items-start
             "
             id="recents-container"
-          ></div>
+          >
+            <!-- Recent Search History will render here -->
+          </div>
         </aside>
 
         <!-- Search Results -->
@@ -495,61 +497,11 @@
           </div>
         </form>
 
-        <!-- Placeholder containers for news feed -->
-        <div class="grid gap-8 grid-cols-1 px-5 lg:mx-40 lg:pt-10 lg:px-20">
-          <a id="news-feed-1" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-2" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-3" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-4" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-5" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-6" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
+        <div
+          class="grid gap-8 grid-cols-1 px-5 lg:mx-40 lg:pt-10 lg:px-20"
+          id="news-container"
+        >
+          <!-- News feed displays here -->
         </div>
       </section>
 
