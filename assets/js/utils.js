@@ -1,3 +1,19 @@
+// Function to clear child elements from a specified-by-ID parent element
+function clearSection(section) {
+  // validate that argument is formatted like an ID selector
+  if (section[0] == '#') {
+    // grab the element to be cleared
+    const parentEl = document.getElementById(section);
+    // if element is successfully located...
+    if (parentEl) {
+      // ... start removing the last child until there are no more children
+      while (parentEl.lastChild) {
+        parentEl.removeChild(parentEl.lastChild);
+      }
+    }
+  }
+}
+
 // function to render specific section based on which nav bar link is clicked
 
 function renderSection(sectionId) {
