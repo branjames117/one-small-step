@@ -28,7 +28,7 @@ function toggleFavorite(e) {
   // remove flagged obj from array then update localstorage
   if (exists) {
     const newFavoritesArr = localStorageObj.favorites.filter(
-      (obj) => obj.title !== imageObj.title
+      (obj) => obj.nasa_id !== imageObj.nasa_id
     );
     localStorageObj.favorites = newFavoritesArr;
     localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
@@ -69,6 +69,7 @@ function populateFavorites() {
         title: favorite.title,
         thumbnail: favorite.thumbnail,
         url: favorite.url,
+        nasa_id: favorite.nasa_id,
         description: favorite.description,
       };
 
