@@ -31,9 +31,7 @@ function getGallery(queryStr) {
       const searchResults = [];
 
       // make visible the results section
-      document
-        .querySelector('#gallery-results-section')
-        .classList.remove('hidden');
+      renderSection('gallery-results-section');
 
       // attempt to render results only if results are returned
       if (res.data.collection.items.length > 0) {
@@ -44,8 +42,9 @@ function getGallery(queryStr) {
             description: item.data[0].description,
             keywords: item.data[0].keywords,
             title: item.data[0].title,
+            nasa_id: item.data[0].nasa_id,
             thumbnail: item.links[0].href,
-            largeImage: item.links[0].href.replace('thumb', 'large'),
+            manifest: item.href,
           };
           searchResults.push(image);
         });
@@ -53,7 +52,9 @@ function getGallery(queryStr) {
         // add search overview (query used + first image returned) for display in the recents section
         const recentSearchObj = {
           thumbnail: searchResults[0].thumbnail,
-          largeImage: searchResults[0].largeImage,
+          manifest: searchResults[0].manifest,
+          description: searchResults[0].description,
+          title: searchResults[0].title,
           query,
         };
 
@@ -80,8 +81,6 @@ function getGallery(queryStr) {
           populateRecents();
         }
 
-        // TO DO - render the first 10 results at first, render the next 10 if user clicks "Load more..." or scrolls down, then the next 10, and so on... so that the browser isn't inundated with 100 image loads all at once (test this)
-
         // change the h2 to include search term
         document.querySelector(
           '#gallery-results-section > h2'
@@ -93,7 +92,7 @@ function getGallery(queryStr) {
             // check if image exists in favorites
             let favorited = false;
             localStorageObj.favorites.forEach((favorite) => {
-              if (favorite.title === image.title) {
+              if (favorite.nasa_id === image.nasa_id) {
                 favorited = true;
               }
             });
@@ -108,8 +107,10 @@ function getGallery(queryStr) {
               `#search-result-${idx + 1} > h3 > button`
             ).imageObj = {
               title: image.title,
+              description: image.description,
               thumbnail: image.thumbnail,
-              hdUrl: image.largeImage,
+              manifest: image.manifest,
+              nasa_id: image.nasa_id,
             };
             document
               .querySelector(`#search-result-${idx + 1} > h3 > button`)
@@ -123,8 +124,11 @@ function getGallery(queryStr) {
                 ? image.title.substr(0, 75) + '...'
                 : image.title;
             // set the URL link
-            document.querySelector(`#search-result-${idx + 1} > a`).href =
-              image.largeImage;
+            document
+              .querySelector(`#search-result-${idx + 1} > a`)
+              .addEventListener('click', () => {
+                getImageFromManifest(image);
+              });
             // set the image as thumbnail
             document.querySelector(`#search-result-${idx + 1} > a > img`).src =
               image.thumbnail;
@@ -137,7 +141,7 @@ function getGallery(queryStr) {
               '';
             // populate keywords list if keywords exist
             if (image.keywords) {
-              image.keywords.forEach((keyword) => {
+              image.keywords.slice(0, 3).forEach((keyword) => {
                 const keywordEl = document.createElement('li');
                 keywordEl.textContent = keyword;
                 keywordEl.style.cursor = 'pointer';
@@ -164,9 +168,7 @@ function getGallery(queryStr) {
       document
         .querySelector('#gallery-results-section > h3')
         .addEventListener('click', () => {
-          document
-            .querySelector('#gallery-results-section')
-            .classList.add('hidden');
+          renderSection('iss-tracker-section');
         });
     })
     .catch((err) => {
@@ -208,9 +210,12 @@ function populateRecents() {
         `#recent-search-container-${idx + 1} a img`
       ).title = search.query;
 
-      // link to hd image
-      document.querySelector(`#recent-search-container-${idx + 1} > a`).href =
-        search.largeImage;
+      // link to open full screen version
+      document
+        .querySelector(`#recent-search-container-${idx + 1} > a`)
+        .addEventListener('click', () => {
+          getImageFromManifest(search);
+        });
     });
 }
 

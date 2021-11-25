@@ -1,18 +1,54 @@
-// function to clear a specified section of the DOM (delete all child elements to make way for a rerender) - must accept a CSS ID selector as argument, like '#news-section'
+// function to render specific section based on which nav bar link is clicked
 
-function clearSectionById(sectionId) {
-  // validate that argument is formatted like an ID selector
-  if (sectionId[0] == '#') {
-    // grab the element to be cleared
-    const parentEl = document.getElementById(sectionId.replace('#', ''));
-    // if element is successfully located...
-    if (parentEl) {
-      // ... start removing the last child until there are no more children
-      while (parentEl.lastChild) {
-        parentEl.removeChild(parentEl.lastChild);
-      }
+function renderSection(sectionId) {
+  // grab all sections and convert nodelist to array
+  const sections = Array.from(document.querySelectorAll('section'));
+
+  sections.forEach((section) => {
+    if (section.id === sectionId) {
+      section.classList.remove('hidden');
+    } else {
+      section.classList.add('hidden');
     }
-  }
+  });
+}
+
+// Immediately render APOD section on page load
+renderSection('iss-tracker-section');
+
+// Add event listeners to nav bar links
+const navbarLinks = Array.from(document.querySelectorAll('#navbar-links li'));
+navbarLinks.forEach((link) => {
+  link.addEventListener('click', (e) =>
+    renderSection(e.target.id.replace('link', 'section'))
+  );
+});
+
+// Function to grab the first item (usually the original, highest-def image) from the collection.json manifest that each image in the NASA gallery has, to display a full-screen version of the image when the user clicks the thumbnail
+
+async function getImageFromManifest(imageObj) {
+  // To do: open the URL from res.data[0] in the modal
+  const title = imageObj.title;
+  const description = imageObj.description;
+
+  // Axios trick to store the data returned from the get request in url variable
+  const promise = axios.get(imageObj.manifest);
+  const url = await promise.then((res) => res.data[0]);
+  console.log(title);
+  console.log(description);
+  console.log(url);
+}
+
+// Function to grab the url from the Astronomy Picture of the Day
+function getImageFromURL(imageObj) {
+  // To do: open the URL in the modal
+  const title = imageObj.title;
+  const description = imageObj.description || imageObj.explanation;
+  const url = imageObj.url;
+
+  console.log(title);
+  console.log(description);
+  console.log(url);
 }
 
 // function to grab the local storage object

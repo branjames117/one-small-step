@@ -6,6 +6,15 @@
     box-sizing: border-box;
 } */
 
+body {
+  background-image: url('../img/pexels-miriam-espacio-110854.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
 /* ISS styling starts here */
 
 .astro{
@@ -56,7 +65,7 @@
 
 /* all span */
 
-span {
+#details div span {
   font-size: 1rem;
   margin-top: 10px;
 }
