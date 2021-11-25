@@ -44,7 +44,6 @@ navbarLinks.forEach((link) => {
 // Function to grab the first item (usually the original, highest-def image) from the collection.json manifest that each image in the NASA gallery has, to display a full-screen version of the image when the user clicks the thumbnail
 
 async function getImageFromManifest(imageObj) {
-  console.log(imageObj);
   // To do: open the URL from res.data[0] in the modal
   const title = imageObj.title;
   const description = imageObj.description;

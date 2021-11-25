@@ -202,6 +202,7 @@ function populateRecents() {
       // image element
       const imgAEl = document.createElement('a');
       imgAEl.classList = 'grid justify-items-center';
+      imgAEl.style.cursor = 'pointer';
       imgAEl.addEventListener('click', () => {
         getImageFromManifest(search);
       });
