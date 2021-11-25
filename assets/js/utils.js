@@ -79,8 +79,7 @@ function getImageFromURL(imageObj) {
   // To do: open the URL in the modal
   const title = imageObj.title;
   const description = imageObj.description || imageObj.explanation;
-  const url = imageObj.url;
-  console.log(imageObj);
+  const url = imageObj.hdurl || imageObj.url;
 
   document.querySelector('#hd-title span').textContent = title;
   document.querySelector('#hd-desc').textContent = description;
