@@ -1,9 +1,9 @@
 // function to render specific section based on which nav bar link is clicked
-
+console.log('Running utils');
 function renderSection(sectionId) {
   // grab all sections and convert nodelist to array
   const sections = Array.from(document.querySelectorAll('section'));
-
+  console.log('Rendering ', sectionId);
   sections.forEach((section) => {
     if (section.id === sectionId) {
       section.classList.remove('hidden');
@@ -13,7 +13,7 @@ function renderSection(sectionId) {
   });
 }
 
-// Immediately render APOD section on page load
+// Immediately render ISS tracker section on page load
 renderSection('iss-tracker-section');
 
 // Add event listeners to nav bar links

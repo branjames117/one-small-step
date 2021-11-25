@@ -84,124 +84,106 @@
       id="front-page-container"
       class="bg-black bg-opacity-75 pb-40 min-h-screen"
     >
-      <!-- RECENT SEARCH RESULTS -->
-
-      <section
-        id="recent-searches-section"
-        class="hidden grid justify-items-center pt-5"
-      >
-        <h2 class="text-2xl">Recent Searches</h2>
-
-        <div
-          class="flex justify-center space-x-4 text-center pt-3 w-4/5"
-          id="recents-container"
-        >
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-1"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-2"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-3"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-4"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-        </div>
-      </section>
-
       <!-- Temporary container for displaying search results, to be moved into modal -->
 
       <section
         id="gallery-results-section"
-        class="hidden grid justify-items-center pt-5 items-start"
+        class="hidden grid justify-items-center pt-12 items-start"
       >
+        <!-- Search History -->
+
+        <h4 id="view-recent-searches-toggle">View Recent Searches</h4>
+        <aside
+          id="recent-searches-section"
+          class="hidden grid justify-items-center pt-5 pb-12"
+        >
+          <div
+            class="
+              grid grid-cols-1
+              md:grid-cols-2
+              lg:grid-cols-4
+              gap-y-8
+              pt-3
+              w-4/5
+              text-center
+              items-start
+            "
+            id="recents-container"
+          >
+            <div
+              class="grid gap-y-4 inline-block rounded-lg p-2"
+              id="recent-search-container-1"
+            >
+              <h3>
+                <a><!-- Query String Here --></a>
+              </h3>
+              <a class="grid justify-items-center"
+                ><img
+                  src="./assets/img/iss.png"
+                  alt="placeholder"
+                  width="60%"
+                  height="60%"
+                  class="rounded-lg"
+              /></a>
+            </div>
+
+            <div
+              class="grid gap-y-4 inline-block rounded-lg p-2"
+              id="recent-search-container-2"
+            >
+              <h3>
+                <a><!-- Query String Here --></a>
+              </h3>
+              <a class="grid justify-items-center"
+                ><img
+                  src="./assets/img/iss.png"
+                  alt="placeholder"
+                  width="60%"
+                  height="60%"
+                  class="rounded-lg"
+              /></a>
+            </div>
+
+            <div
+              class="grid gap-y-4 inline-block rounded-lg p-2"
+              id="recent-search-container-3"
+            >
+              <h3>
+                <a><!-- Query String Here --></a>
+              </h3>
+              <a class="grid justify-items-center"
+                ><img
+                  src="./assets/img/iss.png"
+                  alt="placeholder"
+                  width="60%"
+                  height="60%"
+                  class="rounded-lg"
+              /></a>
+            </div>
+
+            <div
+              class="grid gap-y-4 inline-block rounded-lg p-2"
+              id="recent-search-container-4"
+            >
+              <h3>
+                <a><!-- Query String Here --></a>
+              </h3>
+              <a class="grid justify-items-center"
+                ><img
+                  src="./assets/img/iss.png"
+                  alt="placeholder"
+                  width="60%"
+                  height="60%"
+                  class="rounded-lg"
+              /></a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Search Results -->
+
         <h2 class="text-2xl">Search Results</h2>
-        <h3>Click to Close</h3>
+
         <div
           class="
             grid grid-cols-1

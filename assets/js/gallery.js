@@ -163,13 +163,6 @@ function getGallery(queryStr) {
           '#gallery-results-section > h2'
         ).textContent = `Search Results for: "${queryStr}." NO IMAGES FOUND.`;
       }
-
-      // add event listener to close search results button
-      document
-        .querySelector('#gallery-results-section > h3')
-        .addEventListener('click', () => {
-          renderSection('iss-tracker-section');
-        });
     })
     .catch((err) => {
       document.querySelector(
@@ -218,6 +211,21 @@ function populateRecents() {
         });
     });
 }
+
+// add click listener to toggle display recent searches section
+document
+  .querySelector('#view-recent-searches-toggle')
+  .addEventListener('click', () => {
+    const recentSearchEl = document.querySelector('aside');
+    const recentSearchButtonEl = document.querySelector(
+      '#view-recent-searches-toggle'
+    );
+    recentSearchButtonEl.textContent =
+      recentSearchButtonEl.textContent === 'View Recent Searches'
+        ? 'Close Recent Searches'
+        : 'View Recent Searches';
+    recentSearchEl.classList.toggle('hidden');
+  });
 
 // on page load, populate recent section
 populateRecents();
