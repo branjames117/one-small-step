@@ -176,39 +176,50 @@ function populateRecents() {
   // get copy of current localStorage object
   const localStorageObj = grabLocalStorage();
 
-  // go through array backwards and populate placeholder containers in index.html
+  // clear current recents section
+  clearSection('#recents-container');
+
+  const recentsContainer = document.querySelector('#recents-container');
+
+  // go through array backwards and build containers in the recent searches section
   localStorageObj.recent
     .slice()
     .reverse()
     .forEach((search, idx) => {
-      // title first
-      document.querySelector(
-        `#recent-search-container-${idx + 1} h3 a`
-      ).textContent = '"' + search.query + '"';
-      document
-        .querySelector(`#recent-search-container-${idx + 1} h3 a`)
-        .addEventListener('click', () => {
-          getGallery(search.query);
-        });
-      document.querySelector(
-        `#recent-search-container-${idx + 1} h3 a`
-      ).style.cursor = 'pointer';
+      const recentContainer = document.createElement('div');
+      recentContainer.classList = 'grid gap-y-4 inline-block rounded-lg p-2';
 
-      // image
-      document.querySelector(`#recent-search-container-${idx + 1} a img`).src =
-        search.thumbnail;
-      document.querySelector(`#recent-search-container-${idx + 1} a img`).alt =
-        search.query;
-      document.querySelector(
-        `#recent-search-container-${idx + 1} a img`
-      ).title = search.query;
+      // search query element
+      const h3El = document.createElement('h3');
+      const aEl = document.createElement('a');
+      aEl.textContent = '"' + search.query + '"';
+      aEl.style.cursor = 'pointer';
+      aEl.addEventListener('click', () => {
+        getGallery(search.query);
+      });
+      h3El.append(aEl);
 
-      // link to open full screen version
-      document
-        .querySelector(`#recent-search-container-${idx + 1} > a`)
-        .addEventListener('click', () => {
-          getImageFromManifest(search);
-        });
+      // image element
+      const imgAEl = document.createElement('a');
+      imgAEl.classList = 'grid justify-items-center';
+      imgAEl.addEventListener('click', () => {
+        getImageFromManifest(search);
+      });
+      const imgEl = document.createElement('img');
+      imgEl.classList = 'rounded-lg';
+      imgEl.alt = search.description;
+      imgEl.title = search.description;
+      imgEl.setAttribute('height', '60%');
+      imgEl.setAttribute('width', '60%');
+      imgEl.src = search.thumbnail;
+
+      imgAEl.append(imgEl);
+
+      // put it all together
+      recentContainer.append(h3El, imgAEl);
+
+      // append to recents container
+      recentsContainer.append(recentContainer);
     });
 }
 

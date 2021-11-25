@@ -3,7 +3,7 @@ function clearSection(section) {
   // validate that argument is formatted like an ID selector
   if (section[0] == '#') {
     // grab the element to be cleared
-    const parentEl = document.getElementById(section);
+    const parentEl = document.querySelector(section);
     // if element is successfully located...
     if (parentEl) {
       // ... start removing the last child until there are no more children
@@ -44,6 +44,7 @@ navbarLinks.forEach((link) => {
 // Function to grab the first item (usually the original, highest-def image) from the collection.json manifest that each image in the NASA gallery has, to display a full-screen version of the image when the user clicks the thumbnail
 
 async function getImageFromManifest(imageObj) {
+  console.log(imageObj);
   // To do: open the URL from res.data[0] in the modal
   const title = imageObj.title;
   const description = imageObj.description;
@@ -66,7 +67,7 @@ async function getImageFromManifest(imageObj) {
   const localStorageObj = grabLocalStorage();
   let favorited = false;
   localStorageObj.favorites.forEach((favorite) => {
-    if (favorite.nasa_id === res.data.title) {
+    if (favorite.nasa_id === imageObj.nasa_id) {
       favorited = true;
     }
   });
