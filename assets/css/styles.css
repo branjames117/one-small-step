@@ -70,6 +70,9 @@ body {
   font-size: 1rem;
   margin-top: 10px;
 }
-@media screen {
-  
+@media all and (max-width: 500px){
+  body{
+    color: white;
+    
+  }
 }
