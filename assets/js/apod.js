@@ -38,7 +38,9 @@
         .addEventListener('click', toggleFavorite);
 
       // set the explanation
-      document.querySelector('#apod-desc').textContent = res.data.explanation;
+      document.querySelector(
+        '#apod-desc'
+      ).textContent = `${res.data.date}. ${res.data.explanation}. (© ${res.data.copyright}.)`;
 
       // check if APOD is an image or a video and append appropriate element to render it
       if (res.data.media_type === 'image') {
@@ -46,7 +48,7 @@
         document
           .querySelector('#apod-section > a')
           .addEventListener('click', () => {
-            getImageFromURL(res.data);
+            getImageFromURL(res.data, 'apod-section');
           });
         document.querySelector('#apod-section img').src = res.data.url;
         document.querySelector(

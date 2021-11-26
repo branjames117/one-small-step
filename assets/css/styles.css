@@ -15,6 +15,22 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+header h1,
+#navbar-links li,
+#search-form input:not(:first-child) {
+  cursor: pointer;
+}
+
+/* Modal styling */
+
+.modal {
+  transition: opacity 0.25s ease;
+}
+body.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+}
+
 /* ISS styling starts here */
 
 .astro{

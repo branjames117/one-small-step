@@ -28,7 +28,7 @@ function toggleFavorite(e) {
   // remove flagged obj from array then update localstorage
   if (exists) {
     const newFavoritesArr = localStorageObj.favorites.filter(
-      (obj) => obj.title !== imageObj.title
+      (obj) => obj.nasa_id !== imageObj.nasa_id
     );
     localStorageObj.favorites = newFavoritesArr;
     localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
@@ -48,52 +48,72 @@ function toggleFavorite(e) {
 function populateFavorites() {
   const localStorageObj = grabLocalStorage();
 
+  // clear out previous favorites
+  clearSection('#favorites-container');
+
+  const favoritesContainer = document.querySelector('#favorites-container');
+
+  // if there are no favorites, reveal the H3 element advising user to add some...
+  const noFavoritesEl = document.querySelector('#no-favorites');
+  if (localStorageObj.favorites.length === 0) {
+    noFavoritesEl.classList.remove('hidden');
+  } else {
+    noFavoritesEl.classList.add('hidden');
+  }
+
+  // add star functionality to the star in the above H3 element for fun...
+  const noFavoritesStarEl = document.querySelector('#fun-star');
+  noFavoritesStarEl.style.cursor = 'pointer';
+  noFavoritesStarEl.addEventListener('click', () => {
+    noFavoritesStarEl.textContent =
+      noFavoritesStarEl.textContent === '☆' ? '★' : '☆';
+  });
+
+  // create the elements to display the favorites
   localStorageObj.favorites
     .slice()
     .reverse()
-    .forEach((favorite, idx) => {
-      // title first
-      document.querySelector(
-        `#favorite-container-${idx + 1} h3 a`
-      ).textContent = favorite.title;
-      document.querySelector(`#favorite-container-${idx + 1} h3 a`).href =
-        favorite.hdUrl;
-      document.querySelector(
-        `#favorite-container-${idx + 1} h3 a`
-      ).style.cursor = 'pointer';
+    .forEach((favorite) => {
+      const divEl = document.createElement('div');
+      divEl.classList = 'grid gap-y-4 inline-block rounded-lg p-2';
 
-      // remove from favorites button
-      document.querySelector(
-        `#favorite-container-${idx + 1} h3 button`
-      ).imageObj = {
+      const h3El = document.createElement('h3');
+      const buttonEl = document.createElement('button');
+      buttonEl.imageObj = {
         title: favorite.title,
         thumbnail: favorite.thumbnail,
         url: favorite.url,
+        nasa_id: favorite.nasa_id,
         description: favorite.description,
       };
+      buttonEl.addEventListener('click', toggleFavorite);
+      buttonEl.textContent = '★';
+      buttonEl.classList = 'pr-2';
+      const spanEl = document.createElement('span');
+      spanEl.textContent = favorite.title;
+      h3El.append(buttonEl, spanEl);
 
-      document
-        .querySelector(`#favorite-container-${idx + 1} h3 button`)
-        .addEventListener('click', toggleFavorite);
+      const aEl = document.createElement('a');
+      aEl.classList = 'grid justify-items-center';
+      aEl.addEventListener('click', () => {
+        if (favorite.url) {
+          getImageFromURL(favorite, 'favorites-section');
+        } else if (favorite.manifest) {
+          getImageFromManifest(favorite, 'favorites-section');
+        }
+      });
+      const imgEl = document.createElement('img');
+      imgEl.setAttribute('height', '100%');
+      imgEl.setAttribute('width', '100%');
+      imgEl.alt = favorite.title;
+      imgEl.title = favorite.title;
+      imgEl.src = favorite.thumbnail;
+      imgEl.style.cursor = 'pointer';
 
-      // image
-      document.querySelector(`#favorite-container-${idx + 1} a img`).src =
-        favorite.thumbnail;
-      document.querySelector(`#favorite-container-${idx + 1} a img`).alt =
-        favorite.title;
-      document.querySelector(`#favorite-container-${idx + 1} a img`).title =
-        favorite.title;
-
-      // link to hd image
-      document
-        .querySelector(`#favorite-container-${idx + 1} > a`)
-        .addEventListener('click', () => {
-          if (favorite.url) {
-            getImageFromURL(favorite);
-          } else if (favorite.manifest) {
-            getImageFromManifest(favorite);
-          }
-        });
+      // put it all together
+      aEl.append(imgEl);
+      divEl.append(h3El, aEl);
+      favoritesContainer.append(divEl);
     });
 }
 

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
 
-  <body class="container mx-auto overflow-x-hidden">
+  <body class="container mx-auto overflow-x-hidden h-full">
     <!-- Header with nav bar -->
     <header class="flex justify-between px-4 py-2 bg-black bg-opacity-75">
       <!-- Logo/site name/link home -->
@@ -52,11 +52,11 @@
           id="navbar-links"
           class="hidden my-auto mx-8 text-white text-2xl lg:flex"
         >
-          <li class="mr-4 hover:text-gray-400" id="apod-link">APoD</li>
           <li class="mr-4 hover:text-gray-400" id="iss-tracker-link">
             ISS Tracker
           </li>
           <li class="mr-4 hover:text-gray-400" id="news-link">News</li>
+          <li class="mr-4 hover:text-gray-400" id="apod-link">APoD</li>
           <li class="hover:text-gray-400" id="favorites-link">Favorites</li>
         </ul>
         <!-- Search bar -->
@@ -71,140 +71,54 @@
           />
           <input
             type="submit"
-            value="Submit"
+            value="Search"
             class="shadow-lg rounded-lg p-2 bg-white text-black"
           />
         </form>
       </nav>
     </header>
 
-    <!-- Main content -->
+    <!-- Main Content -->
 
-    <main
-      id="front-page-container"
-      class="bg-black bg-opacity-75 pb-40 min-h-screen"
-    >
-      <!-- RECENT SEARCH RESULTS -->
-
-      <section
-        id="recent-searches-section"
-        class="hidden grid justify-items-center pt-5"
-      >
-        <h2 class="text-2xl">Recent Searches</h2>
-
-        <div
-          class="flex justify-center space-x-4 text-center pt-3 w-4/5"
-          id="recents-container"
-        >
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-1"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-2"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-3"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="recent-search-container-4"
-          >
-            <h3>
-              <a><!-- Query String Here --></a>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Temporary container for displaying search results, to be moved into modal -->
+    <main id="front-page-container" class="bg-black bg-opacity-75 pb-40">
+      <!-- Gallery Results Section -->
 
       <section
         id="gallery-results-section"
-        class="hidden grid justify-items-center pt-5 items-start"
+        class="hidden grid justify-items-center pt-12 items-start"
       >
+        <!-- Search History Section (Toggleable) of Gallery Results -->
+
+        <h4 id="view-recent-searches-toggle">View Recent Searches</h4>
+        <aside
+          id="recent-searches-section"
+          class="hidden grid justify-items-center pt-5 pb-12"
+        >
+          <div
+            class="
+              grid grid-cols-1
+              md:grid-cols-2
+              lg:grid-cols-4
+              gap-y-8
+              pt-3
+              w-4/5
+              text-center
+              items-start
+            "
+            id="recents-container"
+          >
+            <!-- Recent Search History will display here -->
+          </div>
+        </aside>
+
+        <!-- Search Results Subsection of Gallery Results -->
+
         <h2 class="text-2xl">Search Results</h2>
-        <h3>Click to Close</h3>
+
         <div
           class="
             grid grid-cols-1
+            md:grid-cols-2
             lg:grid-cols-4
             gap-y-8
             pt-3
@@ -214,162 +128,11 @@
           "
           id="gallery-container"
         >
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-1"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center align-top"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-2"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center align-top"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-3"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center align-top"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-4"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-5"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-6"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-7"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
-          <div
-            class="grid gap-y-4 inline-block rounded-lg p-2"
-            id="search-result-8"
-          >
-            <h3>
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
-            <a class="grid justify-items-center"
-              ><img
-                alt="placeholder"
-                width="100%"
-                height="100%"
-                class="rounded-lg"
-                target="_blank"
-            /></a>
-            <ul>
-              <!-- key words -->
-            </ul>
-          </div>
+          <!-- Gallery search results display here -->
         </div>
       </section>
 
-      <!-- Astronomy Picture of the Day -->
+      <!-- Astronomy Picture of the Day Section -->
 
       <section
         id="apod-section"
@@ -389,7 +152,7 @@
         <video class="hidden"></video>
 
         <h3 class="text-2xl">
-          <button>☆</button> "<span><!-- Image Title Here --></span>"
+          <button>☆</button> <span><!-- Image Title Here --></span>
         </h3>
 
         <p id="apod-desc" class="text-left w-4/5">
@@ -451,97 +214,25 @@
       >
         <h2 class="text-3xl">Favorited Images</h2>
 
+        <h3 id="no-favorites" class="mx-auto hidden">
+          Click the <span id="fun-star">☆</span> button next to an image title
+          to save it for later.
+        </h3>
+
         <div
-          class="flex justify-center space-x-4 text-center pt-3 w-4/5"
+          class="
+            grid grid-cols-1
+            md:grid-cols-2
+            lg:grid-cols-4
+            gap-y-8
+            pt-3
+            w-4/5
+            text-center
+            items-start
+          "
           id="favorites-container"
         >
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="favorite-container-1"
-          >
-            <h3><button>★</button> <a></a></h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="favorite-container-2"
-          >
-            <h3><button>★</button> <a></a></h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="favorite-container-3"
-          >
-            <h3><button>★</button> <a></a></h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
-
-          <div
-            class="
-              grid
-              justify-items-center
-              inline-block
-              bg-center bg-indigo-100
-              rounded-lg
-              p-2
-            "
-            id="favorite-container-4"
-          >
-            <h3><button>★</button> <a></a></h3>
-            <a class="grid justify-items-center"
-              ><img
-                src="./assets/img/iss.png"
-                alt="placeholder"
-                width="60%"
-                height="60%"
-                class="rounded-lg"
-            /></a>
-          </div>
+          <!-- Favorites will display here -->
         </div>
       </section>
 
@@ -599,70 +290,118 @@
           </div>
         </form>
 
-        <!-- Placeholder containers for news feed -->
-        <div class="grid gap-8 grid-cols-1 px-5 lg:mx-40 lg:pt-10 lg:px-20">
-          <a id="news-feed-1" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-2" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-3" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-4" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-5" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
-
-          <a id="news-feed-6" class="grid grid-cols-3" target="_new">
-            <img class="inline rounded-lg" />
-            <div class="col-span-2 pl-5 text-left">
-              <h3><!-- Post title here --></h3>
-              <h4><!-- Additional post info here --></h4>
-              <p class="pl-10 text-sm"><!-- Post text if available --></p>
-            </div>
-          </a>
+        <div
+          class="grid gap-8 grid-cols-1 px-5 lg:mx-40 lg:pt-10 lg:px-20"
+          id="news-container"
+        >
+          <!-- News feed displays here -->
         </div>
       </section>
+
+      <!-- Section for displaying individual HD images -->
+
+      <section
+        id="hd-section"
+        class="grid justify-items-center text-center space-y-4 pt-12 mx-auto"
+      >
+        <h2 id="hd-title" class="text-3xl">
+          <button>☆</button> "<span><!-- Image Title Here --></span>"
+        </h2>
+        <a target="_new" class="grid justify-items-center"
+          ><img id="hd-img" alt="placeholder" width="90%" class="rounded-lg"
+        /></a>
+
+        <p id="hd-desc" class="text-left w-4/5">
+          <!-- Image Description Here -->
+        </p>
+        <div id="close-hd"><!-- Escape Button Here --></div>
+      </section>
     </main>
+
+    <!-- Modal for confirming deleting of favorites -->
+    <div
+      id="modal"
+      class="
+        opacity-0
+        pointer-events-none
+        fixed
+        w-full
+        h-full
+        left-0
+        bottom-0
+        right-0
+        flex
+        items-center
+        justify-center
+        overflow-y-scroll
+      "
+    >
+      <div
+        id="modal-overlay"
+        class="
+          flex flex-col
+          pt-20
+          absolute
+          w-full
+          h-full
+          top-0
+          bottom-0
+          bg-black bg-opacity-75
+          text-center
+        "
+      >
+        <!-- <div class="mx-auto">
+          <h3 id="modal-header" class="text-2xl">
+            <button>☆</button> "<span>Image Title</span>"
+          </h3>
+          <img
+            id="modal-image"
+            alt="placeholder"
+            title="placeholder"
+            width="80%"
+            class="rounded-lg mx-auto pt-8"
+            src="./assets/img/pexels-miriam-espacio-110854.jpg"
+          />
+          <p id="modal-p" class="text-left w-1/2 pt-8 mx-auto">
+            Description of image.
+          </p>
+        </div> -->
+      </div>
+
+      <div
+        id="modal-close"
+        class="
+          absolute
+          top-0
+          right-0
+          cursor-pointer
+          flex flex-col
+          items-center
+          mt-4
+          mr-4
+          text-white text-sm
+          z-50
+        "
+      >
+        <svg
+          class="fill-current text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
+          ></path>
+        </svg>
+        <span class="text-sm">(Esc)</span>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./assets/js/utils.js"></script>
     <script src="./assets/js/apod.js"></script>
     <script src="./assets/js/gallery.js"></script>
-    <script src="./assets/js/manifest.js"></script>
     <script src="./assets/js/reddit.js"></script>
     <script src="./assets/js/favorites.js"></script>
     <script
