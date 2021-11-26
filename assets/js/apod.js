@@ -8,6 +8,7 @@
   axios
     .get(url, params)
     .then((res) => {
+      console.log(res);
       // set the title for the APOD
       document.querySelector(
         '#apod-section > h3 > span'
@@ -38,7 +39,9 @@
         .addEventListener('click', toggleFavorite);
 
       // set the explanation
-      document.querySelector('#apod-desc').textContent = res.data.explanation;
+      document.querySelector(
+        '#apod-desc'
+      ).textContent = `${res.data.date}. ${res.data.explanation}. (© ${res.data.copyright}.)`;
 
       // check if APOD is an image or a video and append appropriate element to render it
       if (res.data.media_type === 'image') {
