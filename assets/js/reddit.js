@@ -39,6 +39,15 @@ function getRedditPosts(filterOptions) {
 
       const newsContainer = document.querySelector('#news-container');
 
+      // if there are no news results with selected filters, say so...
+      if (posts.length === 0) {
+        const noNewsEl = document.createElement('h3');
+        noNewsEl.classList = 'mx-auto';
+        noNewsEl.textContent =
+          'No posts retrieved with chosen filters. Change filters to try again.';
+        newsContainer.append(noNewsEl);
+      }
+
       // create elements for each post and append to newsContainer
       posts.forEach((post) => {
         const aEl = document.createElement('a');
