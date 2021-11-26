@@ -144,9 +144,19 @@ function createEscapeButton(origin) {
   const buttonEl = document.createElement('button');
   buttonEl.classList = 'bg-white text-black rounded-lg p-2 hover:bg-gray-400';
   buttonEl.textContent = '(Escape)';
+  // If user clicks button, go back to origin section
   buttonEl.addEventListener('click', () => {
     renderSection(origin);
   });
+  // Listen for "Escape" key to be pressed but only if HD section is loaded
+  let onHDSection = true;
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && onHDSection) {
+      onHDSection = false;
+      renderSection(origin);
+    }
+  });
+  // Add new button to page
   divEl.append(buttonEl);
 }
 
