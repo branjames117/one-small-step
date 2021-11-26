@@ -23,8 +23,28 @@ function scrollToTop() {
 function renderSection(sectionId) {
   // Grab all sections and convert from nodelist to array
   const sections = Array.from(document.querySelectorAll('section'));
+
+  // This fixes a bug - if rendering the APoD Section, check if APoD image's favorite status has changed since initial section reveal
+  if (sectionId === 'apod-section') {
+    // get localstorage object so we can check if image is already in favorites
+    const localStorageObj = grabLocalStorage();
+    let favorited = false;
+    localStorageObj.favorites.forEach((favorite) => {
+      if (
+        favorite.nasa_id ===
+        document.querySelector('#apod-section > h3 > span').textContent
+      ) {
+        favorited = true;
+      }
+    });
+
+    document.querySelector('#apod-section > h3 > button').textContent =
+      favorited ? '★' : '☆';
+  }
+
+  // Go through each section on the page...
   sections.forEach((section) => {
-    // If section matches, remove 'hidden' class, else, add it.
+    // ... and if the section matches, remove 'hidden' class. Else, add it.
     if (section.id === sectionId) {
       section.classList.remove('hidden');
     } else {
