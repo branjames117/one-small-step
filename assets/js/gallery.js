@@ -28,7 +28,7 @@ function getGallery(queryStr) {
     .get(url, params)
     .then((res) => {
       // scroll to top
-      scrollToTop();
+      scrollToPos();
 
       // empty array where search results will be stored
       const searchResults = [];

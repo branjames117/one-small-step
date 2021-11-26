@@ -14,13 +14,13 @@ function clearSection(section) {
   }
 }
 
-// Function to scroll to top of app
-function scrollToTop() {
-  window.scrollTo(0, 0);
+// Function to scroll to position, scrolls to top if no coordinates provided
+function scrollToPos(x = 0, y = 0) {
+  window.scrollTo(x, y);
 }
 
 // Function to render specific section
-function renderSection(sectionId) {
+function renderSection(sectionId, scrollYPos) {
   // Grab all sections and convert from nodelist to array
   const sections = Array.from(document.querySelectorAll('section'));
 
@@ -52,7 +52,7 @@ function renderSection(sectionId) {
     }
   });
   // Scroll to top
-  scrollToTop();
+  scrollToPos(0, scrollYPos);
 }
 
 // Immediately render ISS tracker section on page load
@@ -71,6 +71,7 @@ navbarLinks.forEach((link) => {
 async function getImageFromManifest(imageObj, origin) {
   const title = imageObj.title;
   const description = imageObj.description;
+  const scrollYPos = window.scrollY;
 
   // Axios trick to store the data returned from the get request in url variable
   const promise = axios.get(imageObj.manifest);
@@ -111,16 +112,16 @@ async function getImageFromManifest(imageObj, origin) {
   document
     .querySelector('#hd-title > button')
     .addEventListener('click', toggleFavorite);
-  createEscapeButton(origin);
+  createEscapeButton(origin, scrollYPos);
   renderSection('hd-section');
 }
 
 // Function to grab the url from the Astronomy Picture of the Day and open HD section
 function getImageFromURL(imageObj, origin) {
-  // To do: open the URL in the modal
   const title = imageObj.title;
   const description = imageObj.description || imageObj.explanation;
   const url = imageObj.hdurl || imageObj.url;
+  const scrollYPos = window.scrollY;
 
   document.querySelector('#hd-title span').textContent = title;
   document.querySelector('#hd-desc').textContent = description;
@@ -150,12 +151,12 @@ function getImageFromURL(imageObj, origin) {
   document
     .querySelector('#hd-title > button')
     .addEventListener('click', toggleFavorite);
-  createEscapeButton(origin);
+  createEscapeButton(origin, scrollYPos);
   renderSection('hd-section');
 }
 
 // Function to create dynamic Escape button to HD image section
-function createEscapeButton(origin) {
+function createEscapeButton(origin, scrollYPos) {
   // Delete previous button
   clearSection('#close-hd');
 
@@ -173,7 +174,7 @@ function createEscapeButton(origin) {
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && onHDSection) {
       onHDSection = false;
-      renderSection(origin);
+      renderSection(origin, scrollYPos);
     }
   });
   // Add new button to page
