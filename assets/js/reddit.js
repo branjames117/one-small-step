@@ -51,18 +51,18 @@ function getRedditPosts(filterOptions) {
       // create elements for each post and append to newsContainer
       posts.forEach((post) => {
         const aEl = document.createElement('a');
-        aEl.classList = 'grid grid-cols-3';
+        aEl.classList = 'grid grid-cols-3 bg-gray-800 bg-opacity-25 p-5';
         aEl.target = '_new';
         aEl.href = post.permalink;
 
         const imgEl = document.createElement('img');
-        imgEl.classList = 'inline rounded-lg';
-        imgEl.src =
-          post.thumbnail === 'default' || post.thumbnail === 'self'
-            ? './assets/img/reddit.png'
-            : post.thumbnail;
-        imgEl.title = post.title;
-        imgEl.alt = post.title;
+        // check if thumbnail exists before populating attributes of img element
+        if (post.thumbnail !== 'default' && post.thumbnail !== 'self') {
+          imgEl.classList = 'inline rounded-lg';
+          imgEl.src = post.thumbnail;
+          imgEl.title = post.title;
+          imgEl.alt = post.title;
+        }
 
         const divEl = document.createElement('div');
         divEl.classList = 'col-span-2 pl-5 text-left';
@@ -70,13 +70,13 @@ function getRedditPosts(filterOptions) {
         const h3El = document.createElement('h3');
         h3El.textContent = post.title;
         const h4El = document.createElement('h4');
+        h4El.classList = 'text-sm text-gray-500';
         h4El.textContent = `Posted by ${post.author} on ${new Date(
           post.created * 1000
         )
           .toString()
           .slice(0, 16)}`;
         const pEl = document.createElement('p');
-        pEl.classList = 'pl-10 text-sm';
         pEl.textContent = post.text;
 
         divEl.append(h3El, h4El, pEl);

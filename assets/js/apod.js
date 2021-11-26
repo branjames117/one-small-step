@@ -8,7 +8,6 @@
   axios
     .get(url, params)
     .then((res) => {
-      console.log(res);
       // set the title for the APOD
       document.querySelector(
         '#apod-section > h3 > span'

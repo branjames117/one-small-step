@@ -53,14 +53,21 @@ function populateFavorites() {
 
   const favoritesContainer = document.querySelector('#favorites-container');
 
-  // if there are no favorites, say so...
+  // if there are no favorites, reveal the H3 element advising user to add some...
+  const noFavoritesEl = document.querySelector('#no-favorites');
   if (localStorageObj.favorites.length === 0) {
-    const noFavoritesEl = document.createElement('h3');
-    noFavoritesEl.classList = 'text-l mx-auto absolute pr-12';
-    noFavoritesEl.textContent =
-      'Click the ☆ button next to an image title to save it for later.';
-    favoritesContainer.append(noFavoritesEl);
+    noFavoritesEl.classList.remove('hidden');
+  } else {
+    noFavoritesEl.classList.add('hidden');
   }
+
+  // add star functionality to the star in the above H3 element for fun...
+  const noFavoritesStarEl = document.querySelector('#fun-star');
+  noFavoritesStarEl.style.cursor = 'pointer';
+  noFavoritesStarEl.addEventListener('click', () => {
+    noFavoritesStarEl.textContent =
+      noFavoritesStarEl.textContent === '☆' ? '★' : '☆';
+  });
 
   // create the elements to display the favorites
   localStorageObj.favorites
