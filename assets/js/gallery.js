@@ -140,7 +140,7 @@ function getGallery(queryStr) {
           aEl.classList = 'grid justify-items-center align-top';
           // set the URL link
           aEl.addEventListener('click', () => {
-            getImageFromManifest(image);
+            getImageFromManifest(image, 'gallery-results-section');
           });
           // set the image as thumbnail
           const imgEl = document.createElement('img');
@@ -225,7 +225,7 @@ function populateRecents() {
       imgAEl.classList = 'grid justify-items-center';
       imgAEl.style.cursor = 'pointer';
       imgAEl.addEventListener('click', () => {
-        getImageFromManifest(search);
+        getImageFromManifest(search, 'gallery-results-section');
       });
       const imgEl = document.createElement('img');
       imgEl.classList = 'rounded-lg';

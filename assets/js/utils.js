@@ -1,10 +1,10 @@
 // Function to clear child elements from a specified-by-ID parent element
 function clearSection(section) {
-  // validate that argument is formatted like an ID selector
+  // Validate that argument is formatted like an ID selector...
   if (section[0] == '#') {
-    // grab the element to be cleared
+    // ... then try to grab the element...
     const parentEl = document.querySelector(section);
-    // if element is successfully located...
+    // ... and if element exists...
     if (parentEl) {
       // ... start removing the last child until there are no more children
       while (parentEl.lastChild) {
@@ -14,23 +14,24 @@ function clearSection(section) {
   }
 }
 
-// Scroll to top on page load
-document.addEventListener('DOMContentLoaded', () => {
-  scrollToTop();
-});
+// Function to scroll to top of app
+function scrollToTop() {
+  window.scrollTo(0, 0);
+}
 
-// function to render specific section based on which nav bar link is clicked
-
+// Function to render specific section
 function renderSection(sectionId) {
-  // grab all sections and convert nodelist to array
+  // Grab all sections and convert from nodelist to array
   const sections = Array.from(document.querySelectorAll('section'));
   sections.forEach((section) => {
+    // If section matches, remove 'hidden' class, else, add it.
     if (section.id === sectionId) {
       section.classList.remove('hidden');
     } else {
       section.classList.add('hidden');
     }
   });
+  // Scroll to top
   scrollToTop();
 }
 
@@ -38,23 +39,16 @@ function renderSection(sectionId) {
 renderSection('iss-tracker-section');
 
 // Add event listeners to nav bar links
-
 const navbarLinks = Array.from(document.querySelectorAll('#navbar-links li'));
+
 navbarLinks.forEach((link) => {
   link.addEventListener('click', (e) =>
     renderSection(e.target.id.replace('link', 'section'))
   );
 });
 
-// Function to scroll to top of app
-function scrollToTop() {
-  window.scrollTo(0, 0);
-}
-
-// Function to grab the first item (usually the original, highest-def image) from the collection.json manifest that each image in the NASA gallery has, to display a full-screen version of the image when the user clicks the thumbnail
-
-async function getImageFromManifest(imageObj) {
-  // To do: open the URL from res.data[0] in the modal
+// Function to grab the first item from the collection.json manifest and open HD section
+async function getImageFromManifest(imageObj, origin) {
   const title = imageObj.title;
   const description = imageObj.description;
 
@@ -97,12 +91,12 @@ async function getImageFromManifest(imageObj) {
   document
     .querySelector('#hd-title > button')
     .addEventListener('click', toggleFavorite);
+  createEscapeButton(origin);
   renderSection('hd-section');
 }
 
-// Function to grab the url from the Astronomy Picture of the Day
-
-function getImageFromURL(imageObj) {
+// Function to grab the url from the Astronomy Picture of the Day and open HD section
+function getImageFromURL(imageObj, origin) {
   // To do: open the URL in the modal
   const title = imageObj.title;
   const description = imageObj.description || imageObj.explanation;
@@ -136,11 +130,27 @@ function getImageFromURL(imageObj) {
   document
     .querySelector('#hd-title > button')
     .addEventListener('click', toggleFavorite);
+  createEscapeButton(origin);
   renderSection('hd-section');
 }
 
-// Variables and functions related to the modal
+// Function to create dynamic Escape button to HD image section
+function createEscapeButton(origin) {
+  // Delete previous button
+  clearSection('#close-hd');
 
+  // Create a new button with the appropriate event listener
+  const divEl = document.querySelector('#close-hd');
+  const buttonEl = document.createElement('button');
+  buttonEl.classList = 'bg-white text-black rounded-lg p-2 hover:bg-gray-400';
+  buttonEl.textContent = '(Escape)';
+  buttonEl.addEventListener('click', () => {
+    renderSection(origin);
+  });
+  divEl.append(buttonEl);
+}
+
+// Variables and functions related to the modal
 const overlay = document.querySelector('#modal-overlay');
 overlay.addEventListener('click', toggleModal);
 

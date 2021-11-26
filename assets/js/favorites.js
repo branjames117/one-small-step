@@ -90,9 +90,9 @@ function populateFavorites() {
       aEl.classList = 'grid justify-items-center';
       aEl.addEventListener('click', () => {
         if (favorite.url) {
-          getImageFromURL(favorite);
+          getImageFromURL(favorite, 'favorites-section');
         } else if (favorite.manifest) {
-          getImageFromManifest(favorite);
+          getImageFromManifest(favorite, 'favorites-section');
         }
       });
       const imgEl = document.createElement('img');

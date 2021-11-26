@@ -46,7 +46,7 @@
         document
           .querySelector('#apod-section > a')
           .addEventListener('click', () => {
-            getImageFromURL(res.data);
+            getImageFromURL(res.data, 'apod-section');
           });
         document.querySelector('#apod-section img').src = res.data.url;
         document.querySelector(
