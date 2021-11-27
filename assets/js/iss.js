@@ -36,6 +36,23 @@ L.tileLayer(
       'pk.eyJ1IjoicG1hbm5pODciLCJhIjoiY2t3MzJ2ZmJpN25hNDJubnVweHJmaDhoNyJ9.o-l9gH4kqCdVq6hyzwT7ow',
   }
 ).addTo(map);
+map.locate({setView: true, maxZoom: 16});
+
+
+// listen for screen resize events
+window.addEventListener('resize', function(event){
+  // get the width of the screen after the resize event
+  var width = document.documentElement.clientWidth;
+  // tablets are between 768 and 922 pixels wide
+  // phones are less than 768 pixels wide
+  if (width < 768) {
+      // set the zoom level to 10
+      map.setZoom(10);
+  }  else {
+      // set the zoom level to 8
+      map.setZoom(8);
+  }
+});
 
 // adding the Marker to map
 const marker = L.marker([lat, long], { icon: icon }).addTo(map);

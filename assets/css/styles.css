@@ -14,7 +14,7 @@ body {
   color: white;
   font-family: 'Poppins', sans-serif;
 }
-/* .hamburger{
+.hamburger{
   background: #000;
   color: #fff;
   display: flex;
@@ -64,9 +64,9 @@ body {
   }
   .mainMenu li a:hover{
     background: none;
-    color: ;
+    color: silver;
   }
-} */
+}
 
 header h1,
 #navbar-links li,
@@ -138,6 +138,25 @@ body.modal-active {
   font-size: 1rem;
   margin-top: 10px;
 }
-@media screen {
+/* Styles from mobile devices */
+@media (max-width: 625px) {
   
+  #details {
+    display: none;
+  	
+	}
+  /* Map */
+  #map-div {
+		position: relative;
+		margin-top: 0%;
+		float: left;
+		left: 0%;
+		right: 0%;
+		top: 0%;
+		padding-left: 2%;
+		padding-right: 2%;
+		height: 35px;
+		width: 96.5%;
+	}
+
 }
