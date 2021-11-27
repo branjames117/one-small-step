@@ -77,7 +77,7 @@ function getRedditPosts(filterOptions) {
           .toString()
           .slice(0, 16)}`;
         const pEl = document.createElement('p');
-        pEl.classList.add('pl-5');
+        pEl.classList = 'pl-5 overflow-x-hidden';
         pEl.textContent = post.text;
 
         divEl.append(h3El, h4El, pEl);
