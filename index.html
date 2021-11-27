@@ -65,11 +65,11 @@
               id="navbar-links"
               class="hidden my-auto mx-8 text-white text-2xl lg:flex"
             >
+              <li class="mr-4 hover:text-gray-400" id="apod-link">APoD</li>
               <li class="mr-4 hover:text-gray-400" id="iss-tracker-link">
                 ISS Tracker
               </li>
               <li class="mr-4 hover:text-gray-400" id="news-link">News</li>
-              <li class="mr-4 hover:text-gray-400" id="apod-link">APoD</li>
               <li class="hover:text-gray-400" id="favorites-link">Favorites</li>
             </ul>
             <!-- Search bar -->
@@ -160,13 +160,26 @@
           >
             <h2 class="text-3xl">Astronomy Picture of the Day</h2>
 
-            <p class="pb-6">
-              Come back to One Small Step every day for a new picture from NASA!
+            <p class="mx-8 md:mx-20">
+              Welcome to the 1SS (One Small Step) astronomy hub, where a small
+              portion of the significant public investment made in NASA can be
+              returned to you in the form of stunning imagery.<br />
+              <ul class="text-left list-disc mx-8">
+                <li>Come back daily to check out NASA's Astronomy Picture of the Day.</li>
+                <li>Track the International Space Station's location and crew.</li>
+                <li>Fetch the latest astronomy-related news and postings from various
+                  subreddits.</li>
+                <li>Search through NASA's image library.</li>
+                <li>Favorite images so you can revisit them later.</li>
+              </ul>
             </p>
+
+            <h3 class="text-2xl">
+              <button>☆</button> <span><!-- Image Title Here --></span>
+            </h3>
 
             <a target="_new" class="grid justify-items-center"
               ><img
-                alt="placeholder"
                 width="90%"
                 height="50%"
                 class="rounded-lg"
@@ -174,10 +187,6 @@
 
             <!-- Video element placeholder in case APOD is a video -->
             <video class="hidden"></video>
-
-            <h3 class="text-2xl">
-              <button>☆</button> <span><!-- Image Title Here --></span>
-            </h3>
 
             <p id="apod-desc" class="text-left w-4/5">
               <!-- Image Description Here -->
@@ -190,6 +199,7 @@
             id="iss-tracker-section"
             class="
               grid
+              invisible
               justify-items-center
               text-center
               space-y-4
@@ -197,7 +207,8 @@
               mx-auto
             "
           >
-            <h2 class="text-3xl">International Space Station Tracker</h2>
+            <h2 class="text-3xl"><span class="hidden md:inline">International Space Station</span><span class="md:hidden">ISS</span> Tracker</h2>
+
             <!----------our Map goes here------------->
             <div id="map"></div>
             <div id="map-div"></div>
@@ -369,7 +380,6 @@
             <a target="_new" class="grid justify-items-center"
               ><img
                 id="hd-img"
-                alt="placeholder"
                 width="90%"
                 class="rounded-lg"
             /></a>

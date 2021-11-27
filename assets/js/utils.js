@@ -55,14 +55,17 @@ function renderSection(sectionId, scrollYPos) {
   scrollToPos(0, scrollYPos);
 }
 
-// Immediately render ISS tracker section on page load
-renderSection('iss-tracker-section');
+// Immediately render APOD section on page load, and remove invisible class from ISS tracker (only way found to work around bug with Leaflet.js not liking to be hidden.)
+window.onload = () => {
+  renderSection('apod-section');
+  document.querySelector('#iss-tracker-section').classList.remove('invisible');
+};
 
 // Add event listeners to nav bar links
 const navbarLinks = Array.from(document.querySelectorAll('#navbar-links li'));
 document
   .querySelector('header > h1')
-  .addEventListener('click', () => renderSection('iss-tracker-section'));
+  .addEventListener('click', () => renderSection('apod-section'));
 navbarLinks.forEach((link) => {
   link.addEventListener('click', (e) =>
     renderSection(e.target.id.replace('link', 'section'))

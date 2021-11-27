@@ -15,6 +15,14 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+a {
+  color: rgb(179, 179, 179);
+}
+
+a:hover {
+  color: rgb(240, 240, 240);
+}
+
 header h1,
 #navbar-links li,
 #search-form input:not(:first-child) {
@@ -38,7 +46,8 @@ body.modal-active {
 /* ISS styling starts here */
 
 #map-div {
-  width: 800px;
+  width: 80%; /* temporary fix, originally width: 800px; */
+  max-width: 800px; /* temporary fix, originally absent */
   height: 350px;
   box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
   border-top-right-radius: 3px;
@@ -56,8 +65,8 @@ body.modal-active {
   display: flex;
   font-family: 'Poppins', sans-serif;
   border-radius: 5px;
-  width: 800px;
-  max-width: 800px;
+  width: 80%; /* temporary fix, originally width: 800px; */
+  max-width: 800px; /* temporary fix, originally absent */
   box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
