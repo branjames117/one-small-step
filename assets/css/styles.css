@@ -38,7 +38,7 @@ body {
   font-size: 25px;
   cursor: pointer;
 }
-@media(max-width: 800px){
+/* @media(max-width: 800px){
   .mainMenu{
     height: 100vh;
     position: fixed;
@@ -66,7 +66,7 @@ body {
     background: none;
     color: silver;
   }
-}
+} */
 
 header h1,
 #navbar-links li,
