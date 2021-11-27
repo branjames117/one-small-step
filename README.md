@@ -35,7 +35,7 @@ The landing page is hosted [here](https://github.com/branjames117/one-small-step
 
 ## Credits
 
-Developed by [Brandon James Hoskins](https://github.com/branjames117), [Patrick Manning](https://github.com/pmanning901), [Brian Sales](https://github.com/salesbc), and [Nathan Helms](https://github.com/nathanhelms) for the Vanderbilt Coding Boot Camp, 2021, with assets from [FontAwesome](https://fontawesome.com/) and [Miriam Espacio @ Pexels](https://www.pexels.com/@miriamespacio).
+Developed by [Brandon James Hoskins](https://github.com/branjames117), [Patrick Manning](https://github.com/pmanning901), [Brian Sales](https://github.com/salesbc), and [Nathan Helms](https://github.com/nathanhelms) for the Vanderbilt Coding Boot Camp, 2021, with assets from [FontAwesome](https://fontawesome.com/), [Miriam Espacio @ Pexels](https://www.pexels.com/@miriamespacio), and [Clker-Free-Vector-Images @ Pixabay](https://pixabay.com/users/clker-free-vector-images-3736/).
 
 ## License
 
