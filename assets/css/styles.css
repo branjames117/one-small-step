@@ -14,6 +14,59 @@ body {
   color: white;
   font-family: 'Poppins', sans-serif;
 }
+/* .hamburger{
+  background: #000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.openMenu{
+  font-size: 2rem;
+  margin: 20px;
+  display: none;
+  cursor: pointer;
+}
+.mainMenu .closeMenu , .icons i {
+  font-size: 2rem;
+  display: none;
+  cursor: pointer;
+
+}
+.fa-github:hover {color: silver;}
+.logo {
+  margin: 6px;
+  font-size: 25px;
+  cursor: pointer;
+}
+@media(max-width: 800px){
+  .mainMenu{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    transition: top 1s ease;
+    display: none;
+  }
+  .mainMenu .closeMenu{
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  .openMenu{
+    display: block;
+  }
+  .mainMenu li a:hover{
+    background: none;
+    color: ;
+  }
+} */
 
 header h1,
 #navbar-links li,
