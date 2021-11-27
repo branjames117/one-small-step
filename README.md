@@ -29,7 +29,7 @@ Clone the One Small Step repository in a CLI using the command `git clone` to do
 
 Upload HTML source code and all asset files to a hosting service such as GitHub Pages.
 
-The landing page is hosted [here](https://github.com/branjames117/one-small-step)
+The landing page is hosted [here](https://github.com/branjames117/one-small-step).
 
 ![Screenshot](./assets/img/onesmallstep.jpg)
 

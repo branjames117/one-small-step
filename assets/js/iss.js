@@ -13,9 +13,9 @@ let zoomLevel = 4;
 
 // set iss.png image as Marker
 const icon = L.icon({
-  iconUrl: 'assets/img/iss.png',
-  iconSize: [90, 45],
-  iconAnchor: [25, 94],
+  iconUrl: 'assets/img/crosshair.png',
+  iconSize: [50, 50],
+  iconAnchor: [25, 25],
   popupAnchor: [20, -86],
 });
 
