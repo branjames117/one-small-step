@@ -228,10 +228,6 @@ function grabLocalStorage() {
   if (!localStorage.userInfo) {
     const localStorageObj = {
       preferences: {
-        apodMinimized: false,
-        recentsMinimized: false,
-        newsfeedMinimized: false,
-        darkMode: false,
         mostRecentSubreddit: 'astronomy',
       },
       favorites: [],
