@@ -234,6 +234,13 @@
         >
           <!-- Favorites will display here -->
         </div>
+
+        <button
+          id="clear-favorites-button"
+          class="bg-white text-black rounded-lg p-2 hover:bg-gray-400"
+        >
+          Clear Favorites
+        </button>
       </section>
 
       <!-- News Feed Section -->
@@ -340,7 +347,7 @@
         id="modal-overlay"
         class="
           flex flex-col
-          pt-20
+          pt-40
           absolute
           w-full
           h-full
@@ -350,7 +357,22 @@
           text-center
         "
       >
-        Test.
+        <div class="flex flex-col p-5 bg-gray-700">
+          <div>Are you sure?</div>
+          <div>
+            <button
+              class="m-5 bg-white text-black rounded-lg p-2 hover:bg-gray-400"
+              id="confirm-delete"
+            >
+              Yes, delete!
+            </button>
+            <button
+              class="m-5 bg-white text-black rounded-lg p-2 hover:bg-gray-400"
+            >
+              No, abort!
+            </button>
+          </div>
+        </div>
       </div>
 
       <div

@@ -43,6 +43,18 @@ function toggleFavorite(e) {
   populateFavorites();
 }
 
+// Add functionality to the "Clear Favorites" button
+document
+  .querySelector('#clear-favorites-button')
+  .addEventListener('click', toggleModal);
+// Add functionality to the "Confirm Delete" button
+document.querySelector('#confirm-delete').addEventListener('click', () => {
+  const localStorageObj = grabLocalStorage();
+  localStorageObj.favorites = [];
+  localStorage.setItem('userInfo', JSON.stringify(localStorageObj));
+  populateFavorites();
+});
+
 // Populate favorites section with favorited images
 
 function populateFavorites() {
@@ -53,12 +65,17 @@ function populateFavorites() {
 
   const favoritesContainer = document.querySelector('#favorites-container');
 
-  // if there are no favorites, reveal the H3 element advising user to add some...
+  // if there are no favorites, reveal the H3 element advising user to add some and hide the "Clear Favorites" button...
   const noFavoritesEl = document.querySelector('#no-favorites');
+  const clearFavoritesButtonEl = document.querySelector(
+    '#clear-favorites-button'
+  );
   if (localStorageObj.favorites.length === 0) {
     noFavoritesEl.classList.remove('hidden');
+    clearFavoritesButtonEl.classList.add('hidden');
   } else {
     noFavoritesEl.classList.add('hidden');
+    clearFavoritesButtonEl.classList.remove('hidden');
   }
 
   // add star functionality to the star in the above H3 element for fun...
