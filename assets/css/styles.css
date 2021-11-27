@@ -21,6 +21,10 @@ header h1,
   cursor: pointer;
 }
 
+form select {
+  cursor: pointer;
+}
+
 /* Modal styling */
 
 .modal {

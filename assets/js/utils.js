@@ -60,7 +60,9 @@ renderSection('iss-tracker-section');
 
 // Add event listeners to nav bar links
 const navbarLinks = Array.from(document.querySelectorAll('#navbar-links li'));
-
+document
+  .querySelector('header > h1')
+  .addEventListener('click', () => renderSection('iss-tracker-section'));
 navbarLinks.forEach((link) => {
   link.addEventListener('click', (e) =>
     renderSection(e.target.id.replace('link', 'section'))

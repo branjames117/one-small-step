@@ -53,7 +53,11 @@
         document.querySelector('#apod-section img').src = res.data.url;
         document.querySelector(
           '#apod-section img'
-        ).title = `Click for HD version of ${res.data.title}.`;
+        ).title = `Click to open HD version of ${res.data.title}.`;
+        document.querySelector(
+          '#apod-section img'
+        ).alt = `Click to open HD version of ${res.data.title}.`;
+        document.querySelector('#apod-section img').style.cursor = 'pointer';
       } else if (res.data.media_type === 'video') {
         // if video
         document.querySelector('#apod-section > video').style.display = 'block';

@@ -24,6 +24,9 @@ function getGallery(queryStr) {
   // clear out search input field
   document.getElementById('query-input').value = '';
 
+  // grab the gallery container
+  const galleryContainer = document.querySelector('#gallery-container');
+
   axios
     .get(url, params)
     .then((res) => {
@@ -93,9 +96,6 @@ function getGallery(queryStr) {
           '#gallery-results-section > h2'
         ).textContent = `Search Results for: "${queryStr}"`;
 
-        // grab the gallery container
-        const galleryContainer = document.querySelector('#gallery-container');
-
         // render only the first 8 results to the temporary holding containers
         searchResults.forEach((image) => {
           // check if image exists in favorites
@@ -145,6 +145,9 @@ function getGallery(queryStr) {
           // set the image as thumbnail
           const imgEl = document.createElement('img');
           imgEl.src = image.thumbnail;
+          imgEl.title = image.description;
+          imgEl.alt = image.description;
+          imgEl.style.cursor = 'pointer';
           imgEl.setAttribute('width', '95%');
 
           aEl.append(imgEl);
@@ -164,6 +167,7 @@ function getGallery(queryStr) {
               const keywordEl = document.createElement('li');
               keywordEl.textContent = keyword;
               keywordEl.style.cursor = 'pointer';
+              keywordEl.classList = 'hover:bg-gray-800 bg-opacity-50';
               keywordEl.addEventListener('click', (e) => {
                 getGallery(e.target.textContent);
               });
@@ -176,20 +180,15 @@ function getGallery(queryStr) {
           galleryContainer.append(divEl);
         });
       } else {
-        // change the h2 to report no results
-        const noResultsEl = document.createElement('h3');
-        noResultsEl.classList = 'text-l mx-auto absolute pr-12';
-        noResultsEl.textContent =
-          'No results found. Please try another search term.';
-        galleryContainer.append(noResultsEl);
+        document.querySelector(
+          '#gallery-results-section > h2'
+        ).textContent = `No results for: "${queryStr}"`;
       }
     })
     .catch((err) => {
-      const errorEl = document.createElement('h3');
-      errorEl.classList = 'text-l mx-auto absolute pr-12';
-      errorEl.textContent =
-        'There was an issue with the API. Please contact the administrator or try again later.';
-      galleryContainer.append(errorEl);
+      document.querySelector(
+        '#gallery-results-section > h2'
+      ).textContent = `No results for: "${queryStr}"`;
     });
 }
 
