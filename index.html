@@ -1,118 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>One Small Step</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-  <body class="container mx-auto overflow-x-hidden h-full">
-    <!-- Header with nav bar -->
-    <header class="flex justify-between px-4 py-2 bg-black bg-opacity-75">
-      <!-- Logo/site name/link home -->
-      <h1
-        class="
+  <title>One Small Step</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@%5E1.0/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+</head>
+
+<body class="container mx-auto overflow-x-hidden h-full">
+  <!-- Header with nav bar -->
+  <br class="flex justify-between px-4 py-2 bg-black bg-opacity-75">
+    <!-- Logo/site name/link home -->
+    <h1 class="
           hidden
           text-white text-center text-2xl
           my-auto
           hover:text-gray-400
           lg:inline
-        "
-      >
-        One Small Step
-      </h1>
+        ">
+      One Small Step
+    </h1>
+<br>
+<br>
+    <!-- Hamburger menu icon visible on smaller screen sizes
+    <div class="px-4 cursor-pointer md:hidden">
+      <div div><div class="fas fa-bars text-3xl"></div>
+      <ul class="mainMenu">
+        <li><a href="">Home</a></li>
+        <li><a href="">ISS Tracker</a></li>
+        <li><a href=""></a>News</li>
+        <li><a href=""></a>APOD</li>
+        <li><a href=""></a>Favorites</li>
+        <div class="closeMenu"> <i class="fa-times"></i></div>
+        <span class="icons">
+          <i class="fab fa-github"></i> -->
 
-      <!-- Hamburger menu icon visible on smaller screen sizes -->
-      <div id="hamburger" class="flex my-auto lg:hidden">
-        <div class="openMenu"><i class="fas fa-bars text-3xl"></i></div>
-        <ul class="mainMenu">
-          <li><a href="">Home</a></li>
-          <li><a href="">ISS Tracker</a></li>
-          <li><a href=""></a>News</li>
-          <li><a href=""></a>APOD</li>
-          <li><a href=""></a>Favorites</li>
-          <div class="closeMenu"> <i  class="fa-times"></i></div>
-          <span class="icons">
-            <i class="fab fa-github"></i>
-            
 
-          </span>
+        </span>
 
-        </ul>
+      </ul>
 
-      </div>
+    </div>
 
-      <!-- Nav menu -->
-      <nav class="flex">
-        <ul
-          id="navbar-links"
-          class="hidden my-auto mx-8 text-white text-2xl lg:flex"
-        >
-          <li class="mr-4 hover:text-gray-400" id="iss-tracker-link">
-            ISS Tracker
-          </li>
-          <li class="mr-4 hover:text-gray-400" id="news-link">News</li>
-          <li class="mr-4 hover:text-gray-400" id="apod-link">APoD</li>
-          <li class="hover:text-gray-400" id="favorites-link">Favorites</li>
-        </ul>
-        <!-- Search bar -->
-        <form id="search-form" class="">
-          <input
-            autocomplete="off"
-            type="text"
-            id="query-input"
-            name="query-input"
-            placeholder="Search NASA images"
-            class="shadow-lg rounded-lg text-center bg-black text-white p-2"
-          />
-          <input
-            type="submit"
-            value="Search"
-            class="shadow-lg rounded-lg p-2 bg-white text-black"
-          />
-        </form>
-      </nav>
-    </header>
+    <!-- Nav menu -->
+    <nav class="flex">
+      <ul id="navbar-links" class="hidden my-auto mx-8 text-white text-2xl lg:flex">
+        <li class="mr-4 hover:text-gray-400" id="iss-tracker-link">
+          ISS Tracker
+        </li>
+        <li class="mr-4 hover:text-gray-400" id="news-link">News</li>
+        <li class="mr-4 hover:text-gray-400" id="apod-link">APoD</li>
+        <li class="hover:text-gray-400" id="favorites-link">Favorites</li>
+      </ul>
+      <!-- Search bar -->
+      <form id="search-form" class="">
+        <input autocomplete="off" type="text" id="query-input" name="query-input" placeholder="Search NASA images"
+          class="shadow-lg rounded-lg text-center bg-black text-white p-2" />
+        <input type="submit" value="Search" class="shadow-lg rounded-lg p-2 bg-white text-black" />
+      </form>
+    </nav>
+  </header>
 
-    <!-- Main Content -->
+  <!-- Main Content -->
 
-    <main id="front-page-container" class="bg-black bg-opacity-75 pb-40">
-      <!-- Gallery Results Section -->
+  <main id="front-page-container" class="bg-black bg-opacity-75 pb-40">
+    <!-- Gallery Results Section -->
 
-      <section
-        id="gallery-results-section"
-        class="hidden grid justify-items-center pt-12 items-start"
-      >
-        <!-- Search History Section (Toggleable) of Gallery Results -->
+    <section id="gallery-results-section" class="hidden grid justify-items-center pt-12 items-start">
+      <!-- Search History Section (Toggleable) of Gallery Results -->
 
-        <h4 id="view-recent-searches-toggle">View Recent Searches</h4>
-        <aside
-          id="recent-searches-section"
-          class="hidden grid justify-items-center pt-5 pb-12"
-        >
-          <div
-            class="
+      <h4 id="view-recent-searches-toggle">View Recent Searches</h4>
+      <aside id="recent-searches-section" class="hidden grid justify-items-center pt-5 pb-12">
+        <div class="
               grid grid-cols-1
               md:grid-cols-2
               lg:grid-cols-4
@@ -121,19 +91,16 @@
               w-4/5
               text-center
               items-start
-            "
-            id="recents-container"
-          >
-            <!-- Recent Search History will display here -->
-          </div>
-        </aside>
+            " id="recents-container">
+          <!-- Recent Search History will display here -->
+        </div>
+      </aside>
 
-        <!-- Search Results Subsection of Gallery Results -->
+      <!-- Search Results Subsection of Gallery Results -->
 
-        <h2 class="text-2xl">Search Results</h2>
+      <h2 class="text-2xl">Search Results</h2>
 
-        <div
-          class="
+      <div class="
             grid grid-cols-1
             md:grid-cols-2
             lg:grid-cols-4
@@ -142,102 +109,100 @@
             w-4/5
             text-center
             items-start
-          "
-          id="gallery-container"
-        >
-          <!-- Gallery search results display here -->
-        </div>
-      </section>
+          " id="gallery-container">
+        <!-- Gallery search results display here -->
+      </div>
+    </section>
 
-      <!-- Astronomy Picture of the Day Section -->
+    <!-- Astronomy Picture of the Day Section -->
 
-      <section
-        id="apod-section"
-        class="grid justify-items-center text-center space-y-4 pt-12 mx-auto"
-      >
-        <h2 class="text-3xl">Astronomy Picture of the Day</h2>
+    <section id="apod-section" class="grid justify-items-center text-center space-y-4 pt-12 mx-auto">
+      <h2 class="text-3xl">Astronomy Picture of the Day</h2>
 
-        <p class="pb-6">
-          Come back to One Small Step every day for a new picture from NASA!
-        </p>
+      <p class="pb-6">
+        Come back to One Small Step every day for a new picture from NASA!
+      </p>
 
-        <a target="_new" class="grid justify-items-center"
-          ><img alt="placeholder" width="90%" height="50%" class="rounded-lg"
-        /></a>
+      <a target="_new" class="grid justify-items-center"><img alt="placeholder" width="90%" height="50%"
+          class="rounded-lg" /></a>
 
-        <!-- Video element placeholder in case APOD is a video -->
-        <video class="hidden"></video>
+      <!-- Video element placeholder in case APOD is a video -->
+      <video class="hidden"></video>
 
-        <h3 class="text-2xl">
-          <button>☆</button> <span><!-- Image Title Here --></span>
-        </h3>
+      <h3 class="text-2xl">
+        <button>☆</button> <span>
+          <!-- Image Title Here -->
+        </span>
+      </h3>
 
-        <p id="apod-desc" class="text-left w-4/5">
-          <!-- Image Description Here -->
-        </p>
-      </section>
+      <p id="apod-desc" class="text-left w-4/5">
+        <!-- Image Description Here -->
+      </p>
+    </section>
 
-      <!-- ISS Section -->
+    <!-- ISS Section -->
 
-      <section
-        id="iss-tracker-section"
-        class="grid justify-items-center text-center space-y-4 pt-12 mx-auto"
-      >
-        <h2 class="text-3xl">International Space Station Tracker</h2>
-        <!----------our Map goes here------------->
-        <div id="map"></div>
-        <div id="map-div"></div>
+    <section id="iss-tracker-section" class="grid justify-items-center text-center space-y-4 pt-12 mx-auto">
+      <h2 class="text-3xl">International Space Station Tracker</h2>
+      <aside>
+        <div id="astronauts">
+          <div id="names">
+            <li id="astro-names">
 
-        <!----------details about ISS------------->
-        <div id="details">
-          <!-------------Time----------------->
-          <div>
-            Time:
-            <span class="time"></span>
-          </div>
-          <!---------------Latitude------------->
-          <div>
-            Latitude:
-            <span class="latitude"></span>
-          </div>
-          <!---------------Longitude------------>
-          <div>
-            Longitude:
-            <span class="longitude"></span>
-          </div>
-          <!-- Speed -->
-          <div>
-            Speed:
-            <span class="speed"></span>
-          </div>
-          <!-----------------Altitude-------------->
-          <div>
-            Altitude:
-            <span class="altitude"></span>
-          </div>
-          <!----------------Visibility------------->
-          <div>
-            Visibility:
-            <span class="visibility"></span>
+            </li>
           </div>
         </div>
-      </section>
+      </aside>
+      <!----------our Map goes here------------->
+      <div id="map"></div>
+      <div id="map-div"></div>
 
-      <!-- Favorites Section -->
+      <!----------details about ISS------------->
+      <div id="details">
+        <!-------------Time----------------->
+        <div>
+          Time:
+          <span class="time"></span>
+        </div>
+        <!---------------Latitude------------->
+        <div>
+          Latitude:
+          <span class="latitude"></span>
+        </div>
+        <!---------------Longitude------------>
+        <div>
+          Longitude:
+          <span class="longitude"></span>
+        </div>
+        <!-- Speed -->
+        <div>
+          Speed:
+          <span class="speed"></span>
+        </div>
+        <!-----------------Altitude-------------->
+        <div>
+          Altitude:
+          <span class="altitude"></span>
+        </div>
+        <!----------------Visibility------------->
+        <div>
+          Visibility:
+          <span class="visibility"></span>
+        </div>
+      </div>
+    </section>
 
-      <section
-        id="favorites-section"
-        class="grid justify-items-center text-center space-y-4 pt-12 mx-auto"
-      >
-        <h2 class="text-3xl">Favorited Images</h2>
+    <!-- Favorites Section -->
 
-        <h3 id="no-favorites" class="mx-auto hidden">
-          Click the <span id="fun-star">☆</span> button next to an image title
-          to save it for later.
-        </h3>
+    <section id="favorites-section" class="grid justify-items-center text-center space-y-4 pt-12 mx-auto">
+      <h2 class="text-3xl">Favorited Images</h2>
 
-        <div
-          class="
+      <h3 id="no-favorites" class="mx-auto hidden">
+        Click the <span id="fun-star">☆</span> button next to an image title
+        to save it for later.
+      </h3>
+
+      <div class="
             grid grid-cols-1
             md:grid-cols-2
             lg:grid-cols-4
@@ -246,99 +211,80 @@
             w-4/5
             text-center
             items-start
-          "
-          id="favorites-container"
-        >
-          <!-- Favorites will display here -->
+          " id="favorites-container">
+        <!-- Favorites will display here -->
+      </div>
+    </section>
+
+    <!-- News Feed Section -->
+
+    <section id="news-section" class="grid justify-items-center text-center space-y-4 pt-12 mx-auto">
+      <h2 class="text-3xl">News</h2>
+
+      <!-- News filter options -->
+      <form class="flex flex-col gap-2" id="news-feed-filter-form">
+        <div class="flex justify-between gap-10" id="news-feed-filter-subreddit">
+          <label for="subreddit">Subreddit: </label>
+          <select class="bg-black" name="subreddit" id="subreddit">
+            <option value="astronomy">/r/Astronomy</option>
+            <option value="astrophysics">/r/Astrophysics</option>
+            <option value="iss">/r/ISS</option>
+            <option value="nasa">/r/NASA</option>
+            <option value="space">/r/Space</option>
+            <option value="spaceporn">/r/SpacePorn (SFW)</option>
+          </select>
         </div>
-      </section>
-
-      <!-- News Feed Section -->
-
-      <section
-        id="news-section"
-        class="grid justify-items-center text-center space-y-4 pt-12 mx-auto"
-      >
-        <h2 class="text-3xl">News</h2>
-
-        <!-- News filter options -->
-        <form class="flex flex-col gap-2" id="news-feed-filter-form">
-          <div
-            class="flex justify-between gap-10"
-            id="news-feed-filter-subreddit"
-          >
-            <label for="subreddit">Subreddit: </label>
-            <select class="bg-black" name="subreddit" id="subreddit">
-              <option value="astronomy">/r/Astronomy</option>
-              <option value="astrophysics">/r/Astrophysics</option>
-              <option value="iss">/r/ISS</option>
-              <option value="nasa">/r/NASA</option>
-              <option value="space">/r/Space</option>
-              <option value="spaceporn">/r/SpacePorn (SFW)</option>
-            </select>
-          </div>
-          <div
-            class="flex justify-between gap-10"
-            id="news-feed-filter-listing"
-          >
-            <label for="listing">Listing: </label>
-            <select class="bg-black" name="listing" id="listing">
-              <option value="top">Top</option>
-              <option value="hot">Hot</option>
-              <option value="new">New</option>
-              <option value="rising">Rising</option>
-              <option value="best">Best</option>
-              <option value="controversial">Controversial</option>
-            </select>
-          </div>
-          <div
-            class="flex justify-between gap-10"
-            id="news-feed-filter-timeframe"
-          >
-            <label for="timeframe">Timeframe: </label>
-            <select class="bg-black" name="timeframe" id="timeframe">
-              <option value="hour">Hour</option>
-              <option value="day">Day</option>
-              <option value="week">Week</option>
-              <option value="month">Month</option>
-              <option value="year">Year</option>
-              <option value="all">All</option>
-            </select>
-          </div>
-        </form>
-
-        <div
-          class="grid gap-8 grid-cols-1 px-5 lg:mx-40 lg:pt-10 lg:px-20"
-          id="news-container"
-        >
-          <!-- News feed displays here -->
+        <div class="flex justify-between gap-10" id="news-feed-filter-listing">
+          <label for="listing">Listing: </label>
+          <select class="bg-black" name="listing" id="listing">
+            <option value="top">Top</option>
+            <option value="hot">Hot</option>
+            <option value="new">New</option>
+            <option value="rising">Rising</option>
+            <option value="best">Best</option>
+            <option value="controversial">Controversial</option>
+          </select>
         </div>
-      </section>
+        <div class="flex justify-between gap-10" id="news-feed-filter-timeframe">
+          <label for="timeframe">Timeframe: </label>
+          <select class="bg-black" name="timeframe" id="timeframe">
+            <option value="hour">Hour</option>
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+            <option value="all">All</option>
+          </select>
+        </div>
+      </form>
 
-      <!-- Section for displaying individual HD images -->
+      <div class="grid gap-8 grid-cols-1 px-5 lg:mx-40 lg:pt-10 lg:px-20" id="news-container">
+        <!-- News feed displays here -->
+      </div>
+    </section>
 
-      <section
-        id="hd-section"
-        class="grid justify-items-center text-center space-y-4 pt-12 mx-auto"
-      >
-        <h2 id="hd-title" class="text-3xl">
-          <button>☆</button> "<span><!-- Image Title Here --></span>"
-        </h2>
-        <a target="_new" class="grid justify-items-center"
-          ><img id="hd-img" alt="placeholder" width="90%" class="rounded-lg"
-        /></a>
+    <!-- Section for displaying individual HD images -->
 
-        <p id="hd-desc" class="text-left w-4/5">
-          <!-- Image Description Here -->
-        </p>
-        <div id="close-hd"><!-- Escape Button Here --></div>
-      </section>
-    </main>
+    <section id="hd-section" class="grid justify-items-center text-center space-y-4 pt-12 mx-auto">
+      <h2 id="hd-title" class="text-3xl">
+        <button>☆</button> "<span>
+          <!-- Image Title Here -->
+        </span>"
+      </h2>
+      <a target="_new" class="grid justify-items-center"><img id="hd-img" alt="placeholder" width="90%"
+          class="rounded-lg" /></a>
 
-    <!-- Modal for confirming deleting of favorites -->
-    <div
-      id="modal"
-      class="
+      <p id="hd-desc" class="text-left w-4/5">
+        <!-- Image Description Here -->
+      </p>
+      <div id="close-hd">
+        <!-- Escape Button Here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal for confirming deleting of favorites -->
+  <div id="modal" class="
         opacity-0
         pointer-events-none
         fixed
@@ -351,11 +297,8 @@
         items-center
         justify-center
         overflow-y-scroll
-      "
-    >
-      <div
-        id="modal-overlay"
-        class="
+      ">
+    <div id="modal-overlay" class="
           flex flex-col
           pt-20
           absolute
@@ -365,9 +308,8 @@
           bottom-0
           bg-black bg-opacity-75
           text-center
-        "
-      >
-        <!-- <div class="mx-auto">
+        ">
+      <!-- <div class="mx-auto">
           <h3 id="modal-header" class="text-2xl">
             <button>☆</button> "<span>Image Title</span>"
           </h3>
@@ -383,11 +325,9 @@
             Description of image.
           </p>
         </div> -->
-      </div>
+    </div>
 
-      <div
-        id="modal-close"
-        class="
+    <div id="modal-close" class="
           absolute
           top-0
           right-0
@@ -398,39 +338,30 @@
           mr-4
           text-white text-sm
           z-50
-        "
-      >
-        <svg
-          class="fill-current text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-        >
-          <path
-            d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"
-          ></path>
-        </svg>
-        <span class="text-sm">(Esc)</span>
-      </div>
+        ">
+      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+        viewBox="0 0 18 18">
+        <path
+          d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+        </path>
+      </svg>
+      <span class="text-sm">(Esc)</span>
     </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./assets/js/utils.js"></script>
-    <script src="./assets/js/apod.js"></script>
-    <script src="./assets/js/gallery.js"></script>
-    <script src="./assets/js/reddit.js"></script>
-    <script src="./assets/js/favorites.js"></script>
-    <script
-      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-    <script src="./assets/js/iss.js" type="text/javascript"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./assets/js/utils.js"></script>
+  <script src="./assets/js/apod.js"></script>
+  <script src="./assets/js/gallery.js"></script>
+  <script src="./assets/js/reddit.js"></script>
+  <script src="./assets/js/favorites.js"></script>
+  <script src="assets/js/AnISS.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="./assets/js/iss.js" type="text/javascript"></script>
+</body>
+
 </html>
