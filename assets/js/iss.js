@@ -77,7 +77,7 @@ function updateISS(lat, long, speed, altitude, visibility) {
 
 function findAstronauts() {
   // grab the list of people currently in space from open-notify API
-  axios.get('http://api.open-notify.org/astros.json').then((res) => {
+  axios.get('https://api.open-notify.org/astros.json').then((res) => {
     const peopleInSpace = res.data.people;
     // filter for astronauts on board the ISS
     const peopleOnISS = peopleInSpace.filter(
