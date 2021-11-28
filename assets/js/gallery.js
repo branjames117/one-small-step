@@ -11,23 +11,39 @@ searchFormEl.addEventListener('submit', function (e) {
 function getGallery(queryStr) {
   const url = 'https://images-api.nasa.gov/search?media_type=image&q=';
 
-  // if query submitted, use it, else just look for black holes
-  const query = queryStr || 'black holes';
+  // trim extra spaces from query
+  const query = queryStr.trim();
   const params = { params: { q: query, media_type: 'image' } };
+
+  // if query is blank, empty the search bar and abort search
+  if (query.length === 0) {
+    document.getElementById('query-input').value = '';
+    return;
+  }
 
   // clear out search input field
   document.getElementById('query-input').value = '';
 
+  // grab the gallery container
+  const galleryContainer = document.querySelector('#gallery-container');
+
   axios
     .get(url, params)
     .then((res) => {
+      // scroll to top
+      scrollToPos();
+
       // empty array where search results will be stored
       const searchResults = [];
 
+      // clear out previous results
+      clearSection('#gallery-container');
+
       // make visible the results section
-      document
-        .querySelector('#gallery-results-section')
-        .classList.remove('hidden');
+      renderSection('gallery-results-section');
+
+      // close the mobile menu if it's open
+      document.querySelector('#mobile-menu-overlay').classList.add('hidden');
 
       // attempt to render results only if results are returned
       if (res.data.collection.items.length > 0) {
@@ -38,8 +54,9 @@ function getGallery(queryStr) {
             description: item.data[0].description,
             keywords: item.data[0].keywords,
             title: item.data[0].title,
+            nasa_id: item.data[0].nasa_id,
             thumbnail: item.links[0].href,
-            largeImage: item.links[0].href.replace('thumb', 'orig'),
+            manifest: item.href,
           };
           searchResults.push(image);
         });
@@ -47,12 +64,15 @@ function getGallery(queryStr) {
         // add search overview (query used + first image returned) for display in the recents section
         const recentSearchObj = {
           thumbnail: searchResults[0].thumbnail,
-          largeImage: searchResults[0].largeImage,
+          manifest: searchResults[0].manifest,
+          description: searchResults[0].description,
+          title: searchResults[0].title,
+          nasa_id: searchResults[0].nasa_id,
           query,
         };
 
         // get copy of current localStorage object
-        const localStorageObj = JSON.parse(localStorage.userInfo);
+        const localStorageObj = grabLocalStorage();
 
         let alreadyRecented = false;
         for (let i = 0; i < localStorageObj.recent.length; i++) {
@@ -74,130 +94,173 @@ function getGallery(queryStr) {
           populateRecents();
         }
 
-        // TO DO - render the first 10 results at first, render the next 10 if user clicks "Load more..." or scrolls down, then the next 10, and so on... so that the browser isn't inundated with 100 image loads all at once (test this)
-
         // change the h2 to include search term
         document.querySelector(
           '#gallery-results-section > h2'
         ).textContent = `Search Results for: "${queryStr}"`;
 
         // render only the first 8 results to the temporary holding containers
-        searchResults.forEach((image, idx) => {
-          if (idx < 8) {
-            // check if image exists in favorites
-            let favorited = false;
-            localStorageObj.favorites.forEach((favorite) => {
-              if (favorite.title === image.title) {
-                console.log('Favorited');
-                favorited = true;
-              }
-            });
-
-            // if image is in favorites, fill out the star, otherwise, make it hollow
-            document.querySelector(
-              `#search-result-${idx + 1} > h3 > button`
-            ).textContent = favorited ? '★' : '☆';
-
-            // add event listener to Favorite button
-            document.querySelector(
-              `#search-result-${idx + 1} > h3 > button`
-            ).imageObj = {
-              title: image.title,
-              thumbnail: image.url,
-              hdUrl: image.hdurl,
-            };
-            document
-              .querySelector(`#search-result-${idx + 1} > h3 > button`)
-              .addEventListener('click', toggleFavorite);
-
-            // set the title of each grid item
-            document.querySelector(
-              `#search-result-${idx + 1} > h3 > span`
-            ).textContent = image.title;
-            // set the URL link
-            document.querySelector(`#search-result-${idx + 1} > a`).href =
-              image.largeImage;
-            // set the image as thumbnail
-            document.querySelector(`#search-result-${idx + 1} > a > img`).src =
-              image.thumbnail;
-            // if keywords list is only one item as some results return, break it apart
-            if (image.keywords.length === 1) {
-              image.keywords = image.keywords[0].split('; ');
+        searchResults.forEach((image) => {
+          // check if image exists in favorites
+          let favorited = false;
+          localStorageObj.favorites.forEach((favorite) => {
+            if (favorite.nasa_id === image.nasa_id) {
+              favorited = true;
             }
-            // clear out old keywords from container
-            document.querySelector(`#search-result-${idx + 1} > ul`).innerHTML =
-              '';
-            // populate keywords list
-            image.keywords.forEach((keyword) => {
+          });
+
+          // create the elements
+          const divEl = document.createElement('div');
+          divEl.classList = 'grid gap-y-4 inline-block rounded-lg p-2';
+
+          const h3El = document.createElement('h3');
+          const buttonEl = document.createElement('button');
+          // if image is in favorites, fill out the star, otherwise, make it hollow
+          buttonEl.textContent = favorited ? '★' : '☆';
+          buttonEl.classList = 'pr-2';
+
+          // add event listener to Favorite button
+          buttonEl.imageObj = {
+            title: image.title,
+            description: image.description,
+            thumbnail: image.thumbnail,
+            manifest: image.manifest,
+            nasa_id: image.nasa_id,
+          };
+          buttonEl.addEventListener('click', toggleFavorite);
+
+          // set the title of each grid item, cutting it off if title extends beyond 75 chars
+          const spanEl = document.createElement('span');
+          spanEl.textContent =
+            image.title.length > 75
+              ? image.title.substr(0, 75) + '...'
+              : image.title;
+          spanEl.textContent.replace('_', ' ');
+
+          h3El.append(buttonEl, spanEl);
+
+          const aEl = document.createElement('a');
+          aEl.classList = 'grid justify-items-center align-top';
+          // set the URL link
+          aEl.addEventListener('click', () => {
+            getImageFromManifest(image, 'gallery-results-section');
+          });
+          // set the image as thumbnail
+          const imgEl = document.createElement('img');
+          imgEl.src = image.thumbnail;
+          imgEl.title = image.description;
+          imgEl.alt = image.description;
+          imgEl.style.cursor = 'pointer';
+          imgEl.setAttribute('width', '95%');
+
+          aEl.append(imgEl);
+
+          // if keywords list is only one item as some results return, break it apart
+          if (image.keywords && image.keywords.length === 1) {
+            image.keywords = image.keywords[0].split('; ');
+          }
+
+          // populate keywords list if keywords exist
+          const ulEl = document.createElement('ul');
+          if (image.keywords && image.keywords.length === 1) {
+            image.keywords = image.keywords[0].split(', ');
+          }
+          if (image.keywords) {
+            image.keywords.slice(0, 5).forEach((keyword) => {
               const keywordEl = document.createElement('li');
               keywordEl.textContent = keyword;
               keywordEl.style.cursor = 'pointer';
+              keywordEl.classList = 'hover:bg-gray-800 bg-opacity-50';
               keywordEl.addEventListener('click', (e) => {
                 getGallery(e.target.textContent);
               });
-              document
-                .querySelector(`#search-result-${idx + 1} > ul`)
-                .append(keywordEl);
+              ulEl.append(keywordEl);
             });
           }
-        });
 
-        // TO DO - add a click listener to the thumbnail image so that when the user clicks it the larger version of the image opens in a modal, complete with description, title, etc.
+          // put it all together
+          divEl.append(h3El, aEl, ulEl);
+          galleryContainer.append(divEl);
+        });
       } else {
-        // change the h2 to report no results
         document.querySelector(
           '#gallery-results-section > h2'
-        ).textContent = `Search Results for: "${queryStr}." NO IMAGES FOUND.`;
+        ).textContent = `No results for: "${queryStr}"`;
       }
-
-      // add event listener to close search results button
-      document
-        .querySelector('#gallery-results-section > h3')
-        .addEventListener('click', () => {
-          document
-            .querySelector('#gallery-results-section')
-            .classList.add('hidden');
-        });
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      document.querySelector(
+        '#gallery-results-section > h2'
+      ).textContent = `No results for: "${queryStr}"`;
+    });
 }
 
 function populateRecents() {
   // get copy of current localStorage object
-  const localStorageObj = JSON.parse(localStorage.userInfo);
+  const localStorageObj = grabLocalStorage();
 
-  // go through array backwards and populate placeholder containers in index.html
+  // clear current recents section
+  clearSection('#recents-container');
+
+  const recentsContainer = document.querySelector('#recents-container');
+
+  // go through array backwards and build containers in the recent searches section
   localStorageObj.recent
     .slice()
     .reverse()
     .forEach((search, idx) => {
-      // title first
-      document.querySelector(
-        `#recent-search-container-${idx + 1} h3 a`
-      ).textContent = '"' + search.query + '"';
-      document
-        .querySelector(`#recent-search-container-${idx + 1} h3 a`)
-        .addEventListener('click', () => {
-          getGallery(search.query);
-        });
-      document.querySelector(
-        `#recent-search-container-${idx + 1} h3 a`
-      ).style.cursor = 'pointer';
+      const recentContainer = document.createElement('div');
+      recentContainer.classList = 'grid gap-y-4 inline-block rounded-lg p-2';
 
-      // image
-      document.querySelector(`#recent-search-container-${idx + 1} a img`).src =
-        search.thumbnail;
-      document.querySelector(`#recent-search-container-${idx + 1} a img`).alt =
-        search.query;
-      document.querySelector(
-        `#recent-search-container-${idx + 1} a img`
-      ).title = search.query;
+      // search query element
+      const h3El = document.createElement('h3');
+      const aEl = document.createElement('a');
+      aEl.textContent = '"' + search.query + '"';
+      aEl.style.cursor = 'pointer';
+      aEl.addEventListener('click', () => {
+        getGallery(search.query);
+      });
+      h3El.append(aEl);
 
-      // link to hd image
-      document.querySelector(`#recent-search-container-${idx + 1} > a`).href =
-        search.largeImage;
+      // image element
+      const imgAEl = document.createElement('a');
+      imgAEl.classList = 'grid justify-items-center';
+      imgAEl.style.cursor = 'pointer';
+      imgAEl.addEventListener('click', () => {
+        getImageFromManifest(search, 'gallery-results-section');
+      });
+      const imgEl = document.createElement('img');
+      imgEl.classList = 'rounded-lg';
+      imgEl.alt = search.description;
+      imgEl.title = search.description;
+      imgEl.setAttribute('height', '60%');
+      imgEl.setAttribute('width', '60%');
+      imgEl.src = search.thumbnail;
+
+      imgAEl.append(imgEl);
+
+      // put it all together
+      recentContainer.append(h3El, imgAEl);
+
+      // append to recents container
+      recentsContainer.append(recentContainer);
     });
 }
+
+// add click listener to toggle display recent searches section
+document
+  .querySelector('#view-recent-searches-toggle')
+  .addEventListener('click', () => {
+    const recentSearchEl = document.querySelector('aside');
+    const recentSearchButtonEl = document.querySelector(
+      '#view-recent-searches-toggle'
+    );
+    recentSearchButtonEl.textContent =
+      recentSearchButtonEl.textContent === 'View Recent Searches'
+        ? 'Close Recent Searches'
+        : 'View Recent Searches';
+    recentSearchEl.classList.toggle('hidden');
+  });
 
 // on page load, populate recent section
 populateRecents();

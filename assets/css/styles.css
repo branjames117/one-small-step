@@ -6,45 +6,84 @@
     box-sizing: border-box;
 } */
 
+body {
+  background-image: url('../img/pexels-miriam-espacio-110854.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  color: rgb(179, 179, 179);
+}
+
+a:hover {
+  color: rgb(240, 240, 240);
+}
+
+header h1,
+#navbar-links li,
+#search-form input:not(:first-child) {
+  cursor: pointer;
+}
+
+form select {
+  cursor: pointer;
+}
+
+/* Mobile menu styles */
+
+#hamburger {
+  cursor: pointer;
+}
+
+#mobile-menu-overlay {
+  z-index: 10000;
+}
+
+#search-form input:first-child {
+  width: 135px;
+}
+
+/* Modal styling */
+
+.modal {
+  transition: opacity 0.25s ease;
+}
+
+body.modal-active {
+  overflow-x: hidden;
+  overflow-y: visible !important;
+  z-index: 1;
+}
+
 /* ISS styling starts here */
 
 #map-div {
-  width: 800px;
+  width: 85%; /* temporary fix, originally width: 800px; */
+  max-width: 800px; /* temporary fix, originally absent */
   height: 350px;
-  box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
 }
 
 /* #details */
 
 #details {
-  background-color: #2b32b2;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  padding: 2px;
-  color: #fff;
-  display: flex;
-  font-family: 'Poppins', sans-serif;
-  border-radius: 5px;
-  width: 800px;
+  margin: 0;
+  width: 85%;
   max-width: 800px;
-  box-shadow: 7px -2px 8px -1px rgba(0, 0, 0, 0.7);
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+}
+
+#astronauts {
+  width: 85%;
+  max-width: 800px;
 }
 
 /* all div inside #details */
 
-#details div {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-/* all span */
-
-span {
-  font-size: 1rem;
-  margin-top: 10px;
+#details div:nth-child(even) {
+  background-color: #4048d6;
 }

@@ -14,10 +14,10 @@
       ).textContent = `${res.data.title}`;
 
       // get localstorage object so we can check if image is already in favorites
-      const localStorageObj = JSON.parse(localStorage.userInfo);
+      const localStorageObj = grabLocalStorage();
       let favorited = false;
       localStorageObj.favorites.forEach((favorite) => {
-        if (favorite.title === res.data.title) {
+        if (favorite.nasa_id === res.data.title) {
           favorited = true;
         }
       });
@@ -29,24 +29,35 @@
       document.querySelector('#apod-section > h3 > button').imageObj = {
         title: res.data.title,
         thumbnail: res.data.url,
-        hdUrl: res.data.hdurl,
+        url: res.data.hdurl,
+        description: res.data.explanation,
+        nasa_id: res.data.title,
       };
       document
         .querySelector('#apod-section > h3 > button')
         .addEventListener('click', toggleFavorite);
 
       // set the explanation
-      document.querySelector('#apod-section > p').textContent =
-        res.data.explanation;
+      document.querySelector(
+        '#apod-desc'
+      ).textContent = `${res.data.date}. ${res.data.explanation}. (© ${res.data.copyright}.)`;
 
       // check if APOD is an image or a video and append appropriate element to render it
       if (res.data.media_type === 'image') {
         // enclose img el in a link to HD url
-        document.querySelector('#apod-section > a').href = res.data.hdurl;
+        document
+          .querySelector('#apod-section > a')
+          .addEventListener('click', () => {
+            getImageFromURL(res.data, 'apod-section');
+          });
         document.querySelector('#apod-section img').src = res.data.url;
         document.querySelector(
           '#apod-section img'
-        ).title = `Click for HD version of ${res.data.title}.`;
+        ).title = `Click to open HD version of ${res.data.title}.`;
+        document.querySelector(
+          '#apod-section img'
+        ).alt = `Click to open HD version of ${res.data.title}.`;
+        document.querySelector('#apod-section img').style.cursor = 'pointer';
       } else if (res.data.media_type === 'video') {
         // if video
         document.querySelector('#apod-section > video').style.display = 'block';
