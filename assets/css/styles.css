@@ -33,6 +33,12 @@ form select {
   cursor: pointer;
 }
 
+/* Mobile menu styles */
+
+#hamburger {
+  cursor: pointer;
+}
+
 #mobile-menu-overlay {
   z-index: 10000;
 }
