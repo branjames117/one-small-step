@@ -42,23 +42,25 @@ const marker = L.marker([lat, long], { icon: icon }).addTo(map);
 
 // findISS() function definition
 function findISS() {
-  fetch('https://api.wheretheiss.at/v1/satellites/25544/')
-    .then((response) => response.json())
-    .then((data) => {
+  axios
+    .get('https://api.wheretheiss.at/v1/satellites/25544/')
+    .then((res) => {
+      // Hide API error element on successful request
       document.querySelector('#iss-error').classList.add('hidden');
-      lat = data.latitude.toFixed(2);
-      long = data.longitude.toFixed(2);
+      lat = res.data.latitude.toFixed(2);
+      long = res.data.longitude.toFixed(2);
 
       // convert seconds to milliseconds, then format Date
-      const timestamp = new Date(data.timestamp * 1000).toUTCString();
-      const speed = data.velocity.toFixed(2);
-      const altitude = data.altitude.toFixed(2);
-      const visibility = data.visibility;
+      const timestamp = new Date(res.data.timestamp * 1000).toUTCString();
+      const speed = res.data.velocity.toFixed(2);
+      const altitude = res.data.altitude.toFixed(2);
+      const visibility = res.data.visibility;
 
       // call updateISS() function to update things
       updateISS(lat, long, timestamp, speed, altitude, visibility);
     })
     .catch((e) =>
+      // Reveal API error element on failed request
       document.querySelector('#iss-error').classList.remove('hidden')
     );
 }
