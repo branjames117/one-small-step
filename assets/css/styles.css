@@ -75,12 +75,14 @@ body.modal-active {
   margin: 0;
   width: 85%;
   max-width: 800px;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
 }
 
-#astronauts {
+/* #astronauts {
   width: 85%;
   max-width: 800px;
-}
+} */
 
 /* all div inside #details */
 
