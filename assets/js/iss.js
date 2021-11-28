@@ -75,38 +75,39 @@ function updateISS(lat, long, speed, altitude, visibility) {
   visibilityText.innerText = visibility;
 }
 
-function findAstronauts() {
-  // grab the list of people currently in space from open-notify API with jQuery
-  $.getJSON('http://api.open-notify.org/astros.json', (data) => {
-    const peopleInSpace = data.people;
-    // filter for astronauts on board the ISS
-    const peopleOnISS = peopleInSpace.filter(
-      (person) => person.craft === 'ISS'
-    );
+// Removing this feature as open-notify API does not work with CORS
+// function findAstronauts() {
+//   // grab the list of people currently in space from open-notify API with jQuery
+//   $.getJSON('http://api.open-notify.org/astros.json', (data) => {
+//     const peopleInSpace = data.people;
+//     // filter for astronauts on board the ISS
+//     const peopleOnISS = peopleInSpace.filter(
+//       (person) => person.craft === 'ISS'
+//     );
 
-    // grab the container
-    const astronautsListEl = document.querySelector('#astronauts-list');
+//     // grab the container
+//     const astronautsListEl = document.querySelector('#astronauts-list');
 
-    // create a list item and append to DOM for each astronaut
-    peopleOnISS.forEach((astronaut) => {
-      const itemEl = document.createElement('li');
-      itemEl.textContent = astronaut.name;
-      itemEl.style.cursor = 'pointer';
-      itemEl.classList = 'hover:bg-gray-800';
-      // add event listener to each to do a search request
-      itemEl.addEventListener('click', () => {
-        getGallery(astronaut.name);
-      });
-      astronautsListEl.append(itemEl);
-    });
-  });
-}
+//     // create a list item and append to DOM for each astronaut
+//     peopleOnISS.forEach((astronaut) => {
+//       const itemEl = document.createElement('li');
+//       itemEl.textContent = astronaut.name;
+//       itemEl.style.cursor = 'pointer';
+//       itemEl.classList = 'hover:bg-gray-800';
+//       // add event listener to each to do a search request
+//       itemEl.addEventListener('click', () => {
+//         getGallery(astronaut.name);
+//       });
+//       astronautsListEl.append(itemEl);
+//     });
+//   });
+// }
 
 // Call findISS() initially to immediately set the ISS location
 findISS();
 
 // Find astronauts
-findAstronauts();
+// findAstronauts();
 
 // Call findISS() for every 2 seconds
 setInterval(findISS, 2000);
