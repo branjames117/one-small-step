@@ -45,6 +45,7 @@ function findISS() {
   fetch('https://api.wheretheiss.at/v1/satellites/25544/')
     .then((response) => response.json())
     .then((data) => {
+      document.querySelector('#iss-error').classList.add('hidden');
       lat = data.latitude.toFixed(2);
       long = data.longitude.toFixed(2);
 
@@ -57,7 +58,9 @@ function findISS() {
       // call updateISS() function to update things
       updateISS(lat, long, timestamp, speed, altitude, visibility);
     })
-    .catch((e) => console.error(e));
+    .catch((e) =>
+      document.querySelector('#iss-error').classList.remove('hidden')
+    );
 }
 
 // updateISS() function definition
