@@ -1,10 +1,10 @@
 // grab all elements needed
-let latitudeText = document.querySelector('.latitude');
-let longitudeText = document.querySelector('.longitude');
-let timeText = document.querySelector('.time');
-let speedText = document.querySelector('.speed');
-let altitudeText = document.querySelector('.altitude');
-let visibilityText = document.querySelector('.visibility');
+let latitudeText = document.querySelector('#latitude');
+let longitudeText = document.querySelector('#longitude');
+let timeText = document.querySelector('#time');
+let speedText = document.querySelector('#speed');
+let altitudeText = document.querySelector('#altitude');
+let visibilityText = document.querySelector('#visibility');
 
 /* default latitude and longitude. Here lat and long is for "Nashville" */
 let lat = 36.174465;
