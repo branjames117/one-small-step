@@ -72,6 +72,26 @@ navbarLinks.forEach((link) => {
   );
 });
 
+// Functions related to the mobile menu
+const menuIconEl = document.querySelector('#hamburger');
+const mobileMenuEl = document.querySelector('#mobile-menu-overlay');
+menuIconEl.addEventListener('click', () => {
+  mobileMenuEl.classList.toggle('hidden');
+});
+mobileMenuEl.addEventListener('click', () => {
+  mobileMenuEl.classList.add('hidden');
+});
+
+// Add event listeners to mobile nav bar links
+const mobileNavbarLinks = Array.from(
+  document.querySelectorAll('#navbar-links-mobile li')
+);
+mobileNavbarLinks.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    renderSection(e.target.id.replace('mobile-link', 'section'));
+  });
+});
+
 // Function to grab the first item from the collection.json manifest and open HD section
 async function getImageFromManifest(imageObj, origin) {
   const title = imageObj.title;

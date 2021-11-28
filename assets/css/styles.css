@@ -33,14 +33,20 @@ form select {
   cursor: pointer;
 }
 
+#mobile-menu-overlay {
+  z-index: 10000;
+}
+
 /* Modal styling */
 
 .modal {
   transition: opacity 0.25s ease;
 }
+
 body.modal-active {
   overflow-x: hidden;
   overflow-y: visible !important;
+  z-index: 1;
 }
 
 /* ISS styling starts here */

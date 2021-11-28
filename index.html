@@ -54,7 +54,19 @@
           </nav>
         </header>
         <!-- Main Content -->
-        <main id="front-page-container" class="pb-40">
+
+        <main id="front-page-container" class="relative pb-40">
+          <!-- Mobile menu -->
+          <div id="mobile-menu-overlay" class="hidden lg:hidden flex flex-col absolute w-full h-full top-0 bottom-0 bg-black bg-opacity-100">
+            <div class="flex">
+              <ul id="navbar-links-mobile" class="my-auto mx-4 text-white text-2xl lg:flex">
+                <li class="mr-4 hover:text-gray-400" id="apod-mobile-link">APoD</li>
+                <li class="mr-4 hover:text-gray-400" id="iss-tracker-mobile-link">ISS Tracker</li>
+                <li class="mr-4 hover:text-gray-400" id="news-mobile-link">News</li>
+                <li class="hover:text-gray-400" id="favorites-mobile-link">Favorites</li>
+              </ul>
+            </div>
+          </div>
           <!-- Gallery Results Section -->
           <section id="gallery-results-section" class="hidden grid justify-items-center pt-12 items-start">
             <!-- Search History Section (Toggleable) of Gallery Results -->

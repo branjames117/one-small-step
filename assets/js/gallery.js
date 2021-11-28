@@ -42,6 +42,9 @@ function getGallery(queryStr) {
       // make visible the results section
       renderSection('gallery-results-section');
 
+      // close the mobile menu if it's open
+      document.querySelector('#mobile-menu-overlay').classList.add('hidden');
+
       // attempt to render results only if results are returned
       if (res.data.collection.items.length > 0) {
         // API call returns an array of 100 items
