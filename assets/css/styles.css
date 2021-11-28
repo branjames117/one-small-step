@@ -37,6 +37,10 @@ form select {
   z-index: 10000;
 }
 
+#search-form input:first-child {
+  width: 135px;
+}
+
 /* Modal styling */
 
 .modal {
