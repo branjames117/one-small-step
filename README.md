@@ -2,57 +2,41 @@
 
 ## Description
 
-A SPA written in JavaScript and HTML that uses the Tailwind UI CSS framework and integrates various Open APIs from NASA, as well as Reddit, to create a one-stop-shop for astronomy lovers.
+One Small Step (stylized as 1SS) is meant to be a one-stop shop or resource hub for all lovers of astronomy, utilizing the significant public investment in NASA. Our first group project in the Vanderbilt Full-stack Coding Bootcamp taught us how to overcome challenges involving collaborating with Git as well as project management skills such as role delegation, Scrum meetings, and Kanban boards.
 
-## Proposed Features
+## Table of Contents
 
-### Single-Page Application
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
 
-A Header and a Sidebar that remain static for the most part, and a larger Main container that is cleared and then re-rendered based on user actions, so that the user never has to reload the page or navigate to a different page.
+## Features
 
-Functions: clearMain()
+- Single-page application, no reloads or additional HTTP requests.
+- Access to NASA's Astronomy Picture of the Day API using axios.
+- Access to NASA's Image and Video Gallery API via user-submitted search queries.
+- An interactive map using the Leaflet.js library and API data from WhereTheISS.at.
+- Favoriting of images and preference memory using localStorage.
+- A mobile-responsive design with the Tailwind UI CSS framework.
 
-### Astronomy Picture of the Day (APOD)
+## Installation
 
-Use NASA's APOD API to display their Picture of the Day. E.g., the user will click a button that says "Get Picture of the Day", which then displays the image and its information in the Main container.
+Clone the One Small Step repository in a CLI using the command `git clone` to download all source files.
 
-Stretch Goal: implement a calendar input that allows user to specify a date in history to display that date's picture.
+## Usage
 
-Function: getAPOD()
+Upload HTML source code and all asset files to a hosting service such as GitHub Pages.
 
-### Image Search
+The landing page is hosted [here](https://branjames117.github.io/one-small-step/).
 
-Use the NASA Image and Video Library to display multiple pictures (of a requested search term) in a gallery format. E.g, the user will enter a term like "black hole" into a search bar and then click the "Search" button to query NASA's library and get images (with descriptions and links to HD versions) of black holes, displayed in the Main container. The user's search history is stored in localStorage, with buttons near the search bar generated to make repeated searching easier.
+![Screenshot](./assets/img/onesmallstep.jpg)
 
-Stretch Goal: When the user clicks the search bar, a list of common queries appears, guiding the user toward more popular searches.
+## Credits
 
-Function: getImagesByQuery(query)
+Developed by [Brandon James Hoskins](https://github.com/branjames117), [Patrick Manning](https://github.com/pmanning901), [Brian Sales](https://github.com/salesbc), and [Nathan Helms](https://github.com/nathanhelms) for the Vanderbilt Coding Boot Camp, 2021, with assets from [FontAwesome](https://fontawesome.com/), [Miriam Espacio @ Pexels](https://www.pexels.com/@miriamespacio), and [Clker-Free-Vector-Images @ Pixabay](https://pixabay.com/users/clker-free-vector-images-3736/).
 
-### Reddit Integration
+## License
 
-Use Reddit's API to pull a collection of astronomy-related Reddit posts to render in the Main container along with the images (or independent of the images, as a separate feature). Either a) a separate feature showing a list of posts from (e.g.) the Astronomy subreddit or the NASA subreddit, or b) a feature showing a list of posts related to the image searched ("Venus", "gravitational waves", etc.).
-
-Function: getRedditPosts(query)
-
-### Stretch Goal: Astronomy Quiz
-
-Integrate a trivia/quiz API that generates astronomy-related questions/answers.
-
-### Stretch Goal: SpaceX API
-
-SpaceX has a free API that offers data about their launches.
-
-## Project Steps
-
-1. Create the HTML skeleton.
-2. Successfully connect to API endpoints.
-3. Use data from API calls to render DOM.
-4. Store data in localStorage for persistence.
-5. Style page with Tailwind.
-
-## Contributors
-
-- Nathan Helms
-- Brandon Hoskins
-- Patrick Manning
-- Brian Sales
+Creative Commons Zero v1.0 Universal
