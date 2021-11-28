@@ -9,7 +9,7 @@ let visibilityText = document.querySelector('.visibility');
 /* default latitude and longitude. Here lat and long is for "Nashville" */
 let lat = 36.174465;
 let long = -86.76796;
-let zoomLevel = 4;
+let zoomLevel = 10;
 
 // set iss.png image as Marker
 const icon = L.icon({
