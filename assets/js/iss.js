@@ -1,7 +1,6 @@
 // grab all elements needed
 let latitudeText = document.querySelector('#latitude');
 let longitudeText = document.querySelector('#longitude');
-let timeText = document.querySelector('#time');
 let speedText = document.querySelector('#speed');
 let altitudeText = document.querySelector('#altitude');
 let visibilityText = document.querySelector('#visibility');
@@ -51,13 +50,12 @@ function findISS() {
       long = res.data.longitude.toFixed(2);
 
       // convert seconds to milliseconds, then format Date
-      const timestamp = new Date(res.data.timestamp * 1000).toUTCString();
       const speed = res.data.velocity.toFixed(2);
       const altitude = res.data.altitude.toFixed(2);
       const visibility = res.data.visibility;
 
       // call updateISS() function to update things
-      updateISS(lat, long, timestamp, speed, altitude, visibility);
+      updateISS(lat, long, speed, altitude, visibility);
     })
     .catch((e) =>
       // Reveal API error element on failed request
@@ -66,15 +64,14 @@ function findISS() {
 }
 
 // updateISS() function definition
-function updateISS(lat, long, timestamp, speed, altitude, visibility) {
+function updateISS(lat, long, speed, altitude, visibility) {
   marker.setLatLng([lat, long]);
   map.setView([lat, long]);
   // updates other element's value
   latitudeText.innerText = lat;
   longitudeText.innerText = long;
-  timeText.innerText = timestamp;
-  speedText.innerText = `${speed} km/h`;
-  altitudeText.innerText = `${altitude} km`;
+  speedText.innerText = speed;
+  altitudeText.innerText = altitude;
   visibilityText.innerText = visibility;
 }
 
