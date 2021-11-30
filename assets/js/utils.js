@@ -192,7 +192,7 @@ function createEscapeButton(origin, scrollYPos) {
   buttonEl.textContent = '(Escape)';
   // If user clicks button, go back to origin section
   buttonEl.addEventListener('click', () => {
-    renderSection(origin);
+    renderSection(origin, scrollYPos);
   });
   // Listen for "Escape" key to be pressed but only if HD section is loaded
   let onHDSection = true;
