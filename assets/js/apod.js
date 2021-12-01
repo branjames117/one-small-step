@@ -8,6 +8,7 @@
   axios
     .get(url, params)
     .then((res) => {
+      console.log(res);
       // set the title for the APOD
       document.querySelector(
         '#apod-section > h3 > span'
@@ -60,8 +61,10 @@
         document.querySelector('#apod-section img').style.cursor = 'pointer';
       } else if (res.data.media_type === 'video') {
         // if video
-        document.querySelector('#apod-section > video').style.display = 'block';
-        document.querySelector('#apod-section > video').src = res.data.url;
+        console.log('Its video');
+        console.log(res.data.url);
+        document.querySelector('#apod-video').classList.remove('hidden');
+        document.querySelector('#apod-video').src = res.data.url;
       }
     })
     // TO DO - enhance user feedback for API error with a modal
