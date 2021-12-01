@@ -8,7 +8,6 @@
   axios
     .get(url, params)
     .then((res) => {
-      console.log(res);
       // set the title for the APOD
       document.querySelector(
         '#apod-section > h3 > span'
@@ -61,8 +60,6 @@
         document.querySelector('#apod-section img').style.cursor = 'pointer';
       } else if (res.data.media_type === 'video') {
         // if video
-        console.log('Its video');
-        console.log(res.data.url);
         document.querySelector('#apod-video').classList.remove('hidden');
         document.querySelector('#apod-video').src = res.data.url;
       }
