@@ -99,7 +99,6 @@ function getGallery(queryStr) {
           '#gallery-results-section > h2'
         ).textContent = `Search Results for: "${queryStr}"`;
 
-        // render only the first 8 results to the temporary holding containers
         searchResults.forEach((image) => {
           // check if image exists in favorites
           let favorited = false;
@@ -248,6 +247,8 @@ function populateRecents() {
 }
 
 // add click listener to toggle display recent searches section
+document.querySelector('#view-recent-searches-toggle').style.cursor = 'pointer';
+
 document
   .querySelector('#view-recent-searches-toggle')
   .addEventListener('click', () => {

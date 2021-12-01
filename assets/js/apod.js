@@ -29,7 +29,7 @@
       document.querySelector('#apod-section > h3 > button').imageObj = {
         title: res.data.title,
         thumbnail: res.data.url,
-        url: res.data.hdurl,
+        url: res.data.hdurl || res.data.url,
         description: res.data.explanation,
         nasa_id: res.data.title,
       };
