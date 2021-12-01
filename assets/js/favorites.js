@@ -93,7 +93,7 @@ function populateFavorites() {
     .forEach((favorite) => {
       const divEl = document.createElement('div');
       divEl.classList = 'grid gap-y-4 inline-block rounded-lg p-2';
-
+      console.log(favorite);
       const h3El = document.createElement('h3');
       const buttonEl = document.createElement('button');
       buttonEl.imageObj = {
@@ -119,18 +119,29 @@ function populateFavorites() {
           getImageFromManifest(favorite, 'favorites-section');
         }
       });
-      const imgEl = document.createElement('img');
-      imgEl.setAttribute('height', '100%');
-      imgEl.setAttribute('width', '100%');
-      imgEl.alt = favorite.title;
-      imgEl.title = favorite.title;
-      imgEl.src = favorite.thumbnail;
-      imgEl.style.cursor = 'pointer';
+      // check if this is a video (sometimes APOD is a video)
+      if (favorite.thumbnail.indexOf('www.youtube.com/embed') !== -1) {
+        const iframeEl = document.createElement('iframe');
+        iframeEl.setAttribute('height', '200');
+        iframeEl.setAttribute('width', '100%');
+        iframeEl.src = favorite.thumbnail;
+        aEl.append(iframeEl);
+        divEl.append(h3El, aEl);
+        favoritesContainer.append(divEl);
+      } else {
+        const imgEl = document.createElement('img');
+        imgEl.setAttribute('height', '100%');
+        imgEl.setAttribute('width', '100%');
+        imgEl.alt = favorite.title;
+        imgEl.title = favorite.title;
+        imgEl.src = favorite.thumbnail;
+        imgEl.style.cursor = 'pointer';
 
-      // put it all together
-      aEl.append(imgEl);
-      divEl.append(h3El, aEl);
-      favoritesContainer.append(divEl);
+        // put it all together
+        aEl.append(imgEl);
+        divEl.append(h3El, aEl);
+        favoritesContainer.append(divEl);
+      }
     });
 }
 
